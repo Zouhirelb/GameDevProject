@@ -24,3 +24,4 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\obj\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\obj\Debug\net6.0\Gameproject.pdb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\obj\Debug\net6.0\Gameproject.genruntimeconfig.cache
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\obj\Debug\net6.0\ref\Gameproject.dll
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\character lopen.xnb
