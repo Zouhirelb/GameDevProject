@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,8 +10,7 @@ namespace Gameproject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
-        private Rectangle deelrectangle;
-        private int schuifop_x;
+        Hero hero;
 
         public Game1()
         {
@@ -23,7 +23,7 @@ namespace Gameproject
         {
             // TODO: Add your initialization logic here
 
-            deelrectangle = new Rectangle(schuifop_x, 0,48,73);
+           
 
             base.Initialize();
         }
@@ -33,6 +33,13 @@ namespace Gameproject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             texture = Content.Load<Texture2D>("character lopen");
             // TODO: use this.Content to load your game content here
+
+            InitializeGameObjects();
+        }
+
+        private void InitializeGameObjects()
+        {
+            hero = new Hero(texture);
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,6 +48,7 @@ namespace Gameproject
                 Exit();
 
             // TODO: Add your update logic here
+            hero.Update();
 
             base.Update(gameTime);
         }
@@ -54,17 +62,12 @@ namespace Gameproject
             _spriteBatch.Begin();
 
 
-            _spriteBatch.Draw(texture,  new Vector2(10, 10),deelrectangle, Color.White);
+            hero.Draw(_spriteBatch);
 
 
             _spriteBatch.End();
 
-            schuifop_x += 49;
-            if (schuifop_x>342)
-            {
-                schuifop_x = 0;
-            }
-            deelrectangle.X = schuifop_x;
+           
          
           
 
