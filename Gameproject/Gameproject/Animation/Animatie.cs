@@ -14,7 +14,7 @@ namespace Gameproject.Animation
         public AnimationFrame CurrentFrame { get; set; }
         private List<AnimationFrame> frames;
         private int counter;
-
+        private double frameMovement = 0;
         public Animatie()
         {
             frames = new List<AnimationFrame>();
@@ -25,10 +25,18 @@ namespace Gameproject.Animation
             CurrentFrame = frames[0];
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             CurrentFrame = frames[counter];
-            counter++;
+
+            frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
+            if (frameMovement >=CurrentFrame.SourceRectangle.Width/10)
+            {
+                counter++;
+                frameMovement = 0;
+            }
+
+          
 
             if (counter>= frames.Count)
             {
