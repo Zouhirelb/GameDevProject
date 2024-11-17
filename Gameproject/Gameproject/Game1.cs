@@ -55,7 +55,7 @@ namespace Gameproject
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.LawnGreen); 
+            GraphicsDevice.Clear(Color.DarkSeaGreen); 
 
             // TODO: Add your drawing code here
 
