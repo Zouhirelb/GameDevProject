@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\background.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\input\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\input\\keyboardreader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,20 +106,59 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Game1.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
+              "RelativeToolTip": "Gameproject\\Game1.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCUAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T19:07:26.964Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IGameObject.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeToolTip": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T19:06:27.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Background.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Background.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Background.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Background.cs",
+              "RelativeToolTip": "Gameproject\\Background.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T19:06:12.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Hero.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
               "RelativeDocumentMoniker": "Gameproject\\Hero.cs",
-              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs*",
-              "RelativeToolTip": "Gameproject\\Hero.cs*",
-              "ViewState": "AgIAABkAAAAAAAAAAAAQwC4AAAA6AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
+              "RelativeToolTip": "Gameproject\\Hero.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAiwGYAAAB9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-17T18:46:38.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "KeyBoardReader.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Input\\KeyBoardReader.cs",
               "RelativeDocumentMoniker": "Gameproject\\Input\\KeyBoardReader.cs",
@@ -115,8 +166,7 @@
               "RelativeToolTip": "Gameproject\\Input\\KeyBoardReader.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T18:46:13.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-17T18:46:13.692Z"
             }
           ]
         }

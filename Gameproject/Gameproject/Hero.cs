@@ -100,7 +100,7 @@ namespace Gameproject
         }
         public void Draw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(heroTexture, positie,animatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1f,SpriteEffects.None,0);
+            spriteBatch.Draw(heroTexture, positie,animatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);
         }
 
     }

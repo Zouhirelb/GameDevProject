@@ -11,7 +11,10 @@ namespace Gameproject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
+        private Texture2D backgroundTexture;
+        private Background _background;
         Hero hero;
+
 
         public Game1()
         {
@@ -32,8 +35,12 @@ namespace Gameproject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            backgroundTexture = Content.Load<Texture2D>("forest");
             texture = Content.Load<Texture2D>("character lopen");
-            // TODO: use this.Content to load your game content here
+
+            int screenWidth = GraphicsDevice.Viewport.Width;
+            int screenHeight = GraphicsDevice.Viewport.Height;
+            _background = new Background(backgroundTexture, screenWidth, screenHeight);
 
             InitializeGameObjects();
         }
@@ -62,6 +69,7 @@ namespace Gameproject
 
             _spriteBatch.Begin();
 
+            _background.Draw(_spriteBatch);
 
             hero.Draw(_spriteBatch);
 
