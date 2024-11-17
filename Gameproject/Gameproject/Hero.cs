@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gameproject.Animation;
+using Gameproject.Input;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,8 +20,9 @@ namespace Gameproject
         private Vector2 snelheid;
         private Vector2 versnelling;
         private Vector2 mousevector;
+        IinputReader inputReader;
 
-        public Hero(Texture2D texture)
+        public Hero(Texture2D texture, IinputReader reader)
         {
             heroTexture = texture;
             animatie = new Animatie();
@@ -36,21 +38,29 @@ namespace Gameproject
             snelheid = new Vector2(1, 1);
             versnelling = new Vector2(0.1f, 0.1f);
 
+            this.inputReader = reader;
+
         }
         public void Update(GameTime gameTime) 
         {
+            var direction = inputReader.ReaderInput();
+            positie.X = MathHelper.Clamp(positie.X, 0, 1140 - heroTexture.Width); 
+            positie.Y = MathHelper.Clamp(positie.Y, 0, 480 - heroTexture.Height); 
 
-            Move(GetMouseState());
+            direction *= 4;
+            positie += direction;
+
+            // Move(GetMouseState());
             animatie.Update(gameTime);
 
         }
 
-        private Vector2 GetMouseState()
-        {
-            MouseState state = Mouse.GetState();
-            mousevector = new Vector2(state.X, state.Y);
-            return mousevector;
-        }
+        //private Vector2 GetMouseState()
+        //{
+        //    MouseState state = Mouse.GetState();
+        //    mousevector = new Vector2(state.X, state.Y);
+        //    return mousevector;
+        //}
 
         private void Move(Vector2 mouse)
         {
