@@ -27,3 +27,4 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\obj\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\character lopen.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Background.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\forest.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\gras.xnb

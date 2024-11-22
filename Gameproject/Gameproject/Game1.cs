@@ -35,7 +35,7 @@ namespace Gameproject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            backgroundTexture = Content.Load<Texture2D>("forest");
+            backgroundTexture = Content.Load<Texture2D>("gras");
             texture = Content.Load<Texture2D>("character lopen");
 
             int screenWidth = GraphicsDevice.Viewport.Width;
