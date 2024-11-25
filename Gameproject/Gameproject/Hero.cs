@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,44 +15,80 @@ namespace Gameproject
 {
     public class Hero:IGameObject
     {
-        private Texture2D heroTexture;
-        private Animatie animatie;
+        private Texture2D heldlooptexture;
+        private Texture2D heldstiltexture;
+        private Texture2D huidigetexture;
+
+        private Animatie loopanimatie;
+        private Animatie stilanimatie;
+        private Animatie huidigeanimatie;
+
         private Vector2 positie;
         private Vector2 snelheid;
         private Vector2 versnelling;
         private Vector2 mousevector;
         IinputReader inputReader;
 
-        public Hero(Texture2D texture, IinputReader reader)
+        public Hero(Texture2D texture, Texture2D idletexture, IinputReader reader)
         {
-            heroTexture = texture;
-            animatie = new Animatie();
-            animatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 73)));
-            animatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 73)));
+            heldstiltexture = idletexture;
+            heldlooptexture = texture;
+            
+
+            this.inputReader = reader;
             positie = new Vector2(10, 10);
+
+            stilanimatie = new Animatie();
+            stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
+
+            loopanimatie = new Animatie();
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
+            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
+            
             snelheid = new Vector2(1, 1);
             versnelling = new Vector2(0.1f, 0.1f);
 
-            this.inputReader = reader;
+            huidigeanimatie = stilanimatie;
+
+
 
         }
         public void Update(GameTime gameTime) 
         {
-            var direction = inputReader.ReaderInput();
-            positie.X = MathHelper.Clamp(positie.X, 0, 1140 - heroTexture.Width); 
-            positie.Y = MathHelper.Clamp(positie.Y, 0, 480 - heroTexture.Height); 
+            var directie = inputReader.ReaderInput();
 
-            direction *= 4;
-            positie += direction;
+            if (huidigetexture == null)
+            {
+             
+                huidigetexture = heldstiltexture;
+            }
+
+            positie.X = MathHelper.Clamp(positie.X, 0, 1140 - huidigetexture.Width); 
+            positie.Y = MathHelper.Clamp(positie.Y, 0, 480 - huidigetexture.Height); 
+
+            
+            if (directie == Vector2.Zero)
+            {
+                huidigeanimatie = stilanimatie;
+
+            }
+            else
+            {
+
+                huidigeanimatie = loopanimatie;
+                directie *= 4;
+                positie += directie;
+            }
+
 
             // Move(GetMouseState());
-            animatie.Update(gameTime);
+            loopanimatie.Update(gameTime);
 
         }
 
@@ -65,13 +102,14 @@ namespace Gameproject
         private void Move(Vector2 mouse)
         {
 
-            var direction = Vector2.Add(mouse, -positie);
-            direction.Normalize();
-            direction = Vector2.Multiply(direction, 1f);
-
-            positie += direction;
+            var directie = Vector2.Add(mouse, -positie);
+            directie.Normalize();
+            directie = Vector2.Multiply(directie, 1f);
+            // deze code nog refactoren
+            positie += directie;
             snelheid += versnelling;
             snelheid = Limit(snelheid, 4);
+            // tot hier
 
             float tmp = snelheid.Length();
             
@@ -98,9 +136,22 @@ namespace Gameproject
             }
             return v;
         }
-        public void Draw(SpriteBatch spriteBatch) 
-        {
-            spriteBatch.Draw(heroTexture, positie,animatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);
+        public void Draw(SpriteBatch spriteBatch)
+        { 
+
+
+            if (huidigeanimatie == stilanimatie)
+            {
+                huidigetexture = heldstiltexture;
+            }
+            else
+            {
+                huidigetexture = heldlooptexture;
+            }
+
+
+
+            spriteBatch.Draw(huidigetexture, positie,huidigeanimatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);
         }
 
     }
