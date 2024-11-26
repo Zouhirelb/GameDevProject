@@ -15,13 +15,15 @@ namespace Gameproject
 {
     public class Hero:IGameObject
     {
-        private Texture2D heldlooptexture;
+        private Texture2D heldlooprechtstexture;
         private Texture2D heldstiltexture;
         private Texture2D huidigetexture;
+        private Texture2D heldlinksllopentexture;
 
-        private Animatie loopanimatie;
+        private Animatie rechtsloopanimatie;
         private Animatie stilanimatie;
         private Animatie huidigeanimatie;
+        private Animatie linksloopanimatie;
 
         private Vector2 positie;
         private Vector2 snelheid;
@@ -29,11 +31,11 @@ namespace Gameproject
         private Vector2 mousevector;
         IinputReader inputReader;
 
-        public Hero(Texture2D texture, Texture2D idletexture, IinputReader reader)
+        public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture,  IinputReader reader)
         {
             heldstiltexture = idletexture;
-            heldlooptexture = texture;
-            
+            heldlooprechtstexture = texturerechts;
+            heldlinksllopentexture = texturelinks;
 
             this.inputReader = reader;
             positie = new Vector2(10, 10);
@@ -41,16 +43,27 @@ namespace Gameproject
             stilanimatie = new Animatie();
             stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
 
-            loopanimatie = new Animatie();
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
-            loopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
-            
+            rechtsloopanimatie = new Animatie();
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
+
+            linksloopanimatie = new Animatie();
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
+
+
             snelheid = new Vector2(1, 1);
             versnelling = new Vector2(0.1f, 0.1f);
 
@@ -81,14 +94,14 @@ namespace Gameproject
             else
             {
 
-                huidigeanimatie = loopanimatie;
+                huidigeanimatie = rechtsloopanimatie;
                 directie *= 4;
                 positie += directie;
             }
 
 
             // Move(GetMouseState());
-            loopanimatie.Update(gameTime);
+            rechtsloopanimatie.Update(gameTime);
 
         }
 
@@ -137,8 +150,8 @@ namespace Gameproject
             return v;
         }
         public void Draw(SpriteBatch spriteBatch)
-        { 
-
+        {
+            var directie = inputReader.ReaderInput();
 
             if (huidigeanimatie == stilanimatie)
             {
@@ -146,9 +159,17 @@ namespace Gameproject
             }
             else
             {
-                huidigetexture = heldlooptexture;
+                huidigetexture = heldlooprechtstexture;
             }
 
+            if (directie.X < 0)  
+            {
+                huidigetexture = heldlinksllopentexture;
+            }
+            else if (directie.X > 0)  
+            {
+                huidigetexture = heldlooprechtstexture;
+            }
 
 
             spriteBatch.Draw(huidigetexture, positie,huidigeanimatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);

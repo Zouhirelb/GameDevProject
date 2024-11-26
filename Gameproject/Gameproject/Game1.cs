@@ -10,7 +10,8 @@ namespace Gameproject
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D herolooptexture;
+        private Texture2D herorechtslooptexture;
+        private Texture2D herolinkslooptexture;
         private Texture2D herostiltexture;
         private Texture2D backgroundTexture;
         private Background _background;
@@ -37,7 +38,8 @@ namespace Gameproject
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             backgroundTexture = Content.Load<Texture2D>("gras");
-            herolooptexture = Content.Load<Texture2D>("character lopen");
+            herorechtslooptexture = Content.Load<Texture2D>("character lopen");
+            herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
 
             int screenWidth = GraphicsDevice.Viewport.Width;
@@ -49,7 +51,7 @@ namespace Gameproject
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(herolooptexture,herostiltexture, new KeyBoardReader());
+            hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
         }
 
         protected override void Update(GameTime gameTime)
