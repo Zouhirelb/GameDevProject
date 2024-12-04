@@ -11,14 +11,18 @@ namespace Gameproject
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
         private Texture2D herorechtslooptexture;
         private Texture2D herolinkslooptexture;
         private Texture2D herostiltexture;
+
+        private Texture2D enemyrechtstexture;
+
         private Texture2D backgroundTexture;
         private Background _background;
         private Camera camera;
         Hero hero;
-
+        private Enemy enemy;
 
         public Game1()
         {
@@ -44,6 +48,8 @@ namespace Gameproject
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
+            enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
+
 
             
             _background = new Background(backgroundTexture);
@@ -54,6 +60,7 @@ namespace Gameproject
         private void InitializeGameObjects()
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
+            enemy = new Enemy(enemyrechtstexture, Vector2.One);
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,6 +70,7 @@ namespace Gameproject
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
+            enemy.Update(gameTime);
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);
 
@@ -84,7 +92,7 @@ namespace Gameproject
             _background.Draw(_spriteBatch);
 
             hero.Draw(_spriteBatch);
-
+            enemy.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

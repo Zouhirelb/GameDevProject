@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lopen.png</SourceFile>
-  <SourceTime>2024-11-25T16:32:00.9235872+01:00</SourceTime>
-  <DestFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/bin/DesktopGL/lopen.xnb</DestFile>
-  <DestTime>2024-12-04T20:00:40.5163147+01:00</DestTime>
+  <SourceFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-rechtslopen.png</SourceFile>
+  <SourceTime>2024-12-04T19:25:39.5049572+01:00</SourceTime>
+  <DestFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/bin/DesktopGL/Content/lava-enemy-rechtslopen.xnb</DestFile>
+  <DestTime>2024-12-04T19:30:53.6065709+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
