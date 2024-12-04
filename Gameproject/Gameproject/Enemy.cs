@@ -18,9 +18,8 @@ namespace Gameproject {
             private Animatie rechtsloopanimatie;  // Animatie voor de rechtsloop
             private Vector2 positie;  // Positie van de vijand
 
-
-            // Constructor om de textures en animatie in te stellen
-            public Enemy(Texture2D texturerechts, Vector2 startPositie)
+        // Constructor om de textures en animatie in te stellen
+        public Enemy(Texture2D texturerechts, Vector2 startPositie)
             {
                 this.looptexture = texturerechts;
                 //this.doodtexture = doodtexure;
@@ -37,9 +36,12 @@ namespace Gameproject {
         }
 
             // Update de animatie per frame
-            public void Update(GameTime gameTime)
+            public void Update(GameTime gameTime, Vector2 heropositie)
             {
-                rechtsloopanimatie.Update(gameTime);
+            rechtsloopanimatie.Update(gameTime);
+
+           
+
             }
 
             // Teken de vijand op het scherm
@@ -48,5 +50,10 @@ namespace Gameproject {
                 // Zorg ervoor dat je de juiste positie gebruikt om te tekenen
                 spriteBatch.Draw(looptexture, positie, rechtsloopanimatie.CurrentFrame.SourceRectangle, Color.White);
             }
+
+        public void Update(GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
+    }
     }

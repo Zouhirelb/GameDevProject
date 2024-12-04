@@ -70,12 +70,14 @@ namespace Gameproject
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
-            enemy.Update(gameTime);
+            enemy.Update(gameTime,hero.Positie);
+
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);
 
+         
 
-            
+
 
             base.Update(gameTime);
         }
