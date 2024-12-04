@@ -1,4 +1,5 @@
 ﻿using System;
+using Comora;
 using Gameproject.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +16,7 @@ namespace Gameproject
         private Texture2D herostiltexture;
         private Texture2D backgroundTexture;
         private Background _background;
+        private Camera camera;
         Hero hero;
 
 
@@ -23,13 +25,14 @@ namespace Gameproject
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
 
-           
+            this.camera = new Camera(_graphics.GraphicsDevice);
 
             base.Initialize();
         }
@@ -42,9 +45,8 @@ namespace Gameproject
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
 
-            int screenWidth = GraphicsDevice.Viewport.Width;
-            int screenHeight = GraphicsDevice.Viewport.Height;
-            _background = new Background(backgroundTexture, screenWidth, screenHeight);
+            
+            _background = new Background(backgroundTexture);
 
             InitializeGameObjects();
         }
@@ -61,6 +63,11 @@ namespace Gameproject
 
             // TODO: Add your update logic here
             hero.Update(gameTime);
+            this.camera.Position = hero.Positie;
+            this.camera.Update(gameTime);
+
+
+            
 
             base.Update(gameTime);
         }
@@ -71,7 +78,8 @@ namespace Gameproject
 
             // TODO: Add your drawing code here
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(this.camera);
+            
 
             _background.Draw(_spriteBatch);
 

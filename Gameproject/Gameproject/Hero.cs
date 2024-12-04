@@ -25,7 +25,13 @@ namespace Gameproject
         private Animatie huidigeanimatie;
         private Animatie linksloopanimatie;
 
+
         private Vector2 positie;
+
+        public Vector2 Positie
+        {
+            get { return positie; }
+        }
         private Vector2 snelheid;
         private Vector2 versnelling;
         private Vector2 mousevector;
@@ -82,8 +88,7 @@ namespace Gameproject
                 huidigetexture = heldstiltexture;
             }
 
-            positie.X = MathHelper.Clamp(positie.X, 0, 1140 - huidigetexture.Width); 
-            positie.Y = MathHelper.Clamp(positie.Y, 0, 480 - huidigetexture.Height); 
+        
 
             
             if (directie == Vector2.Zero)
