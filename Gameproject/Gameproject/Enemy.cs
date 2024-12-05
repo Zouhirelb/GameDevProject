@@ -40,9 +40,11 @@ namespace Gameproject {
             {
             rechtsloopanimatie.Update(gameTime);
 
-           
+            Vector2 richting = heropositie - positie;
+            richting.Normalize();
+            positie += richting * 2f;
 
-            }
+        }
 
             // Teken de vijand op het scherm
             public void Draw(SpriteBatch spriteBatch)
