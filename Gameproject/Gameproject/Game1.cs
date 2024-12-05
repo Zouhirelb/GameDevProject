@@ -17,9 +17,11 @@ namespace Gameproject
         private Texture2D herostiltexture;
 
         private Texture2D enemyrechtstexture;
+        private Texture2D enemylinkstexture;
 
         private Texture2D backgroundTexture;
         private Background _background;
+
         private Camera camera;
         Hero hero;
         private Enemy enemy;
@@ -49,6 +51,7 @@ namespace Gameproject
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
             enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
+            enemylinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
 
             
@@ -60,7 +63,7 @@ namespace Gameproject
         private void InitializeGameObjects()
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
-            enemy = new Enemy(enemyrechtstexture, Vector2.One);
+            enemy = new Enemy(enemyrechtstexture,enemylinkstexture, Vector2.One);
         }
 
         protected override void Update(GameTime gameTime)
