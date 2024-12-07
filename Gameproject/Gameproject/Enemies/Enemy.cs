@@ -25,6 +25,10 @@ namespace Gameproject {
             private Animatie huidigeanimatie;
 
             private Vector2 positie;  // Positie van de vijand
+
+            private int[] pixels = { 0, 57, 114, 171, 228 };
+
+            
         
 
         // Constructor om de textures en animatie in te stellen
@@ -34,21 +38,17 @@ namespace Gameproject {
                 //this.doodtexture = doodtexure;
                 this.positie = startPositie;
                 this.looplinkstexture = texturelinks;
+            
 
                 // Voeg frames toe aan de animatie
-                rechtsloopanimatie = new Animatie();
-                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0,0,57, 46)));
-                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(57,0, 57, 46)));
-                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(114,0, 57, 46)));
-                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(171,0, 57, 46)));
-                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(228,0, 57, 46)));
-
                 linksloopanimatie = new Animatie();
-                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 57, 46)));
-                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(57, 0, 57, 46)));
-                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(114, 0, 57, 46)));
-                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(171, 0, 57, 46)));
-                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(228, 0, 57, 46)));
+                rechtsloopanimatie = new Animatie();
+
+                foreach (var item in pixels)
+                {
+                    linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item, 0, 57, 46)));
+                    rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item,0,57, 46)));
+                }
 
             huidigeanimatie = rechtsloopanimatie;
         }
@@ -58,19 +58,15 @@ namespace Gameproject {
             {
 
             var directie = heropositie - positie;
-            
-
-            rechtsloopanimatie.Update(gameTime);
-
+              
             Vector2 richting = heropositie - positie;
             float afstand = richting.Length();
 
-            if (afstand > 1f) // Alleen bewegen als er afstand is
+            if (afstand > 1f) 
             {
                 richting.Normalize();
-                positie += richting * 2f; // Snelheid van 2
+                positie += richting * 2f; 
 
-                // Kies de animatie op basis van de richting
                 if (richting.X > 0) // Naar rechts
                 {
                     huidigeanimatie = rechtsloopanimatie;

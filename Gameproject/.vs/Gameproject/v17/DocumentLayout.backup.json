@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\animation\\animatie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +30,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemy.cs",
-              "RelativeDocumentMoniker": "Gameproject\\Enemy.cs",
-              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemy.cs",
-              "RelativeToolTip": "Gameproject\\Enemy.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAYwBIAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "IGameObject.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeToolTip": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-05T15:27:08.039Z",
+              "WhenOpened": "2024-12-07T20:05:12.536Z",
               "EditorCaption": ""
             },
             {
@@ -100,6 +116,56 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemies\\Enemy.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Enemies\\Enemy.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemies\\Enemy.cs",
+              "RelativeToolTip": "Gameproject\\Enemies\\Enemy.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T18:46:15.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Animatie.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Animation\\Animatie.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Animation\\Animatie.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Animation\\Animatie.cs",
+              "RelativeToolTip": "Gameproject\\Animation\\Animatie.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T10:10:56.866Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hero.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Hero.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
+              "RelativeToolTip": "Gameproject\\Hero.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAQwFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T08:42:36.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Game1.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
+              "RelativeToolTip": "Gameproject\\Game1.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T08:42:01.101Z"
             }
           ]
         }

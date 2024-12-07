@@ -25,6 +25,7 @@ namespace Gameproject
         private Animatie huidigeanimatie;
         private Animatie linksloopanimatie;
 
+        private int[] pixels = {0,49,97,145,193,241,289,337};
 
         private Vector2 positie;
 
@@ -32,9 +33,11 @@ namespace Gameproject
         {
             get { return positie; }
         }
+
         private Vector2 snelheid;
         private Vector2 versnelling;
         private Vector2 mousevector;
+
         IinputReader inputReader;
 
         public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture,  IinputReader reader)
@@ -47,35 +50,21 @@ namespace Gameproject
             positie = new Vector2(10, 10);
 
             stilanimatie = new Animatie();
+            rechtsloopanimatie = new Animatie();
+            linksloopanimatie = new Animatie();
+
             stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
 
-            rechtsloopanimatie = new Animatie();
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
-
-            linksloopanimatie = new Animatie();
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(49, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(97, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(145, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(193, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(241, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(289, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(337, 0, 48, 50)));
-
+            foreach (var item in pixels)
+            {
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item, 0, 48, 50)));
+            }
 
             snelheid = new Vector2(1, 1);
             versnelling = new Vector2(0.1f, 0.1f);
 
             huidigeanimatie = stilanimatie;
-
-
 
         }
         public void Update(GameTime gameTime) 
@@ -88,9 +77,6 @@ namespace Gameproject
                 huidigetexture = heldstiltexture;
             }
 
-        
-
-            
             if (directie == Vector2.Zero)
             {
                 huidigeanimatie = stilanimatie;
@@ -103,7 +89,6 @@ namespace Gameproject
                 directie *= 4;
                 positie += directie;
             }
-
 
             // Move(GetMouseState());
             rechtsloopanimatie.Update(gameTime);
@@ -126,7 +111,7 @@ namespace Gameproject
             // deze code nog refactoren
             positie += directie;
             snelheid += versnelling;
-            snelheid = Limit(snelheid, 4);
+            snelheid = Limit(snelheid, 3);
             // tot hier
 
             float tmp = snelheid.Length();

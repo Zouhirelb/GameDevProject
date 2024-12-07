@@ -1,5 +1,4 @@
-﻿using System;
-using Comora;
+﻿using Comora;
 using Gameproject.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -28,7 +27,10 @@ namespace Gameproject
 
         public Game1()
         {
+
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferHeight = 736;
+            _graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             
@@ -63,7 +65,7 @@ namespace Gameproject
         private void InitializeGameObjects()
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
-            enemy = new Enemy(enemyrechtstexture,enemylinkstexture, Vector2.One);
+            enemy = new Enemy(enemyrechtstexture,enemylinkstexture, new Vector2(400, 400));
         }
 
         protected override void Update(GameTime gameTime)
