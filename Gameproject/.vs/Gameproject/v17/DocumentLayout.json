@@ -7,14 +7,6 @@
       "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\hero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\managers\\collisionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\managers\\collisionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\interfaces\\igameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|c:\\users\\32488\\desktop\\gitprojecten\\gamedevproject\\gameproject\\gameproject\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89FEC06D-BCB5-45EF-B0BC-862AE06F1FDB}|Gameproject\\Gameproject.csproj|solutionrelative:gameproject\\enemies\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 22,
+          "SelectedChildIndex": 20,
           "Children": [
             {
               "$type": "Bookmark",
@@ -111,43 +103,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Collisionmanager.cs",
-              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Managers\\Collisionmanager.cs",
-              "RelativeDocumentMoniker": "Gameproject\\Managers\\Collisionmanager.cs",
-              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Managers\\Collisionmanager.cs",
-              "RelativeToolTip": "Gameproject\\Managers\\Collisionmanager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T12:11:47.347Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IGameObject.cs",
-              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
-              "RelativeDocumentMoniker": "Gameproject\\Interfaces\\IGameObject.cs",
-              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
-              "RelativeToolTip": "Gameproject\\Interfaces\\IGameObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:05:12.536Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemies\\Enemy.cs",
               "RelativeDocumentMoniker": "Gameproject\\Enemies\\Enemy.cs",
               "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemies\\Enemy.cs",
               "RelativeToolTip": "Gameproject\\Enemies\\Enemy.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwCcAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACUAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T18:46:15.659Z"
+              "WhenOpened": "2024-12-07T18:46:15.659Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Animatie.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Animation\\Animatie.cs",
               "RelativeDocumentMoniker": "Gameproject\\Animation\\Animatie.cs",
@@ -165,22 +133,23 @@
               "RelativeDocumentMoniker": "Gameproject\\Hero.cs",
               "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
               "RelativeToolTip": "Gameproject\\Hero.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAD4v2kAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAJ8AAAAAAAAAAADwv6wAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T08:42:36.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
               "RelativeDocumentMoniker": "Gameproject\\Game1.cs",
               "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Game1.cs",
               "RelativeToolTip": "Gameproject\\Game1.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAgwAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAIA9wFIAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T08:42:01.101Z"
+              "WhenOpened": "2024-12-06T08:42:01.101Z",
+              "EditorCaption": ""
             }
           ]
         }

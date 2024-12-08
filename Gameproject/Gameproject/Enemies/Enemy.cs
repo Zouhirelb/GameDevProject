@@ -28,7 +28,7 @@ namespace Gameproject {
 
             private int[] pixels = { 0, 57, 114, 171, 228 };
 
-            public Vector2 Positie { get; private set; } 
+            public Vector2 Positie { get { return positie; } set { positie = value; } } 
             public int Breedte => 57; 
             public int Hoogte => 46;  
 

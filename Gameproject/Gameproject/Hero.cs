@@ -59,6 +59,7 @@ namespace Gameproject
             Breedte = heldstiltexture.Width;
             Hoogte = heldstiltexture.Height;
 
+            
             this.inputReader = reader;
             positie = new Vector2(10, 10);
 
@@ -104,8 +105,9 @@ namespace Gameproject
             }
 
             // Move(GetMouseState());
-            Breedte = huidigetexture.Width;
-            Hoogte = huidigetexture.Height;
+
+            
+            
             huidigeanimatie.Update(gameTime);
 
         }
@@ -158,6 +160,9 @@ namespace Gameproject
         {
             var directie = inputReader.ReaderInput();
 
+            Breedte = 48;
+            Hoogte = 50;
+
             if (huidigeanimatie == stilanimatie)
             {
                 huidigetexture = heldstiltexture;
@@ -165,15 +170,17 @@ namespace Gameproject
             else
             {
                 huidigetexture = heldlooprechtstexture;
+                
             }
 
-            if (directie.X < 0)  
+            if (directie.X < 0 )  
             {
                 huidigetexture = heldlinksllopentexture;
             }
-            else if (directie.X > 0)  
+            else if (directie.X > 0 )  
             {
                 huidigetexture = heldlooprechtstexture;
+                Hoogte += 10;
             }
 
 

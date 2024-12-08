@@ -25,6 +25,7 @@ namespace Gameproject
         Hero hero;
         private Enemy enemy;
 
+        private Texture2D _borderTexture;
         public Game1()
         {
 
@@ -55,8 +56,9 @@ namespace Gameproject
             enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             enemylinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
+            _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
+            _borderTexture.SetData(new[] { Color.White });
 
-            
             _background = new Background(backgroundTexture);
 
             InitializeGameObjects();
@@ -86,7 +88,17 @@ namespace Gameproject
 
             base.Update(gameTime);
         }
-
+        private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangle, int thickness, Color color)
+        {
+            // Bovenste rand
+            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, thickness), color);
+            // Onderste rand
+            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Bottom - thickness, rectangle.Width, thickness), color);
+            // Linkerrand
+            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, thickness, rectangle.Height), color);
+            // Rechterrand
+            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Right - thickness, rectangle.Top, thickness, rectangle.Height), color);
+        }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen); 
@@ -100,6 +112,9 @@ namespace Gameproject
 
             hero.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);
+
+            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
+            DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
 
             _spriteBatch.End();
 
