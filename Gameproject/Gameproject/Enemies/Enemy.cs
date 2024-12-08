@@ -20,16 +20,25 @@ namespace Gameproject {
 
             private Texture2D doodtexture;
 
-            private Animatie rechtsloopanimatie;  // Animatie voor de rechtsloop
+            private Animatie rechtsloopanimatie; 
             private Animatie linksloopanimatie;
             private Animatie huidigeanimatie;
 
-            private Vector2 positie;  // Positie van de vijand
+            private Vector2 positie;  
 
             private int[] pixels = { 0, 57, 114, 171, 228 };
 
-            
-        
+            public Vector2 Positie { get; private set; } 
+            public int Breedte => 57; 
+            public int Hoogte => 46;  
+
+            public Rectangle BoundingBox => new Rectangle(
+                (int)Positie.X,
+                (int)Positie.Y,
+                Breedte,
+                Hoogte
+            );
+
 
         // Constructor om de textures en animatie in te stellen
         public Enemy(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie)

@@ -33,19 +33,6 @@
           "SelectedChildIndex": 21,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IGameObject.cs",
-              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
-              "RelativeDocumentMoniker": "Gameproject\\Interfaces\\IGameObject.cs",
-              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
-              "RelativeToolTip": "Gameproject\\Interfaces\\IGameObject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T20:05:12.536Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
@@ -119,6 +106,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IGameObject.cs",
+              "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeDocumentMoniker": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Interfaces\\IGameObject.cs",
+              "RelativeToolTip": "Gameproject\\Interfaces\\IGameObject.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T20:05:12.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Enemies\\Enemy.cs",
@@ -150,7 +150,7 @@
               "RelativeDocumentMoniker": "Gameproject\\Hero.cs",
               "ToolTip": "C:\\Users\\32488\\Desktop\\GitProjecten\\GameDevProject\\Gameproject\\Gameproject\\Hero.cs",
               "RelativeToolTip": "Gameproject\\Hero.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAQwFsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAADwv1sAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-06T08:42:36.171Z",
               "EditorCaption": ""

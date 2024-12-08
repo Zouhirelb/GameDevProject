@@ -13,5 +13,11 @@ namespace Gameproject.Interfaces
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
 
+        Vector2 Positie { get; } 
+        int Breedte { get; }    
+        int Hoogte { get; }     
+
+        Rectangle BoundingBox { get; }
+
     }
 }
