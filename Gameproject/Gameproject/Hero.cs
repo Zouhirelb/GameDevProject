@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Gameproject
 {
-    public class Hero:IGameObject
+    public class Hero : IGameObject
     {
         private Texture2D heldlooprechtstexture;
         private Texture2D heldstiltexture;
@@ -25,13 +25,14 @@ namespace Gameproject
         private Animatie huidigeanimatie;
         private Animatie linksloopanimatie;
 
-        private int[] pixels = {0,49,97,145,193,241,289,337};
+        private int[] pixels = { 0, 49, 97, 145, 193, 241, 289, 337 };
 
         private Vector2 positie;
 
         public Vector2 Positie
         {
-            get { return positie; }
+             get  {return positie; }
+            private set { }
         }
 
         private Vector2 snelheid;
@@ -40,11 +41,23 @@ namespace Gameproject
 
         IinputReader inputReader;
 
+        public int Breedte { get; private set; }    
+        public int Hoogte { get; private set; }     
+
+        public Rectangle BoundingBox => new Rectangle(
+            (int)Positie.X,
+            (int)Positie.Y,
+            Breedte,
+            Hoogte
+        );
         public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture,  IinputReader reader)
         {
             heldstiltexture = idletexture;
             heldlooprechtstexture = texturerechts;
             heldlinksllopentexture = texturelinks;
+
+            Breedte = heldstiltexture.Width;
+            Hoogte = heldstiltexture.Height;
 
             this.inputReader = reader;
             positie = new Vector2(10, 10);
@@ -91,7 +104,9 @@ namespace Gameproject
             }
 
             // Move(GetMouseState());
-            rechtsloopanimatie.Update(gameTime);
+            Breedte = huidigetexture.Width;
+            Hoogte = huidigetexture.Height;
+            huidigeanimatie.Update(gameTime);
 
         }
 
