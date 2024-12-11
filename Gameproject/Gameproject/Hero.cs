@@ -32,7 +32,7 @@ namespace Gameproject
         public Vector2 Positie
         {
              get  {return positie; }
-            private set { }
+             set { positie = value; }
         }
 
         private Vector2 snelheid;

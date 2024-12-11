@@ -1,5 +1,7 @@
 ﻿using Comora;
+using Gameproject.collision;
 using Gameproject.Input;
+using Gameproject.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,10 +24,12 @@ namespace Gameproject
         private Background _background;
 
         private Camera camera;
-        Hero hero;
+        private Hero hero;
         private Enemy enemy;
 
         private Texture2D _borderTexture;
+
+        private Collisionmanager collisionmanager;
         public Game1()
         {
 
@@ -42,6 +46,9 @@ namespace Gameproject
             // TODO: Add your initialization logic here
 
             this.camera = new Camera(_graphics.GraphicsDevice);
+
+            var collisionHandler = new HeroEnemyCollisionHandler();
+            collisionmanager = new Collisionmanager(collisionHandler);
 
             base.Initialize();
         }
@@ -68,6 +75,9 @@ namespace Gameproject
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
             enemy = new Enemy(enemyrechtstexture,enemylinkstexture, new Vector2(400, 400));
+
+            collisionmanager.RegisterObject(hero);
+            collisionmanager.RegisterObject(enemy);
         }
 
         protected override void Update(GameTime gameTime)
@@ -79,24 +89,20 @@ namespace Gameproject
             hero.Update(gameTime);
             enemy.Update(gameTime,hero.Positie);
 
+            collisionmanager.CheckCollisions();
+
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);
 
          
 
-
-
             base.Update(gameTime);
         }
         private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangle, int thickness, Color color)
         {
-            // Bovenste rand
             spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, thickness), color);
-            // Onderste rand
             spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Bottom - thickness, rectangle.Width, thickness), color);
-            // Linkerrand
             spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, thickness, rectangle.Height), color);
-            // Rechterrand
             spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Right - thickness, rectangle.Top, thickness, rectangle.Height), color);
         }
         protected override void Draw(GameTime gameTime)
