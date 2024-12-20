@@ -48,7 +48,6 @@ namespace Gameproject {
                 this.looplinkstexture = texturelinks;
             
 
-                // Voeg frames toe aan de animatie
                 linksloopanimatie = new Animatie();
                 rechtsloopanimatie = new Animatie();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,11 @@ namespace Gameproject.Managers
                     enemy = (Enemy)objA;
                 }
 
+                var healthManager = new HealthManager();
+                if (hero is IHealth healthHero)
+                {
+                    healthManager.ApplyDamage(healthHero, 5);
+                }
 
                 Vector2 richting = hero.Positie - enemy.Positie;
                 richting.Normalize();

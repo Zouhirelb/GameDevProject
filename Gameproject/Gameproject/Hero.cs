@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Gameproject
 {
-    public class Hero : IGameObject
+    public class Hero : IGameObject,IHealth
     {
         private Texture2D heldlooprechtstexture;
         private Texture2D heldstiltexture;
@@ -50,6 +50,9 @@ namespace Gameproject
             Breedte,
             Hoogte
         );
+
+        public int Health { get; set; }
+
         public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture,  IinputReader reader)
         {
             heldstiltexture = idletexture;
@@ -80,6 +83,15 @@ namespace Gameproject
 
             huidigeanimatie = stilanimatie;
 
+            Health = 100;
+            
+
+        }
+       
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+            if (Health < 0) Health = 0;
         }
         public void Update(GameTime gameTime) 
         {
@@ -187,5 +199,6 @@ namespace Gameproject
             spriteBatch.Draw(huidigetexture, positie,huidigeanimatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);
         }
 
+        
     }
 }

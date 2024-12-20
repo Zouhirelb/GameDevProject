@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gameproject
+namespace Gameproject.Interfaces
 {
-    internal interface IHealth
+    public interface IHealth
     {
         int Health { get; set; }
         void TakeDamage(int damage);

@@ -23,6 +23,7 @@ namespace Gameproject
         private Texture2D backgroundTexture;
         private Background _background;
 
+        private HP hp;
         private Camera camera;
         private Hero hero;
         private Enemy enemy;
@@ -56,12 +57,15 @@ namespace Gameproject
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteFont font = Content.Load<SpriteFont>("Font");
             backgroundTexture = Content.Load<Texture2D>("gras");
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
             enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             enemylinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
+
+            hp = new HP(font);
 
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
@@ -118,9 +122,11 @@ namespace Gameproject
 
             hero.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);
+            hp.Draw(_spriteBatch, hero);
 
             DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
             DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
+            
 
             _spriteBatch.End();
 

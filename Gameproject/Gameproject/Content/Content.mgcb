@@ -49,6 +49,13 @@
 /processorParam:TextureFormat=Color
 /build:character stilstaan.png
 
+#begin Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font.spritefont
+
 #begin forest.png
 /importer:TextureImporter
 /processor:TextureProcessor

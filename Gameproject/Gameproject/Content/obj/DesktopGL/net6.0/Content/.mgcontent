@@ -7,6 +7,7 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Background.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/character lopen.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/character stilstaan.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Font.spritefont</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/forest.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/gras.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-linkslopen.png</File>
@@ -16,6 +17,7 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/stil.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
