@@ -1,5 +1,4 @@
 ﻿using Comora;
-using Gameproject.collision;
 using Gameproject.Input;
 using Gameproject.Managers;
 using Microsoft.Xna.Framework;
@@ -31,6 +30,7 @@ namespace Gameproject
         private Texture2D _borderTexture;
 
         private CollisionManager collisionmanager;
+        private UIManager uiManager;
         public Game1()
         {
 
@@ -65,6 +65,7 @@ namespace Gameproject
             enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             enemylinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
+            uiManager = new UIManager(font, hero);
             hp = new HP(font);
 
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -122,7 +123,7 @@ namespace Gameproject
 
             hero.Draw(_spriteBatch);
             enemy.Draw(_spriteBatch);
-            hp.Draw(_spriteBatch, hero);
+      
 
             DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
             DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
@@ -130,7 +131,7 @@ namespace Gameproject
 
             _spriteBatch.End();
 
-           
+            uiManager.Draw(_spriteBatch,hero);
          
           
 

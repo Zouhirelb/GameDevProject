@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gameproject.Interfaces;
-using Gameproject.Managers;
 using Microsoft.Xna.Framework;
 
-namespace Gameproject.collision
+namespace Gameproject.Managers
 {
     internal class CollisionManager : ICollsionHandler
     {
@@ -23,7 +22,7 @@ namespace Gameproject.collision
                 Hero hero;
                 Enemy enemy;
 
-                
+
                 if (objA is Hero)
                 {
                     hero = (Hero)objA;
@@ -35,32 +34,32 @@ namespace Gameproject.collision
                     enemy = (Enemy)objA;
                 }
 
-                
-                    Console.WriteLine("Hero en Enemy botsen!");
+
+                Console.WriteLine("Hero en Enemy botsen!");
 
 
-                    if (objA is Hero)
-                    {
-                        hero = (Hero)objA;
-                        enemy = (Enemy)objB;
-                    }
-                    else
-                    {
-                        hero = (Hero)objB;
-                        enemy = (Enemy)objA;
-                    }
+                if (objA is Hero)
+                {
+                    hero = (Hero)objA;
+                    enemy = (Enemy)objB;
+                }
+                else
+                {
+                    hero = (Hero)objB;
+                    enemy = (Enemy)objA;
+                }
 
-                    var healthManager = new HealthManager();
-                    if (hero is Hero healthHero)
-                    {
-                        healthManager.ApplyDamage(healthHero, 5);
-                    }
+                var healthManager = new HealthManager();
+                if (hero is Hero healthHero)
+                {
+                    healthManager.ApplyDamage(healthHero, 5);
+                }
 
                 Rectangle heroBoundingBox = hero.BoundingBox;
                 Rectangle enemyBoundingBox = enemy.BoundingBox;
 
                 Vector2 richting = enemy.Positie - hero.Positie;
-                richting.Normalize(); 
+                richting.Normalize();
 
                 if (heroBoundingBox.Intersects(enemyBoundingBox))
                 {
