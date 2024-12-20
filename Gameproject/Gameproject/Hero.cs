@@ -93,6 +93,7 @@ namespace Gameproject
             Health -= damage;
             if (Health < 0) Health = 0;
         }
+
         public void Update(GameTime gameTime) 
         {
             var directie = inputReader.ReaderInput();

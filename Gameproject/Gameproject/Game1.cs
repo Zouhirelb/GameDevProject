@@ -30,7 +30,7 @@ namespace Gameproject
 
         private Texture2D _borderTexture;
 
-        private Collisionmanager collisionmanager;
+        private CollisionManager collisionmanager;
         public Game1()
         {
 
@@ -48,8 +48,8 @@ namespace Gameproject
 
             this.camera = new Camera(_graphics.GraphicsDevice);
 
-            var collisionHandler = new HeroEnemyCollisionHandler();
-            collisionmanager = new Collisionmanager(collisionHandler);
+            var collisionHandler = new CollisionManager();
+            collisionmanager = new CollisionManager(collisionHandler);
 
             base.Initialize();
         }

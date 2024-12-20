@@ -18,7 +18,7 @@ namespace Gameproject
             this.font = spritefont;
         }
 
-        public void Draw(SpriteBatch spriteBatch, IHealth herohealth)
+        public void Draw(SpriteBatch spriteBatch, Hero herohealth)
         {
             string healthText = $"HP: {herohealth.Health}";
             spriteBatch.DrawString(font, healthText, new Vector2(10, 10), Color.White);
