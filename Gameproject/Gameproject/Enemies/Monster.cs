@@ -11,22 +11,21 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Gameproject { 
 
 
-        public class Enemy : IGameObject
+        public class Monster : IGameObject
         {
             private Texture2D looprechtstexture;
             private Texture2D looplinkstexture;
-
             private Texture2D huidigeTexture;
-
             private Texture2D doodtexture;
 
             private Animatie rechtsloopanimatie; 
             private Animatie linksloopanimatie;
             private Animatie huidigeanimatie;
 
+        private IEnemybehavior behavior;
+
             private Vector2 positie;  
 
-            private int[] pixels = { 0, 57, 114, 171, 228 };
 
             public Vector2 Positie { get { return positie; } set { positie = value; } } 
             public int Breedte => 57; 
@@ -40,16 +39,18 @@ namespace Gameproject {
             );
 
 
-        public Enemy(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie)
+            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior behavior)
             {
                 this.looprechtstexture = texturerechts;
                 //this.doodtexture = doodtexure;
                 this.positie = startPositie;
                 this.looplinkstexture = texturelinks;
-            
+                this.behavior = behavior;
 
                 linksloopanimatie = new Animatie();
                 rechtsloopanimatie = new Animatie();
+
+                int[] pixels = { 0, 57, 114, 171, 228 };
 
                 foreach (var item in pixels)
                 {
@@ -58,46 +59,47 @@ namespace Gameproject {
                 }
 
             huidigeanimatie = rechtsloopanimatie;
-        }
+            }
 
             public void Update(GameTime gameTime, Vector2 heropositie)
             {
-
-            var directie = heropositie - positie;
+                behavior.Execute(this, heropositie);
+                var directie = heropositie - positie;
               
-            Vector2 richting = heropositie - positie;
-            float afstand = richting.Length();
+                Vector2 richting = heropositie - positie;
+                float afstand = richting.Length();
 
-            if (afstand > 1f) 
-            {
-                richting.Normalize();
-                positie += richting * 2f; 
+                    if (afstand > 1f) 
+                    {
+                        richting.Normalize();
+                        positie += richting * 2f; 
 
-                if (richting.X > 0) 
-                {
-                    huidigeanimatie = rechtsloopanimatie;
-                }
-                else if (richting.X < 0) 
-                {
-                    huidigeanimatie = linksloopanimatie;
-                }
+                        if (richting.X > 0) 
+                        {
+                           huidigeanimatie = rechtsloopanimatie;
+                        }
+                        else if (richting.X < 0) 
+                        {
+                            huidigeanimatie = linksloopanimatie;
+                        }
+                    }
+
+                huidigeanimatie.Update(gameTime);
+
             }
-            huidigeanimatie.Update(gameTime);
-
-        }
 
             public void Draw(SpriteBatch spriteBatch)
             {
-            if (huidigeanimatie == rechtsloopanimatie)
-            {
-                huidigeTexture = looprechtstexture;
+                if (huidigeanimatie == rechtsloopanimatie)
+                {
+                    huidigeTexture = looprechtstexture;
+                }
+                else
+                {
+                    huidigeTexture = looplinkstexture;
+                }
+                spriteBatch.Draw(huidigeTexture, positie, huidigeanimatie.CurrentFrame.SourceRectangle, Color.White);
             }
-            else
-            {
-                huidigeTexture = looplinkstexture;
-            }
-            spriteBatch.Draw(huidigeTexture, positie, huidigeanimatie.CurrentFrame.SourceRectangle, Color.White);
-        }
 
         public void Update(GameTime gameTime)
         {

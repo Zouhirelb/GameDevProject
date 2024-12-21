@@ -1,4 +1,6 @@
 ﻿using Comora;
+using Gameproject.Enemies.behavior;
+using Gameproject.Enemies;
 using Gameproject.Input;
 using Gameproject.Managers;
 using Microsoft.Xna.Framework;
@@ -16,8 +18,8 @@ namespace Gameproject
         private Texture2D herolinkslooptexture;
         private Texture2D herostiltexture;
 
-        private Texture2D enemyrechtstexture;
-        private Texture2D enemylinkstexture;
+        private Texture2D monsterrechtstexture;
+        private Texture2D monsterlinkstexture;
 
         private Texture2D backgroundTexture;
         private Background _background;
@@ -25,12 +27,13 @@ namespace Gameproject
         private HP hp;
         private Camera camera;
         private Hero hero;
-        private Enemy enemy;
+        private Monster enemy;
 
         private Texture2D _borderTexture;
 
         private CollisionManager collisionmanager;
         private UIManager uiManager;
+        private EnemyManager enemyManager;
         public Game1()
         {
 
@@ -56,15 +59,18 @@ namespace Gameproject
 
         protected override void LoadContent()
         {
+            enemyManager = new EnemyManager();
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             SpriteFont font = Content.Load<SpriteFont>("Font");
             backgroundTexture = Content.Load<Texture2D>("gras");
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
             herostiltexture = Content.Load<Texture2D>("stil");
-            enemyrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
-            enemylinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
+            monsterrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
+            monsterlinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
+
+            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(300, 200), new MonsterBehavior()));
             uiManager = new UIManager(font, hero);
             hp = new HP(font);
 
@@ -79,7 +85,7 @@ namespace Gameproject
         private void InitializeGameObjects()
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
-            enemy = new Enemy(enemyrechtstexture,enemylinkstexture, new Vector2(400, 400));
+            enemy = new Monster(monsterrechtstexture,monsterlinkstexture, new Vector2(400, 400));
 
             collisionmanager.RegisterObject(hero);
             collisionmanager.RegisterObject(enemy);

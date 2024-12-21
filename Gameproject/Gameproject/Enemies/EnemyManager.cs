@@ -17,10 +17,9 @@ namespace Gameproject.Enemies
             enemies = new List<Monster>();
         }
 
-        public void AddEnemy(Texture2D textureRechts, Texture2D textureLinks, Vector2 startPositie)
+        public void AddEnemy(Monster enemy)
         {
-            var newEnemy = new Monster(textureRechts, textureLinks, startPositie);
-            enemies.Add(newEnemy);
+            enemies.Add(enemy);
         }
 
         public void Update(GameTime gameTime, Vector2 heroPositie)
@@ -38,12 +37,6 @@ namespace Gameproject.Enemies
             {
                 enemy.Draw(spriteBatch);
             }
-        }
-
-        
-        public IEnumerable<Monster> GetEnemies()
-        {
-            return enemies;
         }
     }
 }
