@@ -10,12 +10,13 @@ namespace Gameproject.Enemies.behavior
 {
     public class MonsterBehavior : IEnemybehavior
     {
-        private const float Snelheid = 2f;
+        private const float Snelheid = 1f;
         public void Execute(Monster enemy, Vector2 heroPositie)
         {
 
             var monster = (Monster)enemy;
             Vector2 richting = heroPositie - monster.Positie;
+
             float afstand = richting.Length();
 
             if (afstand > 1f)

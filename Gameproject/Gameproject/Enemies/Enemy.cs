@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Gameproject.Interfaces;
 
 namespace Gameproject.Enemies
 {
-    public abstract class Enemy
+    public abstract class Enemy: IGameObject
     {
         public Vector2 Positie { get; set; }
         public abstract int Breedte { get; }
@@ -22,6 +23,11 @@ namespace Gameproject.Enemies
 
         public abstract void Update(GameTime gameTime, Vector2 heroPosition);
         public abstract void Draw(SpriteBatch spriteBatch);
+
+        public void Update(GameTime gameTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

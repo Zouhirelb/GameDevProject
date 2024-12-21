@@ -38,16 +38,7 @@ namespace Gameproject.Managers
                 Console.WriteLine("Hero en Enemy botsen!");
 
 
-                if (objA is Hero)
-                {
-                    hero = (Hero)objA;
-                    enemy = (Monster)objB;
-                }
-                else
-                {
-                    hero = (Hero)objB;
-                    enemy = (Monster)objA;
-                }
+             
 
                 var healthManager = new HealthManager();
                 if (hero is Hero healthHero)

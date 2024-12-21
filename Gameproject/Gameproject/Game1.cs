@@ -27,8 +27,7 @@ namespace Gameproject
         private HP hp;
         private Camera camera;
         private Hero hero;
-        private Monster enemy;
-
+  
         private Texture2D _borderTexture;
 
         private CollisionManager collisionmanager;
@@ -47,7 +46,6 @@ namespace Gameproject
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
             this.camera = new Camera(_graphics.GraphicsDevice);
 
@@ -59,8 +57,9 @@ namespace Gameproject
 
         protected override void LoadContent()
         {
-            enemyManager = new EnemyManager();
+            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             SpriteFont font = Content.Load<SpriteFont>("Font");
             backgroundTexture = Content.Load<Texture2D>("gras");
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
@@ -70,25 +69,38 @@ namespace Gameproject
             monsterrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             monsterlinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
-            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(300, 200), new MonsterBehavior()));
-            uiManager = new UIManager(font, hero);
-            hp = new HP(font);
-
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
             _background = new Background(backgroundTexture);
 
+            hp = new HP(font);
+            
+
             InitializeGameObjects();
+
+            uiManager = new UIManager(font, hero);
+
         }
 
         private void InitializeGameObjects()
         {
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
-            enemy = new Monster(monsterrechtstexture,monsterlinkstexture, new Vector2(400, 400));
+
+            enemyManager = new EnemyManager();
+
+            
+                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(300, 200), new MonsterBehavior()));
+            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(200, 200), new MonsterBehavior()));
+
+
 
             collisionmanager.RegisterObject(hero);
-            collisionmanager.RegisterObject(enemy);
+
+            foreach (var enemy in enemyManager.GetEnemies())
+            {
+                collisionmanager.RegisterObject(enemy);
+            }
         }
 
         protected override void Update(GameTime gameTime)
@@ -96,9 +108,11 @@ namespace Gameproject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+           
             hero.Update(gameTime);
-            enemy.Update(gameTime,hero.Positie);
+
+
+            enemyManager.Update(gameTime,hero.Positie);
 
             collisionmanager.CheckCollisions();
 
@@ -119,28 +133,30 @@ namespace Gameproject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen); 
-
-            // TODO: Add your drawing code here
-
+                    
             _spriteBatch.Begin(this.camera);
-            
-
+                        
             _background.Draw(_spriteBatch);
 
             hero.Draw(_spriteBatch);
-            enemy.Draw(_spriteBatch);
-      
 
-            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
-            DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
+            foreach (var item in enemyManager.GetEnemies())
+            {
+                enemyManager.Draw(_spriteBatch);
+            }
             
+      
+            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
 
+            foreach (var enemy in enemyManager.GetEnemies())
+            {
+                DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
+            }
+                        
             _spriteBatch.End();
 
             uiManager.Draw(_spriteBatch,hero);
-         
-          
-
+                   
             base.Draw(gameTime); 
         }
     }

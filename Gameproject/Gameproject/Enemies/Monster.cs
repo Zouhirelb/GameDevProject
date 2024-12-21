@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gameproject.Animation;
+using Gameproject.Enemies;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Gameproject { 
 
 
-        public class Monster : IGameObject
+        public class Monster :Enemy, IGameObject
         {
             private Texture2D looprechtstexture;
             private Texture2D looplinkstexture;
@@ -22,14 +23,14 @@ namespace Gameproject {
             private Animatie linksloopanimatie;
             private Animatie huidigeanimatie;
 
-        private IEnemybehavior behavior;
+            private IEnemybehavior behavior;
 
             private Vector2 positie;  
 
 
             public Vector2 Positie { get { return positie; } set { positie = value; } } 
-            public int Breedte => 57; 
-            public int Hoogte => 46;  
+            public override int Breedte => 57; 
+            public override int Hoogte => 46;  
 
             public Rectangle BoundingBox => new Rectangle(
                 (int)Positie.X,
@@ -39,8 +40,8 @@ namespace Gameproject {
             );
 
 
-            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior behavior)
-            {
+            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie)
+        {
                 this.looprechtstexture = texturerechts;
                 //this.doodtexture = doodtexure;
                 this.positie = startPositie;
@@ -61,7 +62,7 @@ namespace Gameproject {
             huidigeanimatie = rechtsloopanimatie;
             }
 
-            public void Update(GameTime gameTime, Vector2 heropositie)
+            public override void Update(GameTime gameTime, Vector2 heropositie)
             {
                 behavior.Execute(this, heropositie);
                 var directie = heropositie - positie;
@@ -88,7 +89,7 @@ namespace Gameproject {
 
             }
 
-            public void Draw(SpriteBatch spriteBatch)
+            public override void Draw(SpriteBatch spriteBatch)
             {
                 if (huidigeanimatie == rechtsloopanimatie)
                 {

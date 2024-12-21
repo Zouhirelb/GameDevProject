@@ -5,19 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Gameproject.Interfaces;
 
 namespace Gameproject.Enemies
 {
     public class EnemyManager
     {
-        private List<Monster> enemies;
+        private List<Enemy> enemies;
 
         public EnemyManager()
         {
-            enemies = new List<Monster>();
+            enemies = new List<Enemy>();
         }
 
-        public void AddEnemy(Monster enemy)
+        public void AddEnemy(Enemy enemy)
         {
             enemies.Add(enemy);
         }
@@ -37,6 +38,11 @@ namespace Gameproject.Enemies
             {
                 enemy.Draw(spriteBatch);
             }
+        }
+
+        public IEnumerable<Enemy> GetEnemies()
+        {
+            return enemies;
         }
     }
 }
