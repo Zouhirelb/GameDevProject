@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameproject.Enemies;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
 
@@ -17,6 +18,12 @@ namespace Gameproject.Managers
         }
         public void HandleCollision(IGameObject objA, IGameObject objB)
         {
+
+            if (objA is Monster && objB is Monster)
+            {
+                HandleEnemyEnemyCollision((Monster)objA, (Monster)objB);
+            }
+
             if (objA is Hero && objB is Monster || objA is Monster && objB is Hero)
             {
                 Hero hero;
@@ -58,9 +65,24 @@ namespace Gameproject.Managers
 
                     enemy.Positie += verschuiving;
                 }
+                
             }
         }
+        private void HandleEnemyEnemyCollision(Monster enemy1, Monster enemy2)
+        {
+            
+            Rectangle enemy1BoundingBox = enemy1.BoundingBox;
+            Rectangle enemy2BoundingBox = enemy2.BoundingBox;
 
+            if (enemy1BoundingBox.Intersects(enemy2BoundingBox))
+            {
+                Vector2 directie = enemy2.Positie - enemy1.Positie;
+                directie.Normalize();
+
+                Vector2 verschuiving = directie * 5f; 
+                enemy2.Positie += verschuiving;
+            }
+        }
         public void RegisterObject(IGameObject obj)
         {
             if (!gameObjects.Contains(obj))

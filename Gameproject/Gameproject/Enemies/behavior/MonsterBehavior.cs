@@ -10,7 +10,7 @@ namespace Gameproject.Enemies.behavior
 {
     public class MonsterBehavior : IEnemybehavior
     {
-        private const float Snelheid = 1f;
+        private const float Snelheid = 0.2f;
         public void Execute(Monster enemy, Vector2 heroPositie)
         {
 

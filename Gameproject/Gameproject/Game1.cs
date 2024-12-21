@@ -6,6 +6,7 @@ using Gameproject.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Gameproject
 {
@@ -33,6 +34,9 @@ namespace Gameproject
         private CollisionManager collisionmanager;
         private UIManager uiManager;
         private EnemyManager enemyManager;
+        private Random Random;
+
+        
         public Game1()
         {
 
@@ -89,9 +93,13 @@ namespace Gameproject
 
             enemyManager = new EnemyManager();
 
-            
-                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(300, 200), new MonsterBehavior()));
-            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(200, 200), new MonsterBehavior()));
+            for (int i = 0; i <100; i++)
+            {
+                Random = new Random();
+            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+            }
+           
+           
 
 
 
