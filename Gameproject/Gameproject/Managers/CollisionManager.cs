@@ -17,21 +17,21 @@ namespace Gameproject.Managers
         }
         public void HandleCollision(IGameObject objA, IGameObject objB)
         {
-            if (objA is Hero && objB is Enemy || objA is Enemy && objB is Hero)
+            if (objA is Hero && objB is Monster || objA is Monster && objB is Hero)
             {
                 Hero hero;
-                Enemy enemy;
+                Monster enemy;
 
 
                 if (objA is Hero)
                 {
                     hero = (Hero)objA;
-                    enemy = (Enemy)objB;
+                    enemy = (Monster)objB;
                 }
                 else
                 {
                     hero = (Hero)objB;
-                    enemy = (Enemy)objA;
+                    enemy = (Monster)objA;
                 }
 
 
@@ -41,12 +41,12 @@ namespace Gameproject.Managers
                 if (objA is Hero)
                 {
                     hero = (Hero)objA;
-                    enemy = (Enemy)objB;
+                    enemy = (Monster)objB;
                 }
                 else
                 {
                     hero = (Hero)objB;
-                    enemy = (Enemy)objA;
+                    enemy = (Monster)objA;
                 }
 
                 var healthManager = new HealthManager();

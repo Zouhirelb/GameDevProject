@@ -10,16 +10,16 @@ namespace Gameproject.Enemies
 {
     public class EnemyManager
     {
-        private List<Enemy> enemies;
+        private List<Monster> enemies;
 
         public EnemyManager()
         {
-            enemies = new List<Enemy>();
+            enemies = new List<Monster>();
         }
 
         public void AddEnemy(Texture2D textureRechts, Texture2D textureLinks, Vector2 startPositie)
         {
-            var newEnemy = new Enemy(textureRechts, textureLinks, startPositie);
+            var newEnemy = new Monster(textureRechts, textureLinks, startPositie);
             enemies.Add(newEnemy);
         }
 
@@ -41,7 +41,7 @@ namespace Gameproject.Enemies
         }
 
         
-        public IEnumerable<Enemy> GetEnemies()
+        public IEnumerable<Monster> GetEnemies()
         {
             return enemies;
         }
