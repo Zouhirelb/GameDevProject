@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework;
 
 namespace Gameproject.Interfaces
 {
-    public interface IEnemybehavior<T> where T : Enemy
+    public interface IEnemybehavior
     {
-            void Execute(T enemy, Vector2 heroPositie, GameTime gameTime);
+            void Execute(Enemy enemy, Vector2 heroPositie, GameTime gameTime);
     }
 }

@@ -36,7 +36,12 @@ namespace Gameproject
         private EnemyManager enemyManager;
         private Random Random;
 
-        
+        private Texture2D skeletonDeathTexture;
+        private Texture2D skeletonAttackRightTexture;
+        private Texture2D skeletonAttackLeftTexture;
+        private Texture2D skeletonIdleTexture;
+        private Texture2D skeletonLeftTexture;
+        private Texture2D skeletonRightTexture;
         public Game1()
         {
 
@@ -73,6 +78,14 @@ namespace Gameproject
             monsterrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             monsterlinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
 
+            skeletonRightTexture = Content.Load<Texture2D>("Skeleton_Run_Right");
+            skeletonLeftTexture = Content.Load<Texture2D>("Skeleton_Run_Left");
+            skeletonIdleTexture = Content.Load<Texture2D>("Skeleton_Idle");
+            skeletonAttackRightTexture = Content.Load<Texture2D>("Skeleton_Attack_Right");
+            skeletonAttackLeftTexture = Content.Load<Texture2D>("Skeleton_Attack_left");
+            skeletonDeathTexture = Content.Load<Texture2D>("Skeleton_Dead");
+
+
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
@@ -93,10 +106,11 @@ namespace Gameproject
 
             enemyManager = new EnemyManager();
 
-            for (int i = 0; i <100; i++)
+            for (int i = 0; i <10; i++)
             {
                 Random = new Random();
-                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+                enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
+                //enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
             }
            
            
@@ -117,15 +131,12 @@ namespace Gameproject
            
             hero.Update(gameTime);
 
-
             enemyManager.Update(gameTime,hero.Positie);
 
             collisionmanager.CheckCollisions();
 
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);
-
-            
 
             base.Update(gameTime);
         }

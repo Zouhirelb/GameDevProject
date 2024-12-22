@@ -23,11 +23,8 @@ namespace Gameproject {
             private Animatie linksloopanimatie;
             private Animatie huidigeanimatie;
 
-            private IEnemybehavior<Monster> behavior;
-
-            private Vector2 positie;  
-
-
+            private Vector2 positie;
+            IEnemybehavior behavior;
             public Vector2 Positie { get { return positie; } set { positie = value; } } 
             public override int Breedte => 57; 
             public override int Hoogte => 46;  
@@ -40,7 +37,7 @@ namespace Gameproject {
             );
 
 
-            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior<Monster> behavior) : base(startPositie)
+            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
         {
                 this.looprechtstexture = texturerechts;
                 //this.doodtexture = doodtexure;

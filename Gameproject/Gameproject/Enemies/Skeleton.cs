@@ -16,27 +16,27 @@ namespace Gameproject.Enemies
         public Texture2D textureLeft;
         public Texture2D textureIdle;
         public Texture2D textureDeath;
-        public Texture2D textureAttack;
+        public Texture2D textureAttackRight;
+        public Texture2D textureAttackLeft;
         public Texture2D textureCurrent;
 
         public Animatie IdleAnimation;
         public Animatie DeathAnimation;
-        public Animatie AttackAnimation;
+        public Animatie AttackRightAnimation;
+        public Animatie AttackLeftAnimation;
         public Animatie RightrunAnimation;
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
 
-        private IEnemybehavior<Skeleton> behavior;
-
-       
-        
-        public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttack,Vector2 startPositie, IEnemybehavior<Skeleton> behavior) : base(startPositie)
+        IEnemybehavior behavior;
+        public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
             this.textureRight = textureRight;
             this.textureLeft = textureLeft;
             this.textureIdle = textureIdle;
             this.textureDeath = textureDeath;
-            this.textureAttack = textureAttack;
+            this.textureAttackRight = textureAttackRight;
+            this.textureAttackLeft = textureAttackLeft;
             this.textureCurrent = textureIdle;
 
             this.behavior = behavior;
@@ -45,48 +45,43 @@ namespace Gameproject.Enemies
             RightrunAnimation = new Animatie();
             IdleAnimation = new Animatie();
             DeathAnimation = new Animatie();
-            AttackAnimation = new Animatie();
+            AttackRightAnimation = new Animatie();
+            AttackLeftAnimation = new Animatie();
 
-            int[] pixels = {0,128,256,384,512,640,768,896};
+            int[] runpixels = { 0, 128, 256, 384, 512, 640, 768, 896 };
+            int[] idlepixels = { 0, 128, 256, 384, 512, 640, 768 };
+            int[] attackpixels = { 0, 128, 256, 384, 512};
+            int[] deathpixels = { 0, 128, 256, 384};
+
 
            
+
+            foreach (var pixel in runpixels)
+            {
+                    leftrunAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+                    RightrunAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+            }
+            foreach (var pixel in deathpixels)
+            {
+                DeathAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+            }
+            foreach (var pixel in attackpixels)
+            {
+                AttackRightAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+                AttackLeftAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+            }
+            foreach (var pixel in idlepixels)
+            {
+                IdleAnimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 128, 80)));
+            }
             CurrentAnimation = IdleAnimation;
 
-            if (CurrentAnimation == IdleAnimation)
-            {
-                for (int i = 0; i < 7; i++)
-                {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
-                }
-            }
-            else if (CurrentAnimation == leftrunAnimation || CurrentAnimation == RightrunAnimation)
-            {
-                for (int i = 0; i < 8; i++)
-                {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
-                }
-            }
-            else if (CurrentAnimation == AttackAnimation)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
-                }
-            }
-            else
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
-                }
-            }
-            
 
-            
+
         }
-        public override int Breedte => textureCurrent.Width;
+        public override int Breedte => 128;
 
-        public override int Hoogte => textureCurrent.Height;
+        public override int Hoogte => 80;
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -95,7 +90,7 @@ namespace Gameproject.Enemies
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
-            
+            behavior.Execute(this, heroPosition, gameTime);
         }
     }
 }

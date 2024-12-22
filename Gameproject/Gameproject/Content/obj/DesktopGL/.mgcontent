@@ -14,7 +14,8 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-rechtslopen.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/linkslopen.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lopen.png</File>
-    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Attack.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Attack_Left.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Attack_Right.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Dead.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Idle.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Run_Left.png</File>
@@ -22,6 +23,7 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/stil.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

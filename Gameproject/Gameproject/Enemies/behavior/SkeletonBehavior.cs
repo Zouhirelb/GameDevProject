@@ -8,21 +8,33 @@ using Microsoft.Xna.Framework;
 
 namespace Gameproject.Enemies.behavior
 {
-    public class SkeletonBehavior : IEnemybehavior<Skeleton>
+    public class SkeletonBehavior : IEnemybehavior
     {
         private const float DetectionRange = 200f;
-        private const float AttackRange = 50f;
+        private const float AttackRange = 128f;
         private const float Speed = 1f;
-        public void Execute(Skeleton skeleton, Vector2 heroPositie,GameTime gameTime)
+        public void Execute(Enemy enemy, Vector2 heroPositie,GameTime gameTime)
         {
-            
+            if (enemy is Skeleton skeleton)
+            {
+
+           
             var direction = heroPositie - skeleton.Positie;
             float distance = direction.Length();
 
             if (distance < AttackRange)
             {
-                skeleton.CurrentAnimation = skeleton.AttackAnimation;
-                skeleton.textureCurrent = skeleton.textureAttack;
+                    if (direction.X > 0)
+                    {
+                        skeleton.CurrentAnimation = skeleton.AttackRightAnimation;
+                        skeleton.textureCurrent = skeleton.textureAttackRight;
+                    }
+                    else
+                    {
+                        skeleton.CurrentAnimation = skeleton.AttackLeftAnimation;
+                        skeleton.textureCurrent = skeleton.textureAttackLeft;
+                    }
+                    
             }
             else if (distance< DetectionRange)
             {
@@ -44,7 +56,7 @@ namespace Gameproject.Enemies.behavior
                 skeleton.textureCurrent = skeleton.textureIdle;
             }
             skeleton.CurrentAnimation.Update(gameTime);
+            }
         }
     }
-    
 }

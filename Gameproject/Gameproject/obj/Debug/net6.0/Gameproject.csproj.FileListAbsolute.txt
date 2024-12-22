@@ -36,8 +36,9 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\lava-enemy-rechtslopen.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\lava-enemy-linkslopen.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Font.xnb
-C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Dead.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Idle.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Run_Left.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Run_Right.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Left.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Right.xnb

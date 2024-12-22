@@ -15,12 +15,13 @@ namespace Gameproject.Enemies
         public abstract int Breedte { get; }
         public abstract int Hoogte { get; }
 
-        public IEnemybehavior<Enemy> behavior;
+        public IEnemybehavior behavior { get; private set; }
         public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte);
 
-        public Enemy(Vector2 startPositie)
+        public Enemy(Vector2 startPositie, IEnemybehavior behavior)
         {
             Positie = startPositie;
+            this.behavior = behavior;
         }
 
         public abstract void Update(GameTime gameTime, Vector2 heroPosition);
