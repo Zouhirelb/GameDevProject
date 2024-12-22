@@ -58,7 +58,6 @@ namespace Gameproject.Enemies.behavior
                 }
                 else
             {
-
                 skeleton.CurrentAnimation = skeleton.IdleAnimation;
                 skeleton.textureCurrent = skeleton.textureIdle;
             }

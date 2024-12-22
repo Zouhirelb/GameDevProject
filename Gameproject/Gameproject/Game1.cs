@@ -43,7 +43,18 @@ namespace Gameproject
         private Texture2D skeletonIdleTexture;
         private Texture2D skeletonLeftTexture;
         private Texture2D skeletonRightTexture;
-        
+
+        private Texture2D magicianDeathTexture;
+        private Texture2D magicianAttackRightTexture;
+        private Texture2D magicianAttackLeftTexture;
+        private Texture2D FireballRightTexture;
+        private Texture2D FireballLeftTexture;
+        private Texture2D magicianIdleTexture;
+        private Texture2D magicianLeftTexture;
+        private Texture2D magicianRightTexture;
+
+
+
         public Game1()
         {
 
@@ -88,6 +99,15 @@ namespace Gameproject
             skeletonAttackLeftTexture = Content.Load<Texture2D>("Skeleton_Attack_left");
             skeletonDeathTexture = Content.Load<Texture2D>("Skeleton_Dead");
 
+            magicianRightTexture = Content.Load<Texture2D>("Wizard_Run_Right");
+            magicianLeftTexture = Content.Load<Texture2D>("Wizard_Run_Left");
+            magicianIdleTexture = Content.Load<Texture2D>("Wizard_Idle");
+            magicianAttackRightTexture = Content.Load<Texture2D>("Wizard_Fireball_Attack_Right");
+            magicianAttackLeftTexture = Content.Load<Texture2D>("Wizard_Fireball_Attack_Left");
+            magicianDeathTexture = Content.Load<Texture2D>("Wizard_Dead");
+
+            FireballLeftTexture = Content.Load<Texture2D>("FireBall_Left");
+            FireballRightTexture = Content.Load<Texture2D>("FireBall_Right");
 
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
@@ -114,6 +134,7 @@ namespace Gameproject
                 Random = new Random();
                 enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
                 enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+                //wizard bijvoegen
             }
            
            

@@ -7,6 +7,8 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Background.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/character lopen.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/character stilstaan.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/FireBall_Left.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/FireBall_Right.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Font.spritefont</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/forest.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/gras.png</File>
@@ -22,8 +24,22 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Run_Left.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Run_Right.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/stil.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Dead.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Fireball_Attack_Left.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Fireball_Attack_Right.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Idle.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Run_Left.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Run_Right.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

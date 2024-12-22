@@ -43,3 +43,11 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Left.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Right.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\lava-enemy-death.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\FireBall_Left.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\FireBall_Right.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Dead.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Fireball_Attack_Left.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Fireball_Attack_Right.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Idle.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Run_Left.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Run_Right.xnb
