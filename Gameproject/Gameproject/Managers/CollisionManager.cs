@@ -19,26 +19,26 @@ namespace Gameproject.Managers
         public void HandleCollision(IGameObject objA, IGameObject objB)
         {
 
-            if (objA is Monster && objB is Monster)
+            if (objA is Enemy && objB is Enemy)
             {
-                HandleEnemyEnemyCollision((Monster)objA, (Monster)objB);
+                HandleEnemyEnemyCollision((Enemy)objA, (Enemy)objB);
             }
-
-            if (objA is Hero && objB is Monster || objA is Monster && objB is Hero)
+            
+            if (objA is Hero && objB is Enemy || objA is Enemy && objB is Hero)
             {
                 Hero hero;
-                Monster enemy;
+                Enemy enemy;
 
 
                 if (objA is Hero)
                 {
                     hero = (Hero)objA;
-                    enemy = (Monster)objB;
+                    enemy = (Enemy)objB;
                 }
                 else
                 {
                     hero = (Hero)objB;
-                    enemy = (Monster)objA;
+                    enemy = (Enemy)objA;
                 }
 
 
@@ -65,10 +65,11 @@ namespace Gameproject.Managers
 
                     enemy.Positie += verschuiving;
                 }
-                
+
             }
+           
         }
-        private void HandleEnemyEnemyCollision(Monster enemy1, Monster enemy2)
+        private void HandleEnemyEnemyCollision(Enemy enemy1, Enemy enemy2)
         {
             
             Rectangle enemy1BoundingBox = enemy1.BoundingBox;
@@ -77,12 +78,15 @@ namespace Gameproject.Managers
             if (enemy1BoundingBox.Intersects(enemy2BoundingBox))
             {
                 Vector2 directie = enemy2.Positie - enemy1.Positie;
-                directie.Normalize();
+                if (directie != Vector2.Zero)
+                    directie.Normalize();
 
-                Vector2 verschuiving = directie * 5f; 
+                Vector2 verschuiving = directie * 2.5f;
+                enemy1.Positie -= verschuiving;
                 enemy2.Positie += verschuiving;
             }
         }
+
         public void RegisterObject(IGameObject obj)
         {
             if (!gameObjects.Contains(obj))

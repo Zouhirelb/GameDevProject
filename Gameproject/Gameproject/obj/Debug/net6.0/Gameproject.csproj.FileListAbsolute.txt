@@ -42,3 +42,4 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Run_Right.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Left.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Skeleton_Attack_Right.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\lava-enemy-death.xnb

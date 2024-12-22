@@ -79,7 +79,7 @@ namespace Gameproject.Enemies
 
 
         }
-        public override int Breedte => 128;
+        public override int Breedte => 126;
 
         public override int Hoogte => 80;
 

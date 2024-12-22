@@ -25,6 +25,16 @@ namespace Gameproject.Enemies.behavior
                 {
                     richting.Normalize();
                     monster.Positie += richting * Snelheid;
+                        
+                        if (richting.X > 0)
+                        {
+                            monster.huidigeanimatie = monster.rechtsloopanimatie;
+                        }
+                        else if (richting.X < 0)
+                        {
+                            monster.huidigeanimatie = monster.linksloopanimatie;
+                        }
+                    monster.huidigeanimatie.Update(gameTime);
                 }
             }
         }

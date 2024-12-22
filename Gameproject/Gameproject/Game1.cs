@@ -21,6 +21,7 @@ namespace Gameproject
 
         private Texture2D monsterrechtstexture;
         private Texture2D monsterlinkstexture;
+        private Texture2D monsterDeathTexture;
 
         private Texture2D backgroundTexture;
         private Background _background;
@@ -42,6 +43,7 @@ namespace Gameproject
         private Texture2D skeletonIdleTexture;
         private Texture2D skeletonLeftTexture;
         private Texture2D skeletonRightTexture;
+        
         public Game1()
         {
 
@@ -77,6 +79,7 @@ namespace Gameproject
 
             monsterrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
             monsterlinkstexture = Content.Load<Texture2D>("lava-enemy-linkslopen");
+            monsterDeathTexture = Content.Load<Texture2D>("lava-enemy-death");
 
             skeletonRightTexture = Content.Load<Texture2D>("Skeleton_Run_Right");
             skeletonLeftTexture = Content.Load<Texture2D>("Skeleton_Run_Left");
@@ -110,7 +113,7 @@ namespace Gameproject
             {
                 Random = new Random();
                 enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
-                //enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
             }
            
            
