@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Attack_1.png</SourceFile>
-  <SourceTime>2024-12-22T14:56:02.6278941+01:00</SourceTime>
+  <SourceFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Skeleton_Attack.png</SourceFile>
+  <SourceTime>2024-12-22T15:38:16.6503113+01:00</SourceTime>
   <DestFile>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/bin/DesktopGL/Skeleton_Attack.xnb</DestFile>
-  <DestTime>2024-12-22T15:09:04.983316+01:00</DestTime>
+  <DestTime>2024-12-22T15:43:43.5676164+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
