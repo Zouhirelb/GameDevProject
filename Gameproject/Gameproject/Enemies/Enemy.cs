@@ -14,6 +14,8 @@ namespace Gameproject.Enemies
         public Vector2 Positie { get; set; }
         public abstract int Breedte { get; }
         public abstract int Hoogte { get; }
+
+        public IEnemybehavior<Enemy> behavior;
         public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte);
 
         public Enemy(Vector2 startPositie)

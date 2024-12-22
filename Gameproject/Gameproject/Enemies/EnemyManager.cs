@@ -27,7 +27,8 @@ namespace Gameproject.Enemies
         {
             foreach (var enemy in enemies)
             {
-                enemy.Update(gameTime, heroPositie); 
+                enemy.behavior.Execute(enemy, heroPositie, gameTime);
+                enemy.Update(gameTime, heroPositie);
             }
         }
 
