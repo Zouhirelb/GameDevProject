@@ -28,24 +28,58 @@ namespace Gameproject.Enemies
         private IEnemybehavior behavior;
 
        
-        private int[] pixels = {0,128,256,384,512,640,768,896};
+        
         public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttack,Vector2 startPositie, IEnemybehavior behavior) : base(startPositie)
         {
-            
+            this.textureRight = textureRight;
+            this.textureLeft = textureLeft;
+            this.textureIdle = textureIdle;
+            this.textureDeath = textureDeath;
+            this.textureAttack = textureAttack;
             this.behavior = behavior;
 
             leftrunAnimation = new Animatie();
             RightrunAnimation = new Animatie();
+            IdleAnimation = new Animatie();
+            DeathAnimation = new Animatie();
+            AttackAnimation = new Animatie();
 
-            int[] pixels = { 0, 57, 114, 171, 228 };
+            int[] pixels = {0,128,256,384,512,640,768,896};
 
-            foreach (var item in pixels)
+           
+            CurrentAnimation = IdleAnimation;
+
+            if (CurrentAnimation == IdleAnimation)
             {
-                leftrunAnimation.AddFrame(new AnimationFrame(new Rectangle(item, 0, 57, 46)));
-                RightrunAnimation.AddFrame(new AnimationFrame(new Rectangle(item, 0, 57, 46)));
+                for (int i = 0; i < 7; i++)
+                {
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                }
             }
+            else if (CurrentAnimation == leftrunAnimation || CurrentAnimation == RightrunAnimation)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                }
+            }
+            else if (CurrentAnimation == AttackAnimation)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                }
+            }
+            
 
-            huidigeanimatie = rechtsloopanimatie;
+            
         }
         public override int Breedte => throw new NotImplementedException();
 
