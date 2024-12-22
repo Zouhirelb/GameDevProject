@@ -90,7 +90,7 @@ namespace Gameproject.Enemies
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
-            behavior.Execute(this, heroPosition, gameTime);
+            behavior.Execute(this,  heroPosition, gameTime);
         }
     }
 }

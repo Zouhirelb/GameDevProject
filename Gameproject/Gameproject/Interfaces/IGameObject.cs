@@ -13,7 +13,7 @@ namespace Gameproject.Interfaces
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
 
-         Vector2 Positie { get; set; } 
+        Vector2 Positie { get; set; } 
         int Breedte { get; }    
         int Hoogte { get; }     
 

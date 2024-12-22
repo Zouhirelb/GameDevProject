@@ -134,7 +134,7 @@ namespace Gameproject
            
             hero.Update(gameTime);
 
-            enemyManager.Update(gameTime,hero.Positie);
+            enemyManager.Update(gameTime, hero.Positie);
 
             collisionmanager.CheckCollisions();
 

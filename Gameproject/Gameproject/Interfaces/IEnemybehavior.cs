@@ -10,6 +10,6 @@ namespace Gameproject.Interfaces
 {
     public interface IEnemybehavior
     {
-            void Execute(Enemy enemy, Vector2 heroPositie, GameTime gameTime);
+            void Execute(Enemy enemy,  Vector2 heroPositie, GameTime gameTime);
     }
 }

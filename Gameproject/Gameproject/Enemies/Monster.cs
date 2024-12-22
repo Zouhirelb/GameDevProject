@@ -23,14 +23,10 @@ namespace Gameproject {
             public Animatie rechtsloopanimatie;
             public Animatie linksloopanimatie;
             public Animatie huidigeanimatie;
-
-            IEnemybehavior behavior;
             
+            IEnemybehavior behavior;
             public override int Breedte => 57; 
             public override int Hoogte => 46;  
-
-           
-
 
             public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
         {
@@ -57,7 +53,7 @@ namespace Gameproject {
                     rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0,57, 46)));
                 }
 
-            huidigeanimatie = rechtsloopanimatie;
+                huidigeanimatie = rechtsloopanimatie;
             }
             public override void Draw(SpriteBatch spriteBatch)
             {
@@ -75,29 +71,7 @@ namespace Gameproject {
             public override void Update(GameTime gameTime, Vector2 heropositie)
             {
                 behavior.Execute(this, heropositie,gameTime);
-                
               
-                //Vector2 richting = heropositie - Positie;
-                //float afstand = richting.Length();
-
-                //    if (afstand > 1f) 
-                //    {
-                //        richting.Normalize();
-                //        Positie += richting * 2f; 
-
-                //        if (richting.X > 0) 
-                //        {
-
-                //           huidigeanimatie = rechtsloopanimatie;
-                //        }
-                //        else if (richting.X < 0) 
-                //        {
-                //            huidigeanimatie = linksloopanimatie;
-                //        }
-                //    }
-
-                //huidigeanimatie.Update(gameTime);
-
             }
 
             

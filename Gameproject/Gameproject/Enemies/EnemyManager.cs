@@ -23,7 +23,7 @@ namespace Gameproject.Enemies
             enemies.Add(enemy);
         }
 
-        public void Update(GameTime gameTime, Vector2 heroPositie)
+        public void Update(GameTime gameTime,  Vector2 heroPositie)
         {
             foreach (var enemy in enemies)
             {
