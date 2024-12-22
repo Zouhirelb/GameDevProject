@@ -65,7 +65,7 @@ namespace Gameproject {
             public override void Update(GameTime gameTime, Vector2 heropositie)
             {
                 behavior.Execute(this, heropositie);
-                var directie = heropositie - positie;
+                
               
                 Vector2 richting = heropositie - positie;
                 float afstand = richting.Length();
@@ -100,11 +100,9 @@ namespace Gameproject {
                     huidigeTexture = looplinkstexture;
                 }
                 spriteBatch.Draw(huidigeTexture, positie, huidigeanimatie.CurrentFrame.SourceRectangle, Color.White);
-            }
-
-        public void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException();
+                
         }
+
+       
     }
     }

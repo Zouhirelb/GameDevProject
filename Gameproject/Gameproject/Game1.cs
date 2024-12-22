@@ -96,12 +96,10 @@ namespace Gameproject
             for (int i = 0; i <100; i++)
             {
                 Random = new Random();
-            enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
             }
            
            
-
-
 
             collisionmanager.RegisterObject(hero);
 
@@ -127,7 +125,7 @@ namespace Gameproject
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);
 
-         
+            
 
             base.Update(gameTime);
         }
@@ -148,13 +146,13 @@ namespace Gameproject
 
             hero.Draw(_spriteBatch);
 
-            foreach (var item in enemyManager.GetEnemies())
+            foreach (var enemy in enemyManager.GetEnemies())
             {
-                enemyManager.Draw(_spriteBatch);
+                enemy.Draw(_spriteBatch);
             }
             
       
-            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Red);
+            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
 
             foreach (var enemy in enemyManager.GetEnemies())
             {
