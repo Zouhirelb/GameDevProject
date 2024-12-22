@@ -23,7 +23,7 @@ namespace Gameproject {
             private Animatie linksloopanimatie;
             private Animatie huidigeanimatie;
 
-            private IEnemybehavior behavior;
+            private IEnemybehavior<Monster> behavior;
 
             private Vector2 positie;  
 
@@ -40,7 +40,7 @@ namespace Gameproject {
             );
 
 
-            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie)
+            public Monster(Texture2D texturerechts, Texture2D texturelinks, Vector2 startPositie, IEnemybehavior<Monster> behavior) : base(startPositie)
         {
                 this.looprechtstexture = texturerechts;
                 //this.doodtexture = doodtexure;
@@ -64,7 +64,7 @@ namespace Gameproject {
 
             public override void Update(GameTime gameTime, Vector2 heropositie)
             {
-                behavior.Execute(this, heropositie);
+                behavior.Execute(this, heropositie,gameTime);
                 
               
                 Vector2 richting = heropositie - positie;

@@ -12,32 +12,35 @@ namespace Gameproject.Enemies
 {
     public class Skeleton : Enemy
     {
-        private Texture2D textureRight;
-        private Texture2D textureLeft;
-        private Texture2D textureIdle;
-        private Texture2D textureDeath;
-        private Texture2D textureAttack;
+        public Texture2D textureRight;
+        public Texture2D textureLeft;
+        public Texture2D textureIdle;
+        public Texture2D textureDeath;
+        public Texture2D textureAttack;
+        public Texture2D textureCurrent;
 
-        private Animatie IdleAnimation;
-        private Animatie DeathAnimation;
-        private Animatie AttackAnimation;
-        private Animatie RightrunAnimation;
-        private Animatie leftrunAnimation;
-        private Animatie CurrentAnimation;
+        public Animatie IdleAnimation;
+        public Animatie DeathAnimation;
+        public Animatie AttackAnimation;
+        public Animatie RightrunAnimation;
+        public Animatie leftrunAnimation;
+        public Animatie CurrentAnimation;
 
-        private IEnemybehavior behavior;
+        private IEnemybehavior<Skeleton> behavior;
 
        
         
-        public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttack,Vector2 startPositie, IEnemybehavior behavior) : base(startPositie)
+        public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttack,Vector2 startPositie, IEnemybehavior<Skeleton> behavior) : base(startPositie)
         {
             this.textureRight = textureRight;
             this.textureLeft = textureLeft;
             this.textureIdle = textureIdle;
             this.textureDeath = textureDeath;
             this.textureAttack = textureAttack;
-            this.behavior = behavior;
+            this.textureCurrent = textureIdle;
 
+            this.behavior = behavior;
+            
             leftrunAnimation = new Animatie();
             RightrunAnimation = new Animatie();
             IdleAnimation = new Animatie();
@@ -53,46 +56,46 @@ namespace Gameproject.Enemies
             {
                 for (int i = 0; i < 7; i++)
                 {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
                 }
             }
             else if (CurrentAnimation == leftrunAnimation || CurrentAnimation == RightrunAnimation)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
                 }
             }
             else if (CurrentAnimation == AttackAnimation)
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
                 }
             }
             else
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(i, 0, 57, 46)));
+                    CurrentAnimation.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 57, 46)));
                 }
             }
             
 
             
         }
-        public override int Breedte => throw new NotImplementedException();
+        public override int Breedte => textureCurrent.Width;
 
-        public override int Hoogte => throw new NotImplementedException();
+        public override int Hoogte => textureCurrent.Height;
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
