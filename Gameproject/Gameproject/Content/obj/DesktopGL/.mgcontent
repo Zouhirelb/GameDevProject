@@ -12,6 +12,8 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Font.spritefont</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/forest.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/gras.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-left.png</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-right.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-death.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-linkslopen.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/lava-enemy-rechtslopen.png</File>
@@ -32,6 +34,8 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Run_Right.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

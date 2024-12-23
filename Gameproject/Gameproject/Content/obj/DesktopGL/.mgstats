@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-left.png","C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/bin/DesktopGL/hero-attack-left.xnb","TextureProcessor","Texture2DContent",5807,74285,0,2949786
+"C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-right.png","C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/bin/DesktopGL/hero-attack-right.xnb","TextureProcessor","Texture2DContent",5951,74285,0,0096675

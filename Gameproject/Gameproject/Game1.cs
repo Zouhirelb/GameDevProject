@@ -15,6 +15,8 @@ namespace Gameproject
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Texture2D heroAttacklefttexture;
+        private Texture2D heroAttackrighttexture;
         private Texture2D herorechtslooptexture;
         private Texture2D herolinkslooptexture;
         private Texture2D herostiltexture;
@@ -84,8 +86,11 @@ namespace Gameproject
 
             SpriteFont font = Content.Load<SpriteFont>("Font");
             backgroundTexture = Content.Load<Texture2D>("gras");
+           
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
             herolinkslooptexture = Content.Load<Texture2D>("linkslopen");
+            heroAttacklefttexture = Content.Load<Texture2D>("hero-attack-left");
+            heroAttackrighttexture = Content.Load<Texture2D>("hero-attack-right");
             herostiltexture = Content.Load<Texture2D>("stil");
 
             monsterrechtstexture = Content.Load<Texture2D>("lava-enemy-rechtslopen");
