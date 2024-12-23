@@ -83,7 +83,7 @@ namespace Gameproject
 
             huidigeanimatie = stilanimatie;
 
-            Health = 100;
+            Health = 1000000000;
             
 
         }

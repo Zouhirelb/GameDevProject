@@ -168,13 +168,13 @@ namespace Gameproject
 
             base.Update(gameTime);
         }
-        private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangle, int thickness, Color color)
-        {
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, thickness), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Bottom - thickness, rectangle.Width, thickness), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, thickness, rectangle.Height), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Right - thickness, rectangle.Top, thickness, rectangle.Height), color);
-        }
+        //private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangle, int thickness, Color color)
+        //{
+        //    spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, thickness), color);
+        //    spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Bottom - thickness, rectangle.Width, thickness), color);
+        //    spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, thickness, rectangle.Height), color);
+        //    spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Right - thickness, rectangle.Top, thickness, rectangle.Height), color);
+        //}
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen); 
@@ -191,12 +191,12 @@ namespace Gameproject
             }
             
       
-            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
+            //DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
 
-            foreach (var enemy in enemyManager.GetEnemies())
-            {
-                DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
-            }
+            //foreach (var enemy in enemyManager.GetEnemies())
+            //{
+            //    DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
+            //}
             FireballManager.GetInstance().Draw(_spriteBatch);           
             _spriteBatch.End();
 

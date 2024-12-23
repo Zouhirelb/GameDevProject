@@ -56,7 +56,9 @@ namespace Gameproject.Enemies.behavior
                 }
                 else
                 {
-                    if (timeSinceLastFireball>= fireballCooldown)
+                    if (timeSinceLastFireball >= fireballCooldown &&
+                       (magician.CurrentAnimation == magician.AttackRightAnimation ||
+                        magician.CurrentAnimation == magician.AttackLeftAnimation))
                     {
                        
                         Fireball(magician, heroPositie, magician.FireballRightTexture, magician.FireballLeftTexture );

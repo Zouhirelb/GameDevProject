@@ -18,6 +18,7 @@ namespace Gameproject.Enemies
         public Vector2 Positie { get;  set; }
         private Vector2 direction;
         private float speed = 5f;
+
         public Texture2D textureright;
         public Texture2D textureleft;
         public Animatie animationright;
@@ -31,7 +32,6 @@ namespace Gameproject.Enemies
         {
             if (enemy is Magician magician)
             {
-
 
             this.Positie = startPositie;
             this.direction = direction;
