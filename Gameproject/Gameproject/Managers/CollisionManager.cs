@@ -10,12 +10,23 @@ namespace Gameproject.Managers
     {
         private List<IGameObject> gameObjects;
         private ICollsionHandler collisionHandler;
-        public CollisionManager() { }
+        private static CollisionManager _instance;
+        public static CollisionManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new CollisionManager();
+                return _instance;
+            }
+        }
+        private CollisionManager() { gameObjects = new List<IGameObject>(); }
         public CollisionManager(ICollsionHandler collisionHandler)
         {
             this.collisionHandler = collisionHandler;
             gameObjects = new List<IGameObject>();
         }
+       
         public void HandleCollision(IGameObject objA, IGameObject objB)
         {
 
@@ -26,18 +37,18 @@ namespace Gameproject.Managers
             
             if (objA is Hero && objB is Enemy || objA is Enemy && objB is Hero)
             {
-                Hero hero;
+                Hero Hero;
                 Enemy enemy;
 
 
                 if (objA is Hero)
                 {
-                    hero = (Hero)objA;
+                    Hero = (Hero)objA;
                     enemy = (Enemy)objB;
                 }
                 else
                 {
-                    hero = (Hero)objB;
+                    Hero = (Hero)objB;
                     enemy = (Enemy)objA;
                 }
 
@@ -48,15 +59,15 @@ namespace Gameproject.Managers
              
 
                 var healthManager = new HealthManager();
-                if (hero is Hero healthHero)
+                if (Hero is Hero healthHero)
                 {
                     healthManager.ApplyDamage(healthHero, 5);
                 }
 
-                Rectangle heroBoundingBox = hero.BoundingBox;
+                Rectangle heroBoundingBox = Hero.BoundingBox;
                 Rectangle enemyBoundingBox = enemy.BoundingBox;
 
-                Vector2 richting = enemy.Positie - hero.Positie;
+                Vector2 richting = enemy.Positie - Hero.Positie;
                 richting.Normalize();
 
                 if (heroBoundingBox.Intersects(enemyBoundingBox))
@@ -67,12 +78,13 @@ namespace Gameproject.Managers
                 }
 
             }
-            if (objA is Hero && objB is FireBall || objA is FireBall && objB is Hero)
+            if (objA is Hero hero && objB is FireBall fireball)
             {
-
-                HandlefireballCollision((Hero)objA, (FireBall)objB);
-             
-
+                HandlefireballCollision(hero, fireball);
+            }
+            else if (objA is FireBall fireball2 && objB is Hero hero2)
+            {
+                HandlefireballCollision(hero2, fireball2);
             }
         }
         private void HandleEnemyEnemyCollision(Enemy enemy1, Enemy enemy2)
@@ -100,17 +112,13 @@ namespace Gameproject.Managers
 
             if (heroBoundingBox.Intersects(fireballBoundingBox))
             {
-                Vector2 directie = fireBall.Positie - hero.Positie;
-                if (directie != Vector2.Zero)
-                    directie.Normalize();
-
-                Vector2 verschuiving = directie * 2.5f;
-                hero.Positie -= verschuiving;
-                fireBall.Positie += verschuiving;
+                hero.TakeDamage(10);
+                fireBall.Destroy();
             }
         }
         public void RegisterObject(IGameObject obj)
         {
+     
             if (!gameObjects.Contains(obj))
             {
                 gameObjects.Add(obj);
@@ -134,7 +142,7 @@ namespace Gameproject.Managers
 
                     if (objA.BoundingBox.Intersects(objB.BoundingBox))
                     {
-                        collisionHandler.HandleCollision(objA, objB);
+                        HandleCollision(objA, objB);
                     }
                 }
             }

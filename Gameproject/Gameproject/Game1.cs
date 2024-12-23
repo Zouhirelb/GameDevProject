@@ -32,9 +32,9 @@ namespace Gameproject
   
         private Texture2D _borderTexture;
 
-        private CollisionManager collisionmanager;
         private UIManager uiManager;
         private EnemyManager enemyManager;
+        private FireballManager fireballManager;
         private Random Random;
 
         private Texture2D skeletonDeathTexture;
@@ -64,6 +64,7 @@ namespace Gameproject
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             
+
         }
 
         protected override void Initialize()
@@ -71,8 +72,7 @@ namespace Gameproject
 
             this.camera = new Camera(_graphics.GraphicsDevice);
 
-            var collisionHandler = new CollisionManager();
-            collisionmanager = new CollisionManager(collisionHandler);
+         
 
             base.Initialize();
         }
@@ -132,8 +132,8 @@ namespace Gameproject
             for (int i = 0; i <10; i++)
             {
                 Random = new Random();
-               // enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
-                //enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
+                enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
+                enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
                 enemyManager.AddEnemy(new Magician(FireballRightTexture,FireballLeftTexture,magicianRightTexture, magicianLeftTexture, magicianIdleTexture, magicianDeathTexture, magicianAttackRightTexture, magicianAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MagicianBehavior()));
 
                 //wizard bijvoegen
@@ -141,12 +141,13 @@ namespace Gameproject
 
 
 
-            collisionmanager.RegisterObject(hero);
+            CollisionManager.Instance.RegisterObject(hero);
 
             foreach (var enemy in enemyManager.GetEnemies())
             {
-                collisionmanager.RegisterObject(enemy);
+                CollisionManager.Instance.RegisterObject(enemy);
             }
+        
         }
 
         protected override void Update(GameTime gameTime)
@@ -160,7 +161,7 @@ namespace Gameproject
             enemyManager.Update(gameTime, hero.Positie);
             FireballManager.GetInstance().Update(gameTime);
 
-            collisionmanager.CheckCollisions();
+            CollisionManager.Instance.CheckCollisions();
 
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);

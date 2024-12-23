@@ -9,6 +9,7 @@ using Gameproject.Interfaces;
 using Gameproject.Animation;
 using System.Security.AccessControl;
 using System.Globalization;
+using Gameproject.Managers;
 
 namespace Gameproject.Enemies
 {
@@ -22,12 +23,10 @@ namespace Gameproject.Enemies
         public Animatie animationright;
         public Animatie animationleft;
         public Animatie currentanimation;
-        public bool IsFinished { get; private set; }
         public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte); //niet vergeten grote aan te passen
         public int Breedte => 64;
         public int Hoogte => 64;
         private int[] pixels = { 0, 64, 192, 256, 320,384,448,512,576,640,704 };
-        private int currentFrameIndex = 0;
         public FireBall(Enemy enemy,Vector2 startPositie, Vector2 direction, Texture2D textureright,Texture2D textureleft)
         {
             if (enemy is Magician magician)
@@ -65,13 +64,24 @@ namespace Gameproject.Enemies
 
             }
         }
+        public void Destroy()
+        {
+            FireballManager.GetInstance().RemoveFireball(this);
 
+        }
+        private bool IsOnScreen(Vector2 positie)
+        {
+            return positie.X >= 0 && positie.X < 1280 && positie.Y >= 0 && positie.Y < 736;
+        }
         public void Update(GameTime gameTime)
         {
             Positie += direction * speed;
             currentanimation.Update(gameTime);
 
-           
+            if (!IsOnScreen(Positie))
+            {
+                Destroy();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch )

@@ -11,15 +11,10 @@ namespace Gameproject.Managers
 {
     internal class FireballManager
     {
+        private readonly List<FireBall> fireBalls;
         private static FireballManager instance;
-        private  List<FireBall> fireBalls;
-
-        public FireballManager()
-        {
-            fireBalls = new List<FireBall>();
-        }
-
-        public static FireballManager GetInstance()
+                
+        public static FireballManager GetInstance( )
         {
             if (instance == null)
             {
@@ -27,11 +22,26 @@ namespace Gameproject.Managers
             }
             return instance;
         }
+        private FireballManager( )
+        {
+            fireBalls = new List<FireBall>();
+
+
+        }
 
         public void RegisterFireball(FireBall fireBall)
         {
+          
+
             fireBalls.Add(fireBall);
+            CollisionManager.Instance.RegisterObject(fireBall);
         }
+        public void RemoveFireball(FireBall fireBall)
+        {
+            fireBalls.Remove(fireBall);
+            CollisionManager.Instance.UnregisterObject(fireBall);
+        }
+
 
         public void Update(GameTime gameTime)
         {
@@ -40,10 +50,7 @@ namespace Gameproject.Managers
                 fireBalls[i].Update(gameTime);
             }
         }
-        private bool IsOnScreen(Vector2 positie)
-        {
-            return positie.X >= 0 && positie.X <= 1280 && positie.Y >= 0 && positie.Y <= 736;
-        }
+       
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var fireball in fireBalls)
@@ -51,10 +58,6 @@ namespace Gameproject.Managers
                 fireball.Draw(spriteBatch);
             }
         }
-
-        public List<FireBall> GetFireBalls()
-        {
-            return fireBalls;
-        }
+    
     }
 }
