@@ -29,6 +29,25 @@ namespace Gameproject.Enemies
         public Animatie CurrentAnimation;
 
         IEnemybehavior behavior;
+
+        private int health = 15;
+
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                if (health <= 0)
+                {
+                    isDead = true;
+                }
+            }
+        }
+
+
+        private bool isDead;
+        public bool IsDead => isDead;
         public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
             this.textureRight = textureRight;

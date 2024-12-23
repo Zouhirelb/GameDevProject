@@ -9,6 +9,7 @@ namespace Gameproject.Interfaces
     public interface IHealth
     {
         int Health { get; set; }
+        bool IsDead { get; }
         void TakeDamage(int damage);
 
     }

@@ -18,7 +18,7 @@ namespace Gameproject {
             public Texture2D looplinkstexture;
             public Texture2D huidigeTexture;
             public Texture2D deadtexture;
-
+            
             public Animatie deathanimation;
             public Animatie rechtsloopanimatie;
             public Animatie linksloopanimatie;
@@ -26,10 +26,27 @@ namespace Gameproject {
             
             IEnemybehavior behavior;
             public override int Breedte => 57; 
-            public override int Hoogte => 46;  
+            public override int Hoogte => 46;
 
-            public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
-        {
+            private int health = 40; 
+
+            public int Health
+            {
+                get { return health; }
+                set
+                {
+                    health = value;
+                    if (health <= 0)
+                    {
+                        isDead = true;
+                    }
+                }
+            }
+
+            private bool isDead;
+            public bool IsDead => isDead;
+        public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
+            {
                 this.looprechtstexture = texturerechts;
                 this.deadtexture = deadtexture;
                 this.looplinkstexture = texturelinks;
@@ -75,5 +92,5 @@ namespace Gameproject {
             }
 
       
-    }
+        }
 }
