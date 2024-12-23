@@ -27,6 +27,7 @@ namespace Gameproject.Enemies
         public Animatie RightrunAnimation;
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
+        private int counter;
 
         IEnemybehavior behavior;
         public Magician(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
@@ -71,13 +72,24 @@ namespace Gameproject.Enemies
             }
 
             CurrentAnimation = IdleAnimation;
-
+            if (CurrentAnimation == AttackLeftAnimation|| CurrentAnimation == AttackRightAnimation|| CurrentAnimation == leftrunAnimation|| CurrentAnimation == RightrunAnimation )
+            {
+                counter = 8;
+            }
+            else if (CurrentAnimation == IdleAnimation)
+            {
+                counter = 7;
+            }
+            else
+            {
+                counter = 6;
+            }
 
 
         }
-        public override int Breedte => 128;
+        public override int Breedte => textureCurrent.Width / counter;
 
-        public override int Hoogte => 80;
+        public override int Hoogte => textureCurrent.Height;
 
         public override void Draw(SpriteBatch spriteBatch)
         {
