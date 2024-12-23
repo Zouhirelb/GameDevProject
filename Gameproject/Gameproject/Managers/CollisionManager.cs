@@ -67,7 +67,13 @@ namespace Gameproject.Managers
                 }
 
             }
-           
+            if (objA is Hero && objB is FireBall || objA is FireBall && objB is Hero)
+            {
+
+                HandlefireballCollision((Hero)objA, (FireBall)objB);
+             
+
+            }
         }
         private void HandleEnemyEnemyCollision(Enemy enemy1, Enemy enemy2)
         {
@@ -86,7 +92,23 @@ namespace Gameproject.Managers
                 enemy2.Positie += verschuiving;
             }
         }
+        private void HandlefireballCollision(Hero hero, FireBall fireBall)
+        {
 
+            Rectangle heroBoundingBox = hero.BoundingBox;
+            Rectangle fireballBoundingBox = fireBall.BoundingBox;
+
+            if (heroBoundingBox.Intersects(fireballBoundingBox))
+            {
+                Vector2 directie = fireBall.Positie - hero.Positie;
+                if (directie != Vector2.Zero)
+                    directie.Normalize();
+
+                Vector2 verschuiving = directie * 2.5f;
+                hero.Positie -= verschuiving;
+                fireBall.Positie += verschuiving;
+            }
+        }
         public void RegisterObject(IGameObject obj)
         {
             if (!gameObjects.Contains(obj))

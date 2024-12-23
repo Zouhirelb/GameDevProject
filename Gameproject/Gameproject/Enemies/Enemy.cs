@@ -26,7 +26,6 @@ namespace Gameproject.Enemies
 
         public abstract void Update(GameTime gameTime, Vector2 heroPosition);
         public abstract void Draw(SpriteBatch spriteBatch);
-
         public void Update(GameTime gameTime)
         {
             throw new NotImplementedException();

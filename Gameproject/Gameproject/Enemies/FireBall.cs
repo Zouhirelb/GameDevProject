@@ -6,37 +6,104 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Gameproject.Interfaces;
+using Gameproject.Animation;
+using System.Security.AccessControl;
+using System.Globalization;
 
 namespace Gameproject.Enemies
 {
     public class FireBall:IGameObject
     {
         public Vector2 Positie { get;  set; }
-        private Vector2 richting;
-        private float snelheid = 5f;
-        private Texture2D texture;
+        private Vector2 direction;
+        private float speed = 5f;
+        public Texture2D textureright;
+        public Texture2D textureleft;
+        public Animatie animationright;
+        public Animatie animationleft;
+        public Animatie currentanimation;
+        public bool IsFinished { get; private set; }
         public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte); //niet vergeten grote aan te passen
-        public int Breedte => 16;
-
-        public int Hoogte => 16;
-
-        public FireBall(Vector2 startPositie, Vector2 richting, Texture2D texture)
+        public int Breedte => 64;
+        public int Hoogte => 64;
+        private int[] pixels = { 0, 64, 192, 256, 320,384,448,512,576,640,704 };
+        private int currentFrameIndex = 0;
+        public FireBall(Enemy enemy,Vector2 startPositie, Vector2 direction, Texture2D textureright,Texture2D textureleft)
         {
+            if (enemy is Magician magician)
+            {
+
+
             this.Positie = startPositie;
-            this.richting = richting;
-            this.richting.Normalize();
-            this.texture = texture;
+            this.direction = direction;
+            this.textureleft = textureleft;
+            this.textureright = textureright;
+
+            animationright = new Animatie();
+            animationleft = new Animatie();
+
+            this.direction.Normalize();
+            
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                animationright.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 64, 64)));
+                animationleft.AddFrame(new AnimationFrame(new Rectangle(pixels[i], 0, 64, 64)));
+                
+
+            }
+
+                currentanimation = animationright;
+
+                if (magician.CurrentAnimation == magician.AttackLeftAnimation)
+                {
+                    currentanimation = animationleft;
+                }
+                else if (magician.CurrentAnimation == magician.AttackRightAnimation)
+                {
+                    currentanimation = animationright;
+                }
+
+            }
         }
 
         public void Update(GameTime gameTime)
         {
-            Positie += richting * snelheid;
+            Positie += direction * speed;
+            currentanimation.Update(gameTime);
+
+           
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch )
         {
-            spriteBatch.Draw(texture, Positie, Color.White);
+            var sourceRectangle = currentanimation.CurrentFrame.SourceRectangle;
+
+            if (direction.X > 0)
+            {
+                
+
+                spriteBatch.Draw(textureright, Positie, sourceRectangle, Color.White);
+                
+            }
+            else
+            {
+                
+                    spriteBatch.Draw(textureleft, Positie, sourceRectangle, Color.White);
+                
+            }
+
         }
+
+       
     }
 }
+
+
+
+   
+  
+  
+
+    
+
 

@@ -88,6 +88,8 @@ namespace Gameproject.Enemies
             spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
+       
+
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
             behavior.Execute(this,  heroPosition, gameTime);

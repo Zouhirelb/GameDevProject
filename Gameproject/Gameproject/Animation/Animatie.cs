@@ -15,6 +15,8 @@ namespace Gameproject.Animation
         private List<AnimationFrame> frames;
         private int counter;
         private double frameMovement = 0;
+      //  public bool IsLastFrame => CurrentFrame == frames.Count - 1;
+
         public Animatie()
         {
             frames = new List<AnimationFrame>();

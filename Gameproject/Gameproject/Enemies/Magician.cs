@@ -28,10 +28,15 @@ namespace Gameproject.Enemies
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
         private int counter;
+        public Texture2D FireballRightTexture { get; internal set; }
+        public Texture2D FireballLeftTexture { get; internal set; }
+
 
         IEnemybehavior behavior;
-        public Magician(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
+        public Magician(Texture2D fireballRightTexture, Texture2D fireballLeftTexture,Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
+            this.FireballRightTexture = fireballRightTexture;
+            this.FireballLeftTexture = fireballLeftTexture;
             this.textureRight = textureRight;
             this.textureLeft = textureLeft;
             this.textureIdle = textureIdle;
@@ -91,6 +96,7 @@ namespace Gameproject.Enemies
 
         public override int Hoogte => textureCurrent.Height;
 
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
@@ -100,5 +106,7 @@ namespace Gameproject.Enemies
         {
             behavior.Execute(this, heroPosition, gameTime);
         }
+
+        
     }
 }

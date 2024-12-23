@@ -134,7 +134,7 @@ namespace Gameproject
                 Random = new Random();
                // enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
                 //enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
-                enemyManager.AddEnemy(new Magician(magicianRightTexture, magicianLeftTexture, magicianIdleTexture, magicianDeathTexture, magicianAttackRightTexture, magicianAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MagicianBehavior()));
+                enemyManager.AddEnemy(new Magician(FireballRightTexture,FireballLeftTexture,magicianRightTexture, magicianLeftTexture, magicianIdleTexture, magicianDeathTexture, magicianAttackRightTexture, magicianAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MagicianBehavior()));
 
                 //wizard bijvoegen
             }
@@ -158,6 +158,7 @@ namespace Gameproject
             hero.Update(gameTime);
 
             enemyManager.Update(gameTime, hero.Positie);
+            FireballManager.GetInstance().Update(gameTime);
 
             collisionmanager.CheckCollisions();
 
@@ -195,7 +196,7 @@ namespace Gameproject
             {
                 DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
             }
-                        
+            FireballManager.GetInstance().Draw(_spriteBatch);           
             _spriteBatch.End();
 
             uiManager.Draw(_spriteBatch,hero);

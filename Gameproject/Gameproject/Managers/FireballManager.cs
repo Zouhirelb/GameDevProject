@@ -12,7 +12,7 @@ namespace Gameproject.Managers
     internal class FireballManager
     {
         private static FireballManager instance;
-        private readonly List<FireBall> fireBalls;
+        private  List<FireBall> fireBalls;
 
         public FireballManager()
         {
@@ -38,10 +38,12 @@ namespace Gameproject.Managers
             for (int i = 0; i < fireBalls.Count; i++)
             {
                 fireBalls[i].Update(gameTime);
-
             }
         }
-
+        private bool IsOnScreen(Vector2 positie)
+        {
+            return positie.X >= 0 && positie.X <= 1280 && positie.Y >= 0 && positie.Y <= 736;
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var fireball in fireBalls)

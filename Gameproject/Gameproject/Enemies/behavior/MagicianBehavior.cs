@@ -18,6 +18,7 @@ namespace Gameproject.Enemies.behavior
         private const float Speed = 1.5f;
         private float fireballCooldown = 2f; 
         private float timeSinceLastFireball = 0f;
+        Random random;
         public void Execute(Enemy enemy, Vector2 heroPositie, GameTime gameTime)
         {
             if (enemy is Magician magician)
@@ -29,11 +30,14 @@ namespace Gameproject.Enemies.behavior
 
                 if (distance > DetectionRange)
                 {
+                   random= new Random();
+                    magician.Positie += new Vector2((float)(random.NextDouble() - 0.5), (float)(random.NextDouble() - 0.5)) * Speed;
                     magician.CurrentAnimation = magician.IdleAnimation;
                     magician.textureCurrent = magician.textureIdle;
                 }
                 else if (distance > FireballRange)
-                {
+                {   
+                   
                     direction.Normalize();
                     magician.Positie += direction * Speed;
 
@@ -54,7 +58,8 @@ namespace Gameproject.Enemies.behavior
                 {
                     if (timeSinceLastFireball>= fireballCooldown)
                     {
-                        Fireball(magician, heroPositie);
+                       
+                        Fireball(magician, heroPositie, magician.FireballRightTexture, magician.FireballLeftTexture );
                         timeSinceLastFireball = 0f;
                     }
 
@@ -74,13 +79,12 @@ namespace Gameproject.Enemies.behavior
             }
 
         }
-        public void Fireball(Enemy enemy, Vector2 heroPositie)
+        public void Fireball(Enemy enemy, Vector2 heroPositie, Texture2D fireballrightTexture, Texture2D fireballkeftTexture)
         {
             if (enemy is Magician magician)
             {
                 var direction = heroPositie - magician.Positie;
-                Texture2D fireballTexture = magician.textureCurrent;
-                FireBall fireball = new FireBall(magician.Positie, direction, fireballTexture);
+                FireBall fireball = new FireBall(magician,magician.Positie, direction, fireballrightTexture, fireballkeftTexture);
 
                 FireballManager.GetInstance().RegisterFireball(fireball);
             }
