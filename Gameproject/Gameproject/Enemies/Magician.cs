@@ -33,6 +33,24 @@ namespace Gameproject.Enemies
 
 
         IEnemybehavior behavior;
+
+        private int health = 30;
+
+        public int Health
+        {
+            get { return health; }
+            set
+            {
+                health = value;
+                if (health <= 0)
+                {
+                    isDead = true;
+                }
+            }
+        }
+
+        private bool isDead;
+        public bool IsDead => isDead;
         public Magician(Texture2D fireballRightTexture, Texture2D fireballLeftTexture,Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
             this.FireballRightTexture = fireballRightTexture;
@@ -96,7 +114,10 @@ namespace Gameproject.Enemies
 
         public override int Hoogte => textureCurrent.Height;
 
-
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);

@@ -25,10 +25,7 @@ namespace Gameproject {
             public Animatie huidigeanimatie;
             
             IEnemybehavior behavior;
-            public override int Breedte => 57; 
-            public override int Hoogte => 46;
-
-            private int health = 40; 
+            private int health = 50; 
 
             public int Health
             {
@@ -72,7 +69,14 @@ namespace Gameproject {
 
                 huidigeanimatie = rechtsloopanimatie;
             }
-            public override void Draw(SpriteBatch spriteBatch)
+            public override int Breedte => 57; 
+            public override int Hoogte => 46;
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage; 
+        }
+        public override void Draw(SpriteBatch spriteBatch)
             {
                 if (huidigeanimatie == rechtsloopanimatie)
                 {

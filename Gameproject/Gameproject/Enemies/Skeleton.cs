@@ -102,6 +102,10 @@ namespace Gameproject.Enemies
 
         public override int Hoogte => 80;
 
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
