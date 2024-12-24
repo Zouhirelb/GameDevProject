@@ -35,7 +35,9 @@ namespace Gameproject.Managers
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
 
-       
+        int worldWidth = 2560;
+        int worldHeight = 1472;
+
 
         public void Initialize(
             Texture2D monsterrechtstexture,
@@ -134,7 +136,7 @@ namespace Gameproject.Managers
             for (int i = 0; i < wave.Monsters; i++)
             {
                 var monster = new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture,
-                            new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
+                            new Vector2(rnd.Next(0,worldWidth), rnd.Next(0,worldHeight)),
                             new MonsterBehavior());
 
                 EnemyManager.Instance.AddEnemy(monster);
@@ -148,7 +150,7 @@ namespace Gameproject.Managers
 
                var skeleton = new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture,
                              skeletonAttackRightTexture, skeletonAttackLeftTexture,
-                             new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
+                             new Vector2(rnd.Next(0,worldWidth), rnd.Next(0, worldHeight)),
                              new SkeletonBehavior());
                EnemyManager.Instance.AddEnemy(skeleton );
                 EnemyManager.Instance.AddEnemy(skeleton);
@@ -163,7 +165,7 @@ namespace Gameproject.Managers
                               magicianRightTexture, magicianLeftTexture,
                               magicianIdleTexture, magicianDeathTexture,
                               magicianAttackRightTexture, magicianAttackLeftTexture,
-                              new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
+                              new Vector2(rnd.Next(0, worldWidth), rnd.Next(0, worldHeight)),
                               new MagicianBehavior());
                 EnemyManager.Instance.AddEnemy(magician);
                 EnemyManager.Instance.AddEnemy(magician);
