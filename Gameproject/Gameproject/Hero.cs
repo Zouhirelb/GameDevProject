@@ -61,6 +61,8 @@ namespace Gameproject
 
         public int Health { get; set; }
 
+        public bool IsDead => throw new NotImplementedException();
+
         public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture, Texture2D heroAttacklefttexture,Texture2D heroAttackrighttexture, IinputReader reader)
         {
             this.heldstiltexture = idletexture;
@@ -140,7 +142,7 @@ namespace Gameproject
 
             if (inputReader is KeyBoardReader kbReader)
             {
-                if (kbReader.AttackPressed)
+                if (kbReader.Attackpressed)
                 {
                     Attack();
                 }
@@ -196,8 +198,8 @@ namespace Gameproject
             return v;
         }
         private void Attack()
-        {
-            if (faceLeft)
+          {
+            if (directie.X < 0)
             {
                 huidigetexture = heroAttacklefttexture;
             }

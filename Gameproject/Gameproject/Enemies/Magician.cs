@@ -7,6 +7,7 @@ using Gameproject.Animation;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Gameproject.Managers;
 
 namespace Gameproject.Enemies
 {
@@ -45,11 +46,14 @@ namespace Gameproject.Enemies
                 if (health <= 0)
                 {
                     isDead = true;
+                    CurrentAnimation = DeathAnimation;
                 }
             }
         }
 
         private bool isDead;
+        private float deathTimer;
+
         public bool IsDead => isDead;
         public Magician(Texture2D fireballRightTexture, Texture2D fireballLeftTexture,Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
@@ -125,7 +129,24 @@ namespace Gameproject.Enemies
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
-            behavior.Execute(this, heroPosition, gameTime);
+            if (!isDead)
+            {
+                behavior.Execute(this, heroPosition, gameTime);
+            }
+            else
+            {
+                DeathAnimation.Update(gameTime);
+
+                deathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (deathTimer >= 1.5f)
+                {
+
+                    EnemyManager.Instance.RemoveEnemy(this);
+                    CollisionManager.Instance.UnregisterObject(this);
+                }
+
+            }
         }
 
         

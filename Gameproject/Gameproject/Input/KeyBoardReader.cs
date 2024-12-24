@@ -10,7 +10,7 @@ namespace Gameproject.Input
 {
     internal class KeyBoardReader : IinputReader
     {
-        private bool attackpressed;
+        public bool attackpressed;
         public bool Attackpressed
         {
             get

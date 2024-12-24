@@ -33,7 +33,10 @@ namespace Gameproject.Managers
         {
             enemies.Add(enemy);
         }
-
+        public void RemoveEnemy(Enemy enemy)
+        {
+            enemies.Remove(enemy);
+        }
         public void Update(GameTime gameTime, Vector2 heroPositie)
         {
             foreach (var enemy in enemies)

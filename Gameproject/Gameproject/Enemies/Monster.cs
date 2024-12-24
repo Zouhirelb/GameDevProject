@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Gameproject.Animation;
 using Gameproject.Enemies;
 using Gameproject.Interfaces;
+using Gameproject.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -36,12 +37,15 @@ namespace Gameproject {
                     if (health <= 0)
                     {
                         isDead = true;
+                    huidigeanimatie = deathanimation;
                     }
                 }
             }
 
             private bool isDead;
-            public bool IsDead => isDead;
+        private float deathTimer;
+
+        public bool IsDead => isDead;
         public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
             {
                 this.looprechtstexture = texturerechts;
@@ -89,12 +93,28 @@ namespace Gameproject {
                 spriteBatch.Draw(huidigeTexture, Positie, huidigeanimatie.CurrentFrame.SourceRectangle, Color.White);
                 
             }
-            public override void Update(GameTime gameTime, Vector2 heropositie)
+        public override void Update(GameTime gameTime, Vector2 heropositie)
+        {
+            if (!isDead)
             {
-                behavior.Execute(this, heropositie,gameTime);
-              
+                behavior.Execute(this, heropositie, gameTime);
+            }
+            else
+            {
+                deathanimation.Update(gameTime);
+
+                deathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (deathTimer >= 1.5f)
+                {
+
+                    EnemyManager.Instance.RemoveEnemy(this);
+                    CollisionManager.Instance.UnregisterObject(this);
+                }
+
+
             }
 
-      
+        }
         }
 }
