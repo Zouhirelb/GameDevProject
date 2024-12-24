@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gameproject.Animation;
+using Gameproject.Enemies;
 using Gameproject.Input;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
@@ -30,8 +31,9 @@ namespace Gameproject
         private Animatie linksloopanimatie;
 
         private int[] pixels = { 0, 49, 97, 145, 193, 241, 289, 337 };
-        private int[] AtttackPixels = { 0, 50, 100, 175, 250, 325 };
-
+        //private int[] AttackPixels = { 0, 50, 100, 175, 250, 325 };
+        private int[] attackdifpixels = { 50, 50, 50, 75, 75, 75 };
+        private int counterAP;
         private Vector2 positie;
 
         public Vector2 Positie
@@ -46,6 +48,7 @@ namespace Gameproject
 
         IinputReader inputReader;
 
+        private bool faceLeft;
         public int Breedte { get; private set; }    
         public int Hoogte { get; private set; }     
 
@@ -80,10 +83,13 @@ namespace Gameproject
 
             stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
 
-            foreach (var item in collection)
+            for (int i = 0; i < attackdifpixels.Length; i++)
             {
-
+                heroAttackleftAnimation.AddFrame(new AnimationFrame(new Rectangle(counterAP, 0, attackdifpixels[i], 50)));
+                heroAttackrightAnimation.AddFrame(new AnimationFrame(new Rectangle(counterAP, 0, attackdifpixels[i], 50)));
+                counterAP += attackdifpixels[i];
             }
+            
             foreach (var pixel in pixels)
             {
             rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
@@ -128,6 +134,9 @@ namespace Gameproject
                 directie *= 4;
                 positie += directie;
             }
+
+            if (directie.X < 0) faceLeft = true;
+            else if (directie.X > 0) faceLeft = false;
 
             if (inputReader is KeyBoardReader kbReader)
             {
@@ -186,6 +195,20 @@ namespace Gameproject
             }
             return v;
         }
+        private void Attack()
+        {
+            if (faceLeft)
+            {
+                huidigetexture = heroAttacklefttexture;
+            }
+            else
+            {
+                huidigetexture = heroAttackrighttexture;
+            }
+
+            DoDamageToEnemiesInRange(50f, 10);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             var directie = inputReader.ReaderInput();
