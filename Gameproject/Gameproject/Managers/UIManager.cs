@@ -20,17 +20,19 @@ namespace Gameproject.Managers
             _hero = hero;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Hero herohealth)
+        public void Draw(SpriteBatch spriteBatch, Viewport viewport)
         {
             spriteBatch.Begin();
 
             HP.Instance.Draw(spriteBatch, _hero);
            
             string scoreText = $"Score: {ScoreManager.Instance.Score}";
-            spriteBatch.DrawString(_font, scoreText, new Vector2(10, 40), Color.DarkRed);
+            Vector2 ScoreSize = _font.MeasureString(scoreText);
+            spriteBatch.DrawString(_font, scoreText, new Vector2((viewport.Width - ScoreSize.X)-10,10), Color.Green);
 
             string levelText = $"Level: {LevelManager.Instance.CurrentLevel}";
-            spriteBatch.DrawString(_font, levelText, new Vector2(10, 70), Color.Blue);
+            Vector2 levelSize = _font.MeasureString(levelText);
+            spriteBatch.DrawString(_font, levelText, new Vector2((viewport.Width - levelSize.X)/2,10), Color.Yellow);
             spriteBatch.End();
         }
         public void Draw(SpriteBatch spriteBatch)

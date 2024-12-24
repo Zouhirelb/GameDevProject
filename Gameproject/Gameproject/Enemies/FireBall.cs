@@ -71,7 +71,7 @@ namespace Gameproject.Enemies
         }
         private bool IsOnScreen(Vector2 positie)
         {
-            return positie.X >= 0 && positie.X < 1280 && positie.Y >= 0 && positie.Y < 736;
+            return positie.X >= 0 && positie.X < 11000 && positie.Y >= 0 && positie.Y < 10000;
         }
         public void Update(GameTime gameTime)
         {

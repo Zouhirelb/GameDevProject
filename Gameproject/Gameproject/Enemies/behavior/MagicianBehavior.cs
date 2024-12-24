@@ -16,7 +16,7 @@ namespace Gameproject.Enemies.behavior
         private const float DetectionRange = 500f;
         private const float FireballRange = 300f;
         private const float Speed = 1.5f;
-        private float fireballCooldown = 2f; 
+        private float fireballCooldown = 1f; 
         private float timeSinceLastFireball = 0f;
         Random random;
         public void Execute(Enemy enemy, Vector2 heroPositie, GameTime gameTime)

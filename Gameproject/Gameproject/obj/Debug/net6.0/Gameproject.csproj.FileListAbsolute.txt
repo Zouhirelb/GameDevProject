@@ -53,3 +53,4 @@ C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\D
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\Wizard_Run_Right.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\hero-attack-left.xnb
 C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\hero-attack-right.xnb
+C:\Users\32488\Desktop\GitProjecten\GameDevProject\Gameproject\Gameproject\bin\Debug\net6.0\Content\fireball.xnb

@@ -221,7 +221,7 @@ namespace Gameproject
             FireballManager.GetInstance().Draw(_spriteBatch);           
             _spriteBatch.End();
 
-            uiManager.Draw(_spriteBatch,hero);
+            uiManager.Draw(_spriteBatch, GraphicsDevice.Viewport);
                    
             base.Draw(gameTime); 
         }

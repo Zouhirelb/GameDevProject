@@ -96,7 +96,7 @@ namespace Gameproject.Managers
         {
             waves = new List<Wave>()
             {
-                new Wave(5, 0, 0),
+                new Wave(0, 0, 5),
                 new Wave(6, 2, 0),
                 new Wave(8, 4, 0),
                 new Wave(9, 6, 3),

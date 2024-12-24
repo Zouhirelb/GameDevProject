@@ -11,7 +11,7 @@ namespace Gameproject.Managers
 {
     internal class FireballManager
     {
-        private readonly List<FireBall> fireBalls;
+        private  List<FireBall> fireBalls;
         private static FireballManager instance;
                 
         public static FireballManager GetInstance( )
