@@ -6,15 +6,26 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Gameproject.Interfaces;
+using Gameproject.Enemies;
 
-namespace Gameproject.Enemies
+namespace Gameproject.Managers
 {
     public class EnemyManager
     {
+        private static EnemyManager instance;
+        public static EnemyManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         private List<Enemy> enemies;
 
         public EnemyManager()
         {
+            instance = this;
             enemies = new List<Enemy>();
         }
 
@@ -23,16 +34,16 @@ namespace Gameproject.Enemies
             enemies.Add(enemy);
         }
 
-        public void Update(GameTime gameTime,  Vector2 heroPositie)
+        public void Update(GameTime gameTime, Vector2 heroPositie)
         {
             foreach (var enemy in enemies)
             {
-                
+
                 enemy.Update(gameTime, heroPositie);
             }
         }
 
-        
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (var enemy in enemies)

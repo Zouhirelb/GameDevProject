@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gameproject.Animation;
-using Gameproject.Enemies;
 using Gameproject.Input;
 using Gameproject.Interfaces;
+using Gameproject.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -208,7 +208,33 @@ namespace Gameproject
 
             DoDamageToEnemiesInRange(50f, 10);
         }
+        private void DoDamageToEnemiesInRange(float range, int damage)
+{
+    var enemies = EnemyManager.Instance.GetEnemies(); 
 
+    foreach (var enemy in enemies)
+    {
+        float dist = Vector2.Distance(this.Positie, enemy.Positie);
+
+        if (dist <= range)
+        {
+            if (faceLeft && enemy.Positie.X < this.Positie.X)
+            {
+                if (enemy is IHealth healthEnemy)
+                {
+                    healthEnemy.TakeDamage(damage);
+                }
+            }
+            else if (!faceLeft && enemy.Positie.X > this.Positie.X)
+            {
+                if (enemy is IHealth healthEnemy)
+                {
+                    healthEnemy.TakeDamage(damage);
+                }
+            }
+        }
+    }
+}
         public void Draw(SpriteBatch spriteBatch)
         {
             var directie = inputReader.ReaderInput();
