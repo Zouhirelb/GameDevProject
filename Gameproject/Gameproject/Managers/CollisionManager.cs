@@ -52,17 +52,32 @@ namespace Gameproject.Managers
                     enemy = (Enemy)objA;
                 }
 
-
+                var healthManager = new HealthManager();
                 Console.WriteLine("Hero en Enemy botsen!");
 
-
-             
-
-                var healthManager = new HealthManager();
-                if (Hero is Hero healthHero)
+                if (objA is Hero && objB is Magician || objA is Magician && objB is Hero)
                 {
-                    healthManager.ApplyDamage(healthHero, 5);
+                   
+                    if (Hero is Hero healthHero)
+                    {
+                        healthManager.ApplyDamage(healthHero, 1);
+                    }
                 }
+                if (objA is Hero && objB is Monster || objA is Monster && objB is Hero)
+                {
+                    if (Hero is Hero healthHero)
+                    {
+                        healthManager.ApplyDamage(healthHero, 2);
+                    }
+                }
+                if (objA is Hero && objB is Skeleton || objA is Skeleton && objB is Hero)
+                {
+                    if (Hero is Hero healthHero)
+                    {
+                        healthManager.ApplyDamage(healthHero, 3);
+                    }
+                }
+
 
                 Rectangle heroBoundingBox = Hero.BoundingBox;
                 Rectangle enemyBoundingBox = enemy.BoundingBox;
