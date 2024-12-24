@@ -36,7 +36,7 @@ namespace Gameproject.Enemies
         IEnemybehavior behavior;
 
         private int health = 30;
-
+        public int ScoreValue => 30;
         public int Health
         {
             get { return health; }
@@ -122,6 +122,7 @@ namespace Gameproject.Enemies
             {
                  isDead = true;
                  CurrentAnimation = DeathAnimation;
+                ScoreManager.Instance.AddScore(ScoreValue);
             }
         }
         public override void Draw(SpriteBatch spriteBatch)

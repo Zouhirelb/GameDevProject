@@ -49,6 +49,7 @@ namespace Gameproject.Enemies
         private float deathTimer;
         private int counter;
 
+        public int ScoreValue => 20;
         public bool IsDead => isDead;
         public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
@@ -123,6 +124,7 @@ namespace Gameproject.Enemies
                 {
                     isDead = true;
                     CurrentAnimation = DeathAnimation;
+                    ScoreManager.Instance.AddScore(ScoreValue);
                 }
         }
         public override void Draw(SpriteBatch spriteBatch)

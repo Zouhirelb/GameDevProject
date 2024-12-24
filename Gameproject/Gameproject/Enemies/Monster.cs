@@ -66,14 +66,15 @@ namespace Gameproject {
             }
             public override int Breedte => 57; 
             public override int Hoogte => 46;
-
+        public int ScoreValue => 10;
         public void TakeDamage(int damage)
         {
             health -= damage;
             if (health <= 0 && !isDying)
             {
                 isDying = true;
-                huidigeanimatie = deathanimation;  
+                huidigeanimatie = deathanimation;
+                ScoreManager.Instance.AddScore(ScoreValue);
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
