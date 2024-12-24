@@ -30,7 +30,7 @@ namespace Gameproject.Managers
             string scoreText = $"Score: {ScoreManager.Instance.Score}";
             spriteBatch.DrawString(_font, scoreText, new Vector2(10, 40), Color.Yellow);
 
-            string levelText = $"Level: {ScoreManager.Instance.Level}";
+            string levelText = $"Level: {LevelManager.Instance.CurrentLevel}";
             spriteBatch.DrawString(_font, levelText, new Vector2(10, 70), Color.LightGreen);
             spriteBatch.End();
         }

@@ -113,7 +113,25 @@ namespace Gameproject
 
             FireballLeftTexture = Content.Load<Texture2D>("FireBall_Left");
             FireballRightTexture = Content.Load<Texture2D>("FireBall_Right");
-
+            LevelManager.Instance.Initialize(
+       monsterrechtstexture,
+       monsterlinkstexture,
+       monsterDeathTexture,
+       skeletonRightTexture,
+       skeletonLeftTexture,
+       skeletonIdleTexture,
+       skeletonDeathTexture,
+       skeletonAttackRightTexture,
+       skeletonAttackLeftTexture,
+       magicianRightTexture,
+       magicianLeftTexture,
+       magicianIdleTexture,
+       magicianDeathTexture,
+       magicianAttackRightTexture,
+       magicianAttackLeftTexture,
+       FireballRightTexture,
+       FireballLeftTexture
+   );
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
@@ -134,16 +152,7 @@ namespace Gameproject
 
             enemyManager = new EnemyManager();
 
-            for (int i = 0; i <10; i++)
-            {
-                Random = new Random();
-                enemyManager.AddEnemy(new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior()));
-                //enemyManager.AddEnemy(new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000,1000), Random.Next(-1000, 1000)), new MonsterBehavior()));
-                //enemyManager.AddEnemy(new Magician(FireballRightTexture,FireballLeftTexture,magicianRightTexture, magicianLeftTexture, magicianIdleTexture, magicianDeathTexture, magicianAttackRightTexture, magicianAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MagicianBehavior()));
-
-                //wizard bijvoegen
-            }
-
+            LevelManager.Instance.SpawnEnemiesForLevel(LevelManager.Instance.CurrentLevel);
 
 
             CollisionManager.Instance.RegisterObject(hero);
@@ -164,6 +173,7 @@ namespace Gameproject
             hero.Update(gameTime);
 
             enemyManager.Update(gameTime, hero.Positie);
+            LevelManager.Instance.Update(gameTime);
             FireballManager.GetInstance().Update(gameTime);
 
             CollisionManager.Instance.CheckCollisions();
