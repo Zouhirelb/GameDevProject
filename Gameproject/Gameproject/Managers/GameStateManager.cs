@@ -8,5 +8,19 @@ namespace Gameproject.Managers
 {
     internal class GameStateManager
     {
+
+
+        public enum GameState
+        {
+            StartScreen,
+            Playing,
+            GameOver,
+            Victory
+        }
+
+        
+            public static GameState CurrentState { get; set; } = GameState.StartScreen;
+        
+
     }
 }

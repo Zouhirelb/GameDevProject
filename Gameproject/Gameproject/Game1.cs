@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Gameproject.Screens;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Gameproject
 {
@@ -54,6 +56,21 @@ namespace Gameproject
         private Texture2D magicianIdleTexture;
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
+
+        private Texture2D startBackground;
+        private Texture2D startButton;
+        private Texture2D startMessage;
+        private SoundEffect startMusic;
+        private SoundEffectInstance startMusicInstance;
+
+        private Texture2D gameoverBackground;
+        private Texture2D gameoverMessage;
+        private SoundEffect gameoverMusic;
+        private SoundEffectInstance gameoverMusicInstance;
+
+        private Rectangle startButtonRectangle; 
+        private MouseState currentMouseState;
+        private MouseState previousMouseState;
 
         private Rectangle WorldBounds = new Rectangle(0, 0, 2560, 1472);
         private Rectangle mapBounds = new Rectangle(0, 0, 10060, 10072);
