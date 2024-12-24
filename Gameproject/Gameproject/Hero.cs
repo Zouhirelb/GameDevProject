@@ -199,44 +199,48 @@ namespace Gameproject
         }
         private void Attack()
           {
-            if (directie.X < 0)
+            if (faceLeft)
             {
                 huidigetexture = heroAttacklefttexture;
             }
-            else
+            else if(!faceLeft)
             {
                 huidigetexture = heroAttackrighttexture;
+            }
+            else
+            {
+                huidigetexture = heroAttackrighttexture; 
             }
 
             DoDamageToEnemiesInRange(50f, 10);
         }
-        private void DoDamageToEnemiesInRange(float range, int damage)
-{
-    var enemies = EnemyManager.Instance.GetEnemies(); 
-
-    foreach (var enemy in enemies)
-    {
-        float dist = Vector2.Distance(this.Positie, enemy.Positie);
-
-        if (dist <= range)
-        {
-            if (faceLeft && enemy.Positie.X < this.Positie.X)
+         private void DoDamageToEnemiesInRange(float range, int damage)
+          {
+            var enemies = EnemyManager.Instance.GetEnemies(); 
+        
+            foreach (var enemy in enemies)
             {
-                if (enemy is IHealth healthEnemy)
+                float dist = Vector2.Distance(this.Positie, enemy.Positie);
+        
+                if (dist <= range)
                 {
-                    healthEnemy.TakeDamage(damage);
+                    if (faceLeft && enemy.Positie.X < this.Positie.X)
+                    {
+                         if (enemy is IHealth healthEnemy)
+                        {
+                            healthEnemy.TakeDamage(damage);
+                        }
+                    }
+                    else if (!faceLeft && enemy.Positie.X > this.Positie.X)
+                    {
+                         if (enemy is IHealth healthEnemy)
+                        {
+                            healthEnemy.TakeDamage(damage);
+                        }
+                    }
                 }
             }
-            else if (!faceLeft && enemy.Positie.X > this.Positie.X)
-            {
-                if (enemy is IHealth healthEnemy)
-                {
-                    healthEnemy.TakeDamage(damage);
-                }
-            }
-        }
-    }
-}
+         }
         public void Draw(SpriteBatch spriteBatch)
         {
             var directie = inputReader.ReaderInput();

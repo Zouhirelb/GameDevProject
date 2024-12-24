@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Gameproject.Enemies
 {
-    public class Skeleton : Enemy
+    public class Skeleton : Enemy , IHealth
     {
         public Texture2D textureRight;
         public Texture2D textureLeft;
@@ -39,11 +39,7 @@ namespace Gameproject.Enemies
             set
             {
                 health = value;
-                if (health <= 0)
-                {
-                    isDead = true;
-                    CurrentAnimation = DeathAnimation;
-                }
+                
             }
         }
 
@@ -109,6 +105,12 @@ namespace Gameproject.Enemies
         public void TakeDamage(int damage)
         {
             Health -= damage;
+            Console.WriteLine($"Skeleton took {damage} damage, HP={Health}");
+                if (health <= 0)
+                {
+                    isDead = true;
+                    CurrentAnimation = DeathAnimation;
+                }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

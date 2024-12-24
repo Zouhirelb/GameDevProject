@@ -18,6 +18,7 @@ namespace Gameproject.Enemies
         public IEnemybehavior behavior { get; private set; }
         public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte);
 
+        
         public Enemy(Vector2 startPositie, IEnemybehavior behavior)
         {
             Positie = startPositie;
@@ -30,6 +31,8 @@ namespace Gameproject.Enemies
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }
 

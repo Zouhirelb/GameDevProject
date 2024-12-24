@@ -13,8 +13,8 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Gameproject { 
 
 
-        public class Monster :Enemy
-        {
+        public class Monster : Enemy,IHealth
+    {
             public Texture2D looprechtstexture;
             public Texture2D looplinkstexture;
             public Texture2D huidigeTexture;
@@ -34,11 +34,7 @@ namespace Gameproject {
                 set
                 {
                     health = value;
-                    if (health <= 0)
-                    {
-                        isDead = true;
-                    huidigeanimatie = deathanimation;
-                    }
+                    
                 }
             }
 
@@ -78,7 +74,13 @@ namespace Gameproject {
 
         public void TakeDamage(int damage)
         {
-            Health -= damage; 
+            Health -= damage;
+             Console.WriteLine($"Monster took {damage} damage, HP={Health}");
+                    if (health <= 0)
+                    {
+                        isDead = true;
+                    huidigeanimatie = deathanimation;
+                    }
         }
         public override void Draw(SpriteBatch spriteBatch)
             {

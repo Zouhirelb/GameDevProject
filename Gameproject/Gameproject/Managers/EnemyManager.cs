@@ -39,12 +39,30 @@ namespace Gameproject.Managers
         }
         public void Update(GameTime gameTime, Vector2 heroPositie)
         {
+            var toRemove = new List<Enemy>();
+
             foreach (var enemy in enemies)
             {
-
                 enemy.Update(gameTime, heroPositie);
+
+                if (enemy is IHealth healthEnemy)
+                {
+                    if (healthEnemy.IsDead)
+                    {
+                        toRemove.Add(enemy);
+                    }
+                }
+            }
+
+            foreach (var deadEnemy in toRemove)
+            {
+                enemies.Remove(deadEnemy);
+
+
+                CollisionManager.Instance.UnregisterObject(deadEnemy);
             }
         }
+
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -61,3 +79,4 @@ namespace Gameproject.Managers
         }
     }
 }
+
