@@ -56,7 +56,7 @@ namespace Gameproject
         private Texture2D magicianRightTexture;
 
         private Rectangle WorldBounds = new Rectangle(0, 0, 2560, 1472);
-
+        private Rectangle mapBounds = new Rectangle(0, 0, 10060, 10072);
 
         public Game1()
         {
@@ -137,7 +137,7 @@ namespace Gameproject
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
-            _background = new Background(backgroundTexture);
+            _background = new Background(backgroundTexture, mapBounds);
 
             
 
@@ -201,8 +201,8 @@ namespace Gameproject
             GraphicsDevice.Clear(Color.DarkSeaGreen); 
                     
             _spriteBatch.Begin(this.camera);
-                        
-            _background.Draw(_spriteBatch);
+
+            _background.Draw(_spriteBatch, camera.Position, GraphicsDevice.Viewport);
 
             hero.Draw(_spriteBatch);
 
@@ -212,12 +212,12 @@ namespace Gameproject
             }
 
 
-            DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
+           //DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
 
-            foreach (var enemy in enemyManager.GetEnemies())
-            {
-                DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
-            }
+            //foreach (var enemy in enemyManager.GetEnemies())
+            //{
+            //    DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
+            //}
             FireballManager.GetInstance().Draw(_spriteBatch);           
             _spriteBatch.End();
 

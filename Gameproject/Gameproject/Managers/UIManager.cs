@@ -27,10 +27,10 @@ namespace Gameproject.Managers
             HP.Instance.Draw(spriteBatch, _hero);
            
             string scoreText = $"Score: {ScoreManager.Instance.Score}";
-            spriteBatch.DrawString(_font, scoreText, new Vector2(10, 40), Color.Yellow);
+            spriteBatch.DrawString(_font, scoreText, new Vector2(10, 40), Color.DarkRed);
 
             string levelText = $"Level: {LevelManager.Instance.CurrentLevel}";
-            spriteBatch.DrawString(_font, levelText, new Vector2(10, 70), Color.LightGreen);
+            spriteBatch.DrawString(_font, levelText, new Vector2(10, 70), Color.Blue);
             spriteBatch.End();
         }
         public void Draw(SpriteBatch spriteBatch)
