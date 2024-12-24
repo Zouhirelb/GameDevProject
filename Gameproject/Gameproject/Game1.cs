@@ -130,7 +130,7 @@ namespace Gameproject
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture, new KeyBoardReader());
+            hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture,heroAttacklefttexture,heroAttackrighttexture, new KeyBoardReader());
 
             enemyManager = new EnemyManager();
 

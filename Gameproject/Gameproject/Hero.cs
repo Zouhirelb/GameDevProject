@@ -19,13 +19,18 @@ namespace Gameproject
         private Texture2D heldstiltexture;
         private Texture2D huidigetexture;
         private Texture2D heldlinksllopentexture;
+        private Texture2D heroAttacklefttexture;
+        private Texture2D heroAttackrighttexture;
 
+        private Animatie heroAttackleftAnimation;
+        private Animatie heroAttackrightAnimation;
         private Animatie rechtsloopanimatie;
         private Animatie stilanimatie;
         private Animatie huidigeanimatie;
         private Animatie linksloopanimatie;
 
         private int[] pixels = { 0, 49, 97, 145, 193, 241, 289, 337 };
+        private int[] AtttackPixels = { 0, 50, 100, 175, 250, 325 };
 
         private Vector2 positie;
 
@@ -53,14 +58,15 @@ namespace Gameproject
 
         public int Health { get; set; }
 
-        public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture,  IinputReader reader)
+        public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture, Texture2D heroAttacklefttexture,Texture2D heroAttackrighttexture, IinputReader reader)
         {
-            heldstiltexture = idletexture;
-            heldlooprechtstexture = texturerechts;
-            heldlinksllopentexture = texturelinks;
-
-            Breedte = heldstiltexture.Width;
-            Hoogte = heldstiltexture.Height;
+            this.heldstiltexture = idletexture;
+            this.heldlooprechtstexture = texturerechts;
+            this.heldlinksllopentexture = texturelinks;
+            this.heroAttackrighttexture = heroAttackrighttexture;
+            this.heroAttacklefttexture = heroAttacklefttexture;
+            this.Breedte = heldstiltexture.Width;
+            this.Hoogte = heldstiltexture.Height;
 
             
             this.inputReader = reader;
@@ -69,13 +75,19 @@ namespace Gameproject
             stilanimatie = new Animatie();
             rechtsloopanimatie = new Animatie();
             linksloopanimatie = new Animatie();
+            heroAttackleftAnimation = new Animatie();
+            heroAttackrightAnimation = new Animatie();
 
             stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
 
-            foreach (var item in pixels)
+            foreach (var item in collection)
             {
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(item, 0, 48, 50)));
+
+            }
+            foreach (var pixel in pixels)
+            {
+            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
+            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
             }
 
             snelheid = new Vector2(1, 1);
@@ -117,10 +129,15 @@ namespace Gameproject
                 positie += directie;
             }
 
-            // Move(GetMouseState());
+            if (inputReader is KeyBoardReader kbReader)
+            {
+                if (kbReader.AttackPressed)
+                {
+                    Attack();
+                }
+            }
 
-            
-            
+
             huidigeanimatie.Update(gameTime);
 
         }
