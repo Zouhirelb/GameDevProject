@@ -123,6 +123,7 @@ namespace Gameproject.Enemies
                  isDead = true;
                  CurrentAnimation = DeathAnimation;
                 ScoreManager.Instance.AddScore(ScoreValue);
+                LevelManager.Instance.NotifyEnemyDied();
             }
         }
         public override void Draw(SpriteBatch spriteBatch)

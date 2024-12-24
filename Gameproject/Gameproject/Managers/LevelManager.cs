@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Comora;
 using Gameproject.Enemies;
@@ -33,6 +34,8 @@ namespace Gameproject.Managers
         private Texture2D magicianIdleTexture;
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
+
+       
 
         public void Initialize(
             Texture2D monsterrechtstexture,
@@ -85,9 +88,29 @@ namespace Gameproject.Managers
             }
         }
 
+        private int currentWaveIndex = 0;
+        private List<Wave> waves;
+        public void InitializeWaves()
+        {
+            waves = new List<Wave>()
+            {
+                new Wave(5, 0, 0),
+                new Wave(6, 2, 0),
+                new Wave(8, 4, 1),
+                new Wave(0, 6, 3),
+                new Wave(0, 5, 5),
+                new Wave(0, 4, 4),
+                new Wave(0, 3, 5),
+                new Wave(0, 3, 8),
+                new Wave(0, 0, 7)
+             };
+        }
+
+        private int enemiesAliveThisWave = 0;
+        private bool waveSpawning = false;
+
         private int currentLevel = 1;
-        private int scoreForNextLevel = 30;
-        private int scoreIncrementPerLevel = 30;
+        
 
         private bool levelChangedThisFrame;
         private LevelManager()
@@ -95,83 +118,93 @@ namespace Gameproject.Managers
         }
 
         public int CurrentLevel => currentLevel;
+        private void SpawnWave(int waveIndex)
+        {
+            if (waveIndex >= waves.Count) return;
+
+            Random rnd = new Random();
+            var wave = waves[waveIndex];
+            currentLevel = currentWaveIndex+1;
+            Console.WriteLine($"Spawning wave #{waveIndex + 1}: " +
+                              $"{wave.Monsters} Monsters, {wave.Skeletons} Skeletons, {wave.Magicians} Magicians");
+
+            enemiesAliveThisWave = wave.Monsters + wave.Skeletons + wave.Magicians;
+
+            // Monsters
+            for (int i = 0; i < wave.Monsters; i++)
+            {
+                var monster = new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture,
+                            new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                            new MonsterBehavior());
+
+                EnemyManager.Instance.AddEnemy(monster);
+                EnemyManager.Instance.AddEnemy(monster);
+                CollisionManager.Instance.RegisterObject(monster);
+            }
+
+            // Skeletons
+            for (int i = 0; i < wave.Skeletons; i++)
+            {
+
+               var skeleton = new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture,
+                             skeletonAttackRightTexture, skeletonAttackLeftTexture,
+                             new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                             new SkeletonBehavior());
+               EnemyManager.Instance.AddEnemy(skeleton );
+                EnemyManager.Instance.AddEnemy(skeleton);
+                CollisionManager.Instance.RegisterObject(skeleton);
+            }
+
+            // Magicians
+            for (int i = 0; i < wave.Magicians; i++)
+            {
+
+                var magician = new Magician(FireballRightTexture, FireballLeftTexture,
+                              magicianRightTexture, magicianLeftTexture,
+                              magicianIdleTexture, magicianDeathTexture,
+                              magicianAttackRightTexture, magicianAttackLeftTexture,
+                              new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                              new MagicianBehavior());
+                EnemyManager.Instance.AddEnemy(magician);
+                EnemyManager.Instance.AddEnemy(magician);
+                CollisionManager.Instance.RegisterObject(magician);
+            }
+
+            waveSpawning = false;
+        }
+        public void NotifyEnemyDied()
+        {
+            enemiesAliveThisWave--;
+            Console.WriteLine($"Enemy died. enemiesAliveThisWave: {enemiesAliveThisWave}");
+           // Als je wilt checken of wave is cleard, doe je hier:
+            if (enemiesAliveThisWave <= 0)
+            {
+                // wave is klaar, wave++ doe je NIET meteen hier
+                // maar kan net zo goed hier
+                currentWaveIndex++;
+                Console.WriteLine($"Wave {currentWaveIndex} completed!");
+            }
+        }
         public void Update(GameTime gameTime)
         {
-            levelChangedThisFrame = false;
-
-            if (currentLevel >= 10)
+            // Als we alle waves hebben gehad => stop
+            if (currentWaveIndex >= waves.Count)
             {
-                Console.WriteLine("Final level reached, no more spawns!");
-               
-                return; 
+                // Hier kun je zeggen "finale" of "geen vijanden meer".
+                return;
             }
-            SpawnEnemiesForLevel(currentLevel);
 
-
-            if (ScoreManager.Instance.Score >= scoreForNextLevel)
+            // Check of we nog bezig zijn met een wave
+            if (enemiesAliveThisWave <= 0 && !waveSpawning)
             {
-                currentLevel++;
-                levelChangedThisFrame = true;
-
-                scoreForNextLevel += scoreIncrementPerLevel;
-                if (currentLevel >= 10)
-                {
-                    Console.WriteLine("Final level reached, no more spawns!");
-                    // Hier kun je gameOver = true; doen
-                    return;
-                }
-
-
-                Console.WriteLine($"Level Up! Nu level: {currentLevel} " +
-                                  $"(scoreForNextLevel = {scoreForNextLevel})");
-
-                SpawnEnemiesForLevel(currentLevel);
+                // We beginnen de wave
+                waveSpawning = true;
+                SpawnWave(currentWaveIndex);
             }
+
+          
         }
-
-        public bool DidLevelChangeThisFrame()
-        {
-            return levelChangedThisFrame;
-        }
-
-        public void SpawnEnemiesForLevel(int level)
-        {
-            Random = new Random();
-
-
-            int amountOfMonsters = Math.Min(level * 2, 10);
-            int amountOfSkeletons = Math.Min(level, 8);
-            int amountOfMagicians = Math.Min(Math.Max(0, level - 2), 5);
-            if (level >= 5)
-            {
-                amountOfMonsters = 0; 
-            }
-           
-            Console.WriteLine($"Spawning {amountOfMonsters} Monsters," +
-                              $" {amountOfSkeletons} Skeletons," +
-                              $" {amountOfMagicians} Magicians for Level {level}...");
-
-            for (int i = 0; i < amountOfMonsters; i++)
-            {
-                 EnemyManager.Instance.AddEnemy(
-                    new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MonsterBehavior())
-                );
-            }
-            for (int i = 0; i < amountOfSkeletons; i++)
-            {
-                EnemyManager.Instance.AddEnemy(
-                    new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture, skeletonAttackRightTexture, skeletonAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new SkeletonBehavior())
-                );
-            }
-            for (int i = 0; i < amountOfMagicians; i++)
-            {
-                EnemyManager.Instance.AddEnemy(
-                    new Magician(FireballRightTexture, FireballLeftTexture, magicianRightTexture, magicianLeftTexture, magicianIdleTexture, magicianDeathTexture, magicianAttackRightTexture, magicianAttackLeftTexture, new Vector2(Random.Next(-1000, 1000), Random.Next(-1000, 1000)), new MagicianBehavior())
-                );
-
-            }
-        }
-    
     }
+
 }
 

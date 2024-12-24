@@ -75,6 +75,7 @@ namespace Gameproject {
                 isDying = true;
                 huidigeanimatie = deathanimation;
                 ScoreManager.Instance.AddScore(ScoreValue);
+                LevelManager.Instance.NotifyEnemyDied();
             }
         }
         public override void Draw(SpriteBatch spriteBatch)
