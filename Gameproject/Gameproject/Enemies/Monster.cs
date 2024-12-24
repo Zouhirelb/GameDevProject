@@ -26,16 +26,16 @@ namespace Gameproject {
             public Animatie huidigeanimatie;
             
             IEnemybehavior behavior;
-        private int health = 30;
-        private bool isDying;
-        private float deathTimer = 0f;
-
-        public int Health
-        {
-            get => health;
-            set => health = value;
-        }
-        public bool IsDead => isDying;
+            private int health = 30;
+            private bool isDying;
+            private float deathTimer = 0f;
+            public override int DamageToHero => 2;
+            public int Health
+            {
+                get => health;
+                set => health = value;
+            }
+            public bool IsDead => isDying;
 
         public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
             {

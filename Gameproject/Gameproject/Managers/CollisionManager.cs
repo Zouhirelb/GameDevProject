@@ -30,6 +30,33 @@ namespace Gameproject.Managers
         public void HandleCollision(IGameObject objA, IGameObject objB)
         {
 
+            if (objA is Hero hero && objB is Enemy enemy)
+            {
+                int damage = 0;
+                if (enemy is Monster mon) damage = mon.DamageToHero;
+                else if (enemy is Skeleton skel) damage = skel.DamageToHero;
+                else if (enemy is Magician mag) damage = mag.DamageToHero;
+
+                var healthManager = new HealthManager();
+                healthManager.ApplyDamage(hero, damage);
+
+                Console.WriteLine($"Hero got hit by {enemy.GetType().Name}, damage: {damage}");
+
+            }
+            else if (objA is Enemy enemy2 && objB is Hero hero2)
+            {
+                int damage = 0;
+                if (enemy2 is Monster mon) damage = mon.DamageToHero;
+                else if (enemy2 is Skeleton skel) damage = skel.DamageToHero;
+                else if (enemy2 is Magician mag) damage = mag.DamageToHero;
+
+                var healthManager = new HealthManager();
+                healthManager.ApplyDamage(hero2, damage);
+
+                Console.WriteLine($"Hero got hit by {enemy2.GetType().Name}, damage: {damage}");
+
+            }
+
             if (objA is Enemy && objB is Enemy)
             {
                 HandleEnemyEnemyCollision((Enemy)objA, (Enemy)objB);
@@ -38,64 +65,40 @@ namespace Gameproject.Managers
             if (objA is Hero && objB is Enemy || objA is Enemy && objB is Hero)
             {
                 Hero Hero;
-                Enemy enemy;
+                Enemy _enemy;
 
 
                 if (objA is Hero)
                 {
                     Hero = (Hero)objA;
-                    enemy = (Enemy)objB;
+                    _enemy = (Enemy)objB;
                 }
                 else
                 {
                     Hero = (Hero)objB;
-                    enemy = (Enemy)objA;
+                    _enemy = (Enemy)objA;
                 }
 
-                var healthManager = new HealthManager();
-                Console.WriteLine("Hero en Enemy botsen!");
-
-                if (objA is Hero && objB is Magician || objA is Magician && objB is Hero)
-                {
-                   
-                    if (Hero is Hero healthHero)
-                    {
-                        healthManager.ApplyDamage(healthHero, 1);
-                    }
-                }
-                if (objA is Hero && objB is Monster || objA is Monster && objB is Hero)
-                {
-                    if (Hero is Hero healthHero)
-                    {
-                        healthManager.ApplyDamage(healthHero, 2);
-                    }
-                }
-                if (objA is Hero && objB is Skeleton || objA is Skeleton && objB is Hero)
-                {
-                    if (Hero is Hero healthHero)
-                    {
-                        healthManager.ApplyDamage(healthHero, 3);
-                    }
-                }
+              
 
 
                 Rectangle heroBoundingBox = Hero.BoundingBox;
-                Rectangle enemyBoundingBox = enemy.BoundingBox;
+                Rectangle enemyBoundingBox = _enemy.BoundingBox;
 
-                Vector2 richting = enemy.Positie - Hero.Positie;
+                Vector2 richting = _enemy.Positie - Hero.Positie;
                 richting.Normalize();
 
                 if (heroBoundingBox.Intersects(enemyBoundingBox))
                 {
                     Vector2 verschuiving = richting * 5f; // 5 pixel verschuiving
 
-                    enemy.Positie += verschuiving;
+                    _enemy.Positie += verschuiving;
                 }
 
             }
-            if (objA is Hero hero && objB is FireBall fireball)
+            if (objA is Hero _hero && objB is FireBall fireball)
             {
-                HandlefireballCollision(hero, fireball);
+                HandlefireballCollision(_hero, fireball);
             }
             else if (objA is FireBall fireball2 && objB is Hero hero2)
             {

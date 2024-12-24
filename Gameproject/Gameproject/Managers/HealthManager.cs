@@ -19,7 +19,7 @@ namespace Gameproject.Managers
             }
         }
 
-        private HealthManager()
+        public HealthManager()
         {
             
         }

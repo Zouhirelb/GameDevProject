@@ -29,6 +29,7 @@ namespace Gameproject.Enemies
         public Animatie RightrunAnimation;
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
+        public override int DamageToHero => 3;
 
         IEnemybehavior behavior;
 

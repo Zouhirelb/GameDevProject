@@ -11,16 +11,32 @@ namespace Gameproject
 {
     public class HP
     {
-        private SpriteFont font;
-
-        public HP(SpriteFont spritefont)
+        private static HP instance;
+        public static HP Instance
         {
-            this.font = spritefont;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new HP();
+                }
+                return instance;
+            }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Hero herohealth)
+        private SpriteFont font;
+
+        private HP()
         {
-            string healthText = $"HP: {herohealth.Health}";
+          
+        }
+        public void Initialize(SpriteFont spriteFont)
+        {
+            this.font = spriteFont;
+        }
+        public void Draw(SpriteBatch spriteBatch, Hero hero)
+        {
+            string healthText = $"HP: {hero.Health}";
             spriteBatch.DrawString(font, healthText, new Vector2(10, 10), Color.White);
         }
     }

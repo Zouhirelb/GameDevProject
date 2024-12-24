@@ -85,6 +85,7 @@ namespace Gameproject
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             SpriteFont font = Content.Load<SpriteFont>("Font");
+            HP.Instance.Initialize(font);
             backgroundTexture = Content.Load<Texture2D>("gras");
            
             herorechtslooptexture = Content.Load<Texture2D>("character lopen");
@@ -137,7 +138,6 @@ namespace Gameproject
 
             _background = new Background(backgroundTexture);
 
-            hp = new HP(font);
             
 
             InitializeGameObjects();

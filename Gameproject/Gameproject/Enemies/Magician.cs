@@ -29,6 +29,7 @@ namespace Gameproject.Enemies
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
         private int counter;
+        public override int DamageToHero => 1;
         public Texture2D FireballRightTexture { get; internal set; }
         public Texture2D FireballLeftTexture { get; internal set; }
 

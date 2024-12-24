@@ -11,6 +11,7 @@ namespace Gameproject.Enemies
 {
     public abstract class Enemy: IGameObject
     {
+        public abstract int DamageToHero { get; }
         public Vector2 Positie { get; set; }
         public abstract int Breedte { get; }
         public abstract int Hoogte { get; }
