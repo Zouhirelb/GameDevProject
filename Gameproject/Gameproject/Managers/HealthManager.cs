@@ -9,6 +9,22 @@ namespace Gameproject.Managers
 {
     public class HealthManager
     {
+        private static HealthManager instance;
+        public static HealthManager Instance
+        {
+            get
+            {
+                if (instance == null) instance = new HealthManager();
+                return instance;
+            }
+        }
+
+        private HealthManager()
+        {
+            
+        }
+
+
         public void ApplyDamage(IHealth target, int damage)
         {
             target.TakeDamage(damage);
