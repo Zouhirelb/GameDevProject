@@ -31,7 +31,7 @@ namespace Gameproject.Managers
         {
 
             if (objA is Hero hero && objB is Enemy enemy)
-            {
+            { 
                 int damage = 0;
                 if (enemy is Monster mon) damage = mon.DamageToHero;
                 else if (enemy is Skeleton skel) damage = skel.DamageToHero;

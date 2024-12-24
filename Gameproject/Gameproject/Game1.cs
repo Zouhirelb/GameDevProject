@@ -55,6 +55,7 @@ namespace Gameproject
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
 
+        private Rectangle WorldBounds = new Rectangle(0, 0, 2560, 1472);
 
 
         public Game1()
@@ -178,6 +179,10 @@ namespace Gameproject
             FireballManager.GetInstance().Update(gameTime);
 
             CollisionManager.Instance.CheckCollisions();
+            hero.Positie = new Vector2(
+                MathHelper.Clamp(hero.Positie.X, WorldBounds.Left, WorldBounds.Right - hero.Breedte),
+                MathHelper.Clamp(hero.Positie.Y, WorldBounds.Top, WorldBounds.Bottom - hero.Hoogte)
+            );
 
             this.camera.Position = hero.Positie;
             this.camera.Update(gameTime);

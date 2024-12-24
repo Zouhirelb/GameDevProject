@@ -47,6 +47,7 @@ namespace Gameproject
 
         IinputReader inputReader;
 
+
         private bool faceLeft;
         public int Breedte { get; private set; }    
         public int Hoogte { get; private set; }     
@@ -109,7 +110,7 @@ namespace Gameproject
 
             huidigeanimatie = stilanimatie;
 
-            Health = 100000000;
+            Health = 10000;
             
 
         }
@@ -150,6 +151,7 @@ namespace Gameproject
                 positie += directie;
             }
 
+
             if (inputReader is KeyBoardReader kbReader && kbReader.Attackpressed)
             {
                 Attack();
@@ -158,7 +160,6 @@ namespace Gameproject
             huidigeanimatie.Update(gameTime);
         }
 
-     
 
         private void Move(Vector2 mouse)
         {

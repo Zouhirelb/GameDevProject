@@ -96,13 +96,13 @@ namespace Gameproject.Managers
             {
                 new Wave(5, 0, 0),
                 new Wave(6, 2, 0),
-                new Wave(8, 4, 1),
-                new Wave(0, 6, 3),
-                new Wave(0, 5, 5),
-                new Wave(0, 4, 4),
-                new Wave(0, 3, 5),
-                new Wave(0, 3, 8),
-                new Wave(0, 0, 7)
+                new Wave(8, 4, 0),
+                new Wave(9, 6, 3),
+                new Wave(1, 25, 5),
+                new Wave(10, 24, 14),
+                new Wave(13, 13, 15),
+                new Wave(15, 13, 18),
+                new Wave(22, 12, 12)
              };
         }
 
@@ -134,7 +134,7 @@ namespace Gameproject.Managers
             for (int i = 0; i < wave.Monsters; i++)
             {
                 var monster = new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture,
-                            new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                            new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
                             new MonsterBehavior());
 
                 EnemyManager.Instance.AddEnemy(monster);
@@ -148,7 +148,7 @@ namespace Gameproject.Managers
 
                var skeleton = new Skeleton(skeletonRightTexture, skeletonLeftTexture, skeletonIdleTexture, skeletonDeathTexture,
                              skeletonAttackRightTexture, skeletonAttackLeftTexture,
-                             new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                             new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
                              new SkeletonBehavior());
                EnemyManager.Instance.AddEnemy(skeleton );
                 EnemyManager.Instance.AddEnemy(skeleton);
@@ -163,7 +163,7 @@ namespace Gameproject.Managers
                               magicianRightTexture, magicianLeftTexture,
                               magicianIdleTexture, magicianDeathTexture,
                               magicianAttackRightTexture, magicianAttackLeftTexture,
-                              new Vector2(rnd.Next(-1000, 1000), rnd.Next(-1000, 1000)),
+                              new Vector2(rnd.Next(-500, 500), rnd.Next(-500, 500)),
                               new MagicianBehavior());
                 EnemyManager.Instance.AddEnemy(magician);
                 EnemyManager.Instance.AddEnemy(magician);
@@ -176,28 +176,21 @@ namespace Gameproject.Managers
         {
             enemiesAliveThisWave--;
             Console.WriteLine($"Enemy died. enemiesAliveThisWave: {enemiesAliveThisWave}");
-           // Als je wilt checken of wave is cleard, doe je hier:
             if (enemiesAliveThisWave <= 0)
             {
-                // wave is klaar, wave++ doe je NIET meteen hier
-                // maar kan net zo goed hier
                 currentWaveIndex++;
                 Console.WriteLine($"Wave {currentWaveIndex} completed!");
             }
         }
         public void Update(GameTime gameTime)
         {
-            // Als we alle waves hebben gehad => stop
             if (currentWaveIndex >= waves.Count)
             {
-                // Hier kun je zeggen "finale" of "geen vijanden meer".
                 return;
             }
 
-            // Check of we nog bezig zijn met een wave
             if (enemiesAliveThisWave <= 0 && !waveSpawning)
             {
-                // We beginnen de wave
                 waveSpawning = true;
                 SpawnWave(currentWaveIndex);
             }
