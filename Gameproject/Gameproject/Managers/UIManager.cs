@@ -27,6 +27,11 @@ namespace Gameproject.Managers
             string healthText = $"HP: {herohealth.Health}";
             spriteBatch.DrawString(_font, healthText, new Vector2(10, 10), Color.White);
 
+            string scoreText = $"Score: {ScoreManager.Instance.Score}";
+            spriteBatch.DrawString(_font, scoreText, new Vector2(10, 40), Color.Yellow);
+
+            string levelText = $"Level: {ScoreManager.Instance.Level}";
+            spriteBatch.DrawString(_font, levelText, new Vector2(10, 70), Color.LightGreen);
             spriteBatch.End();
         }
         public void Draw(SpriteBatch spriteBatch)
