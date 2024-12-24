@@ -151,8 +151,10 @@ namespace Gameproject
             hero = new Hero(herolinkslooptexture,herorechtslooptexture,herostiltexture,heroAttacklefttexture,heroAttackrighttexture, new KeyBoardReader());
 
             enemyManager = new EnemyManager();
+           
 
-            LevelManager.Instance.SpawnEnemiesForLevel(LevelManager.Instance.CurrentLevel);
+            LevelManager.Instance.SpawnEnemiesForLevel(1);
+            
 
 
             CollisionManager.Instance.RegisterObject(hero);

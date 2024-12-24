@@ -33,7 +33,7 @@ namespace Gameproject.Managers
         private Texture2D magicianIdleTexture;
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
-        int counter=10;
+
         public void Initialize(
             Texture2D monsterrechtstexture,
             Texture2D monsterlinkstexture,
@@ -99,12 +99,28 @@ namespace Gameproject.Managers
         {
             levelChangedThisFrame = false;
 
+            if (currentLevel >= 10)
+            {
+                Console.WriteLine("Final level reached, no more spawns!");
+               
+                return; 
+            }
+            SpawnEnemiesForLevel(currentLevel);
+
+
             if (ScoreManager.Instance.Score >= scoreForNextLevel)
             {
                 currentLevel++;
                 levelChangedThisFrame = true;
 
                 scoreForNextLevel += scoreIncrementPerLevel;
+                if (currentLevel >= 10)
+                {
+                    Console.WriteLine("Final level reached, no more spawns!");
+                    // Hier kun je gameOver = true; doen
+                    return;
+                }
+
 
                 Console.WriteLine($"Level Up! Nu level: {currentLevel} " +
                                   $"(scoreForNextLevel = {scoreForNextLevel})");
@@ -122,11 +138,15 @@ namespace Gameproject.Managers
         {
             Random = new Random();
 
-            counter += 4;
-            int amountOfMonsters = level + counter;
-            int amountOfSkeletons = level;
-            int amountOfMagicians = Math.Max(0, level - 2);
 
+            int amountOfMonsters = Math.Min(level * 2, 10);
+            int amountOfSkeletons = Math.Min(level, 8);
+            int amountOfMagicians = Math.Min(Math.Max(0, level - 2), 5);
+            if (level >= 5)
+            {
+                amountOfMonsters = 0; 
+            }
+           
             Console.WriteLine($"Spawning {amountOfMonsters} Monsters," +
                               $" {amountOfSkeletons} Skeletons," +
                               $" {amountOfMagicians} Magicians for Level {level}...");
