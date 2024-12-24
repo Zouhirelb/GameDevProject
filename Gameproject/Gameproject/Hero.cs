@@ -85,13 +85,20 @@ namespace Gameproject
 
             stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
 
-            for (int i = 0; i < attackdifpixels.Length; i++)
+            for (int i = attackdifpixels.Length - 1; i >= 0; i--)
             {
                 heroAttackleftAnimation.AddFrame(new AnimationFrame(new Rectangle(counterAP, 0, attackdifpixels[i], 50)));
+                counterAP += attackdifpixels[i];
+
+            }
+            counterAP = 0;
+
+            for (int i = 0; i < attackdifpixels.Length; i++)
+            {
                 heroAttackrightAnimation.AddFrame(new AnimationFrame(new Rectangle(counterAP, 0, attackdifpixels[i], 50)));
                 counterAP += attackdifpixels[i];
             }
-            
+
             foreach (var pixel in pixels)
             {
             rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
@@ -114,51 +121,46 @@ namespace Gameproject
             if (Health < 0) Health = 0;
         }
 
-        public void Update(GameTime gameTime) 
+        private int lastHorizontalDirection = 0; 
+
+        public void Update(GameTime gameTime)
         {
             var directie = inputReader.ReaderInput();
-
-            if (huidigetexture == null)
-            {
-             
-                huidigetexture = heldstiltexture;
-            }
 
             if (directie == Vector2.Zero)
             {
                 huidigeanimatie = stilanimatie;
-
             }
             else
             {
-
-                huidigeanimatie = rechtsloopanimatie;
+                if (directie.X > 0)
+                {
+                    huidigeanimatie = rechtsloopanimatie;
+                    faceLeft = false;
+                }
+                else if (directie.X < 0)
+                {
+                    huidigeanimatie = linksloopanimatie;
+                    faceLeft = true;
+                }
+                else if (directie.Y != 0) // Verticale beweging
+                {
+                    // Blijf bij de laatste horizontale animatie
+                    huidigeanimatie = faceLeft ? linksloopanimatie : rechtsloopanimatie;
+                }
                 directie *= 4;
                 positie += directie;
             }
 
-            if (directie.X < 0) faceLeft = true;
-            else if (directie.X > 0) faceLeft = false;
-
-            if (inputReader is KeyBoardReader kbReader)
+            if (inputReader is KeyBoardReader kbReader && kbReader.Attackpressed)
             {
-                if (kbReader.Attackpressed)
-                {
-                    Attack();
-                }
+                Attack();
             }
 
-
             huidigeanimatie.Update(gameTime);
-
         }
 
-        //private Vector2 GetMouseState()
-        //{
-        //    MouseState state = Mouse.GetState();
-        //    mousevector = new Vector2(state.X, state.Y);
-        //    return mousevector;
-        //}
+     
 
         private void Move(Vector2 mouse)
         {
@@ -201,15 +203,11 @@ namespace Gameproject
           {
             if (faceLeft)
             {
-                huidigetexture = heroAttacklefttexture;
-            }
-            else if(!faceLeft)
-            {
-                huidigetexture = heroAttackrighttexture;
+                huidigeanimatie = heroAttackleftAnimation;
             }
             else
             {
-                huidigetexture = heroAttackrighttexture; 
+                huidigeanimatie = heroAttackrightAnimation;
             }
 
             DoDamageToEnemiesInRange(50f, 10);
@@ -243,35 +241,40 @@ namespace Gameproject
          }
         public void Draw(SpriteBatch spriteBatch)
         {
-            var directie = inputReader.ReaderInput();
-
-            Breedte = 48;
-            Hoogte = 50;
-
             if (huidigeanimatie == stilanimatie)
             {
                 huidigetexture = heldstiltexture;
             }
-            else
+            else if (huidigeanimatie == rechtsloopanimatie)
             {
                 huidigetexture = heldlooprechtstexture;
-                
             }
-
-            if (directie.X < 0 )  
+            else if (huidigeanimatie == linksloopanimatie)
             {
                 huidigetexture = heldlinksllopentexture;
             }
-            else if (directie.X > 0 )  
+            else if (huidigeanimatie == heroAttackleftAnimation)
             {
-                huidigetexture = heldlooprechtstexture;
-                Hoogte += 10;
+                huidigetexture = heroAttacklefttexture;
+            }
+            else if (huidigeanimatie == heroAttackrightAnimation)
+            {
+                huidigetexture = heroAttackrighttexture;
             }
 
-
-            spriteBatch.Draw(huidigetexture, positie,huidigeanimatie.CurrentFrame.SourceRectangle , Color.White,0, new Vector2(0,0),1.2f,SpriteEffects.None,0);
+            spriteBatch.Draw(
+                huidigetexture,
+                positie,
+                huidigeanimatie.CurrentFrame.SourceRectangle,
+                Color.White,
+                0,
+                new Vector2(0, 0),
+                1.2f,
+                SpriteEffects.None,
+                0
+            );
         }
 
-        
+
     }
 }
