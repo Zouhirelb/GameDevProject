@@ -26,22 +26,17 @@ namespace Gameproject {
             public Animatie huidigeanimatie;
             
             IEnemybehavior behavior;
-            private int health = 50; 
+        private int health = 30;
+        private bool isDying;
+        private float deathTimer = 0f;
 
-            public int Health
-            {
-                get { return health; }
-                set
-                {
-                    health = value;
-                    
-                }
-            }
+        public int Health
+        {
+            get => health;
+            set => health = value;
+        }
+        public bool IsDead => isDying;
 
-            private bool isDead;
-        private float deathTimer;
-
-        public bool IsDead => isDead;
         public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
             {
                 this.looprechtstexture = texturerechts;
@@ -74,30 +69,36 @@ namespace Gameproject {
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
-             Console.WriteLine($"Monster took {damage} damage, HP={Health}");
-                    if (health <= 0)
-                    {
-                        isDead = true;
-                    huidigeanimatie = deathanimation;
-                    }
+            health -= damage;
+            if (health <= 0 && !isDying)
+            {
+                isDying = true;
+                huidigeanimatie = deathanimation;  
+            }
         }
         public override void Draw(SpriteBatch spriteBatch)
             {
-                if (huidigeanimatie == rechtsloopanimatie)
-                {
-                    huidigeTexture = looprechtstexture;
-                }
-                else
-                {
-                    huidigeTexture = looplinkstexture;
-                }
-                spriteBatch.Draw(huidigeTexture, Positie, huidigeanimatie.CurrentFrame.SourceRectangle, Color.White);
-                
+            if (huidigeanimatie == deathanimation)
+            {
+                huidigeTexture = deadtexture;  
             }
+            else if (huidigeanimatie == rechtsloopanimatie)
+            {
+                huidigeTexture = looprechtstexture;
+            }
+            else
+            {
+                huidigeTexture = looplinkstexture;
+            }
+
+            spriteBatch.Draw(huidigeTexture, Positie,
+                             huidigeanimatie.CurrentFrame.SourceRectangle,
+                             Color.White);
+
+        }
         public override void Update(GameTime gameTime, Vector2 heropositie)
         {
-            if (!isDead)
+            if (!isDying)
             {
                 behavior.Execute(this, heropositie, gameTime);
             }
@@ -107,7 +108,7 @@ namespace Gameproject {
 
                 deathTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (deathTimer >= 1.5f)
+                if (deathTimer >= 100f)
                 {
 
                     EnemyManager.Instance.RemoveEnemy(this);

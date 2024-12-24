@@ -97,15 +97,15 @@ namespace Gameproject.Enemies
             CurrentAnimation = IdleAnimation;
             if (CurrentAnimation == AttackLeftAnimation|| CurrentAnimation == AttackRightAnimation|| CurrentAnimation == leftrunAnimation|| CurrentAnimation == RightrunAnimation )
             {
-                counter = 8;
+                counter = 13;
             }
             else if (CurrentAnimation == IdleAnimation)
             {
-                counter = 7;
+                counter = 13;
             }
             else
             {
-                counter = 6;
+                counter = 10;
             }
 
 

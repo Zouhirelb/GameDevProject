@@ -31,7 +31,6 @@ namespace Gameproject
         private Animatie linksloopanimatie;
 
         private int[] pixels = { 0, 49, 97, 145, 193, 241, 289, 337 };
-        //private int[] AttackPixels = { 0, 50, 100, 175, 250, 325 };
         private int[] attackdifpixels = { 50, 50, 50, 75, 75, 75 };
         private int counterAP;
         private Vector2 positie;
@@ -143,9 +142,8 @@ namespace Gameproject
                     huidigeanimatie = linksloopanimatie;
                     faceLeft = true;
                 }
-                else if (directie.Y != 0) // Verticale beweging
+                else if (directie.Y != 0) 
                 {
-                    // Blijf bij de laatste horizontale animatie
                     huidigeanimatie = faceLeft ? linksloopanimatie : rechtsloopanimatie;
                 }
                 directie *= 4;

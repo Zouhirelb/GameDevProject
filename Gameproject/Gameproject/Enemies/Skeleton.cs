@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,7 @@ namespace Gameproject.Enemies
 
         private bool isDead;
         private float deathTimer;
+        private int counter;
 
         public bool IsDead => isDead;
         public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
@@ -95,10 +97,21 @@ namespace Gameproject.Enemies
             }
             CurrentAnimation = IdleAnimation;
 
-
+            if (CurrentAnimation == AttackLeftAnimation || CurrentAnimation == AttackRightAnimation || CurrentAnimation == leftrunAnimation || CurrentAnimation == RightrunAnimation)
+            {
+                counter = 13;
+            }
+            else if (CurrentAnimation == IdleAnimation)
+            {
+                counter = 13;
+            }
+            else
+            {
+                counter = 10;
+            }
 
         }
-        public override int Breedte => 126;
+        public override int Breedte => textureCurrent.Width / counter;
 
         public override int Hoogte => 80;
 
