@@ -80,8 +80,12 @@ namespace Gameproject {
         }
         public override void Die()
         {
-            LevelManager.Instance.NotifyEnemyDied();
-            EnemyManager.Instance.RemoveEnemy(this);
+            if (!isDying)
+            {
+                isDying = true;
+                LevelManager.Instance.NotifyEnemyDied();
+                EnemyManager.Instance.RemoveEnemy(this);
+            }
         }
         public override void Draw(SpriteBatch spriteBatch)
             {

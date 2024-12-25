@@ -175,8 +175,10 @@ namespace Gameproject.Managers
         }
         public void NotifyEnemyDied()
         {
-            enemiesAliveThisWave--;
-            Console.WriteLine($"Enemy died. enemiesAliveThisWave: {enemiesAliveThisWave}");
+            if (enemiesAliveThisWave > 0)
+            {
+                enemiesAliveThisWave--;
+            }
             if (enemiesAliveThisWave <= 0)
             {
                 currentWaveIndex++;
@@ -203,17 +205,6 @@ namespace Gameproject.Managers
                 waveSpawning = true;
                 SpawnWave(currentWaveIndex);
             }
-            if (currentWaveIndex >= Waves.Count)
-            {
-                return;
-            }
-
-            if (enemiesAliveThisWave <= 0 && !waveSpawning)
-            {
-                waveSpawning = true;
-                SpawnWave(currentWaveIndex);
-            }
-
           
         }
     }

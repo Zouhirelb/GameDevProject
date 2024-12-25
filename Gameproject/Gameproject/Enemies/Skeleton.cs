@@ -29,6 +29,8 @@ namespace Gameproject.Enemies
         public Animatie RightrunAnimation;
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
+        private bool isDying;
+        public bool IsDead => isDying;
         public override int DamageToHero => 3;
 
         IEnemybehavior behavior;
@@ -51,7 +53,6 @@ namespace Gameproject.Enemies
         private int counter;
 
         public int ScoreValue => 20;
-        public bool IsDead => isDead;
         public Skeleton(Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
             this.textureRight = textureRight;
@@ -119,21 +120,24 @@ namespace Gameproject.Enemies
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
-            Console.WriteLine($"Skeleton took {damage} damage, HP={Health}");
-                if (health <= 0)
-                {
-                    isDead = true;
-                    CurrentAnimation = DeathAnimation;
-                    ScoreManager.Instance.AddScore(ScoreValue);
+            health -= damage;
+            if (health <= 0 && !isDying)
+            {
+                isDying = true;
+                CurrentAnimation = DeathAnimation;
+                ScoreManager.Instance.AddScore(ScoreValue);
                 LevelManager.Instance.NotifyEnemyDied();
             }
         }
 
         public override void Die()
         {
-            LevelManager.Instance.NotifyEnemyDied();
-            EnemyManager.Instance.RemoveEnemy(this);
+            if (!isDying)
+            {
+                isDying = true;
+                LevelManager.Instance.NotifyEnemyDied();
+                EnemyManager.Instance.RemoveEnemy(this);
+            }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {

@@ -110,7 +110,7 @@ namespace Gameproject
 
             huidigeanimatie = stilanimatie;
 
-            Health = 1000;
+            Health = 10000;
 
 
         }
@@ -240,7 +240,7 @@ namespace Gameproject
         }
         public void Reset()
         {
-            Health = 1000;
+            Health = 10000;
             Positie = new Vector2(10, 10); 
         }
 

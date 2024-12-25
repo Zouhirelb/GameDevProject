@@ -29,6 +29,8 @@ namespace Gameproject.Enemies
         public Animatie leftrunAnimation;
         public Animatie CurrentAnimation;
         private int counter;
+        private bool isDying;
+        public bool IsDead => isDying;
         public override int DamageToHero => 1;
         public Texture2D FireballRightTexture { get; internal set; }
         public Texture2D FireballLeftTexture { get; internal set; }
@@ -51,7 +53,6 @@ namespace Gameproject.Enemies
         private bool isDead;
         private float deathTimer;
 
-        public bool IsDead => isDead;
         public Magician(Texture2D fireballRightTexture, Texture2D fireballLeftTexture,Texture2D textureRight, Texture2D textureLeft, Texture2D textureIdle, Texture2D textureDeath, Texture2D textureAttackRight, Texture2D textureAttackLeft, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie, behavior)
         {
             this.FireballRightTexture = fireballRightTexture;
@@ -117,20 +118,23 @@ namespace Gameproject.Enemies
 
         public void TakeDamage(int damage)
         {
-            Health -= damage;
-            Console.WriteLine($"Magician took {damage} damage, HP={Health}");
-            if (health <= 0)
+            health -= damage;
+            if (health <= 0 && !isDying)
             {
-                 isDead = true;
-                 CurrentAnimation = DeathAnimation;
+                isDying = true;
+                CurrentAnimation = DeathAnimation;
                 ScoreManager.Instance.AddScore(ScoreValue);
                 LevelManager.Instance.NotifyEnemyDied();
             }
         }
         public override void Die()
         {
-            LevelManager.Instance.NotifyEnemyDied();
-            EnemyManager.Instance.RemoveEnemy(this);
+            if (!isDying)
+            {
+                isDying = true;
+                LevelManager.Instance.NotifyEnemyDied();
+                EnemyManager.Instance.RemoveEnemy(this);
+            }
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
