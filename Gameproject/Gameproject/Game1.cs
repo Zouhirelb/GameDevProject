@@ -280,6 +280,7 @@ namespace Gameproject
             LevelManager.Instance.InitializeWaves();
             LevelManager.Instance.Reset(); 
             EnemyManager.Instance.Clear();
+            ScoreManager.Instance.reset();
             GameStateManager.CurrentState = GameState.StartScreen; 
             MediaPlayer.Stop(); 
         }

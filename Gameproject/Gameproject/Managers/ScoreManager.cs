@@ -29,6 +29,7 @@ namespace Gameproject.Managers
             {
                 return score;
             }
+          
         }
 
         public int Level
@@ -41,6 +42,11 @@ namespace Gameproject.Managers
         public void AwardScore()
         {
             ScoreManager.Instance.AddScore(ScoreValue);
+        }
+        public void reset()
+        {
+            score = 0;
+            CheckLevelUp();
         }
 
         public void AddScore(int amount)

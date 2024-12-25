@@ -110,7 +110,7 @@ namespace Gameproject.Heromap
 
             currentanimation = idleanimation;
 
-            Health = 10000;
+            Health = 100;
 
         }
 
