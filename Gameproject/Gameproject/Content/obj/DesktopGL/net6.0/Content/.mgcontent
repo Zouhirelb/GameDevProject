@@ -17,6 +17,7 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/GameOver.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Gameover2.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Gameoversound.mp3</File>
+    <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/gameplaysound.mp3</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/gras.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-left.png</File>
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/hero-attack-right.png</File>
@@ -42,6 +43,7 @@
     <File>C:/Users/32488/Desktop/GitProjecten/GameDevProject/Gameproject/Gameproject/Content/Wizard_Run_Right.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -59,6 +59,8 @@ namespace Gameproject
         private Texture2D magicianLeftTexture;
         private Texture2D magicianRightTexture;
 
+        private Song gameplayMusic;
+
         private Texture2D startBackground;
         private Texture2D startButton;
         private Texture2D startMessage;
@@ -107,6 +109,7 @@ namespace Gameproject
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            gameplayMusic = Content.Load<Song>("gameplaysound");
 
             startBackground = Content.Load<Texture2D>("Blackscreen");
             startButton = Content.Load<Texture2D>("BTN PLAY");
@@ -210,6 +213,8 @@ namespace Gameproject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+           
+           
             switch (GameStateManager.CurrentState)
             {
                 case GameState.StartScreen:
@@ -250,6 +255,16 @@ namespace Gameproject
                 GameStateManager.CurrentState = GameState.GameOver;
                 MediaPlayer.Stop();
                 return;
+            } 
+            
+            if (GameStateManager.CurrentState == GameState.Playing)
+            {
+
+                if (MediaPlayer.State != MediaState.Playing)
+                {
+                    MediaPlayer.Play(gameplayMusic);
+                    MediaPlayer.IsRepeating = true; 
+                }
             }
 
             LevelManager.Instance.Update(gameTime);
