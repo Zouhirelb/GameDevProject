@@ -124,7 +124,7 @@ namespace Gameproject
 
             startButtonRectangle = new Rectangle(540, 360, startButton.Width, startButton.Height);
 
-            SpriteFont font = Content.Load<SpriteFont>("Font");
+            SpriteFont font = Content.Load<SpriteFont>("GameFont");
             HP.Instance.Initialize(font);
             backgroundTexture = Content.Load<Texture2D>("gras");
            

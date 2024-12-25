@@ -112,7 +112,6 @@ namespace Gameproject
 
             Health = 10;
 
-
         }
 
         public void TakeDamage(int damage)

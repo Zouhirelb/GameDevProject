@@ -26,13 +26,13 @@ namespace Gameproject.Managers
 
             HP.Instance.Draw(spriteBatch, _hero);
            
-            string scoreText = $"Score: {ScoreManager.Instance.Score}";
+            string scoreText = $"Score {ScoreManager.Instance.Score}";
             Vector2 ScoreSize = _font.MeasureString(scoreText);
-            spriteBatch.DrawString(_font, scoreText, new Vector2((viewport.Width - ScoreSize.X)-10,10), Color.Green);
+            spriteBatch.DrawString(_font, scoreText, new Vector2((viewport.Width - ScoreSize.X)-10,10), Color.LightGreen);
 
-            string levelText = $"Level: {LevelManager.Instance.CurrentLevel}";
+            string levelText = $"Level {LevelManager.Instance.CurrentLevel}";
             Vector2 levelSize = _font.MeasureString(levelText);
-            spriteBatch.DrawString(_font, levelText, new Vector2((viewport.Width - levelSize.X)/2,10), Color.Yellow);
+            spriteBatch.DrawString(_font, levelText, new Vector2((viewport.Width - levelSize.X)/2,10), Color.DarkGoldenrod);
             spriteBatch.End();
         }
         public void Draw(SpriteBatch spriteBatch)

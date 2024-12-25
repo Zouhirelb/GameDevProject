@@ -36,8 +36,8 @@ namespace Gameproject
         }
         public void Draw(SpriteBatch spriteBatch, Hero hero)
         {
-            string healthText = $"HP: {hero.Health}";
-            spriteBatch.DrawString(font, healthText, new Vector2(10, 10), Color.White);
+            string healthText = $"HP {hero.Health}";
+            spriteBatch.DrawString(font, healthText, new Vector2(10, 10), Color.Red);
         }
     }
 }

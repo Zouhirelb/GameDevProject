@@ -98,15 +98,15 @@ namespace Gameproject.Managers
         {
             waves = new List<Wave>()
             {
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0),
-                new Wave(1, 0, 0)
+                new Wave(0, 0, 5),
+                new Wave(6, 2, 0),
+                new Wave(8, 4, 0),
+                new Wave(9, 6, 3),
+                new Wave(1, 25, 5),
+                new Wave(10, 24, 14),
+                new Wave(13, 13, 15),
+                new Wave(15, 13, 18),
+                new Wave(22, 12, 12)
              };
         }
 
