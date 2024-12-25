@@ -251,7 +251,7 @@ namespace Gameproject
         }
         private void UpdateGameplay(GameTime gameTime)
         {
-            if (hero.Health <= 0)
+            if (hero.Health <= 0 ||LevelManager.Instance.CurrentLevel >8)
             {
                 GameStateManager.CurrentState = GameState.GameOver;
                 MediaPlayer.Stop();

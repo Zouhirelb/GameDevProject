@@ -9,6 +9,7 @@ using Gameproject.Enemies;
 using Gameproject.Enemies.behavior;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using static Gameproject.Managers.GameStateManager;
 
 namespace Gameproject.Managers
@@ -106,7 +107,8 @@ namespace Gameproject.Managers
                 new Wave(10, 24, 14),
                 new Wave(13, 13, 15),
                 new Wave(15, 13, 18),
-                new Wave(22, 12, 12)
+                new Wave(22, 12, 12),
+                new Wave(0,0,0)
              };
         }
 
@@ -194,11 +196,8 @@ namespace Gameproject.Managers
 
         public void Update(GameTime gameTime)
         {
-            if (currentWaveIndex >= 9)
-            {
-                GameStateManager.CurrentState = GameState.GameOver;
-                return;
-            }
+     
+  
 
             if (enemiesAliveThisWave <= 0 && !waveSpawning)
             {
