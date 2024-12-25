@@ -158,6 +158,12 @@
 /processorParam:Quality=Best
 /build:Gameoversound.mp3
 
+#begin gameplaysound.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:gameplaysound.mp3
+
 #begin gras.png
 /importer:TextureImporter
 /processor:TextureProcessor
