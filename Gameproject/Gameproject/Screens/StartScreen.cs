@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using static Gameproject.Managers.GameStateManager;
 
 namespace Gameproject.Screens
@@ -18,26 +19,29 @@ namespace Gameproject.Screens
         private Texture2D button;
         private Texture2D message;
         private Rectangle buttonRectangle;
-        private SoundEffect music;
-        private SoundEffectInstance musicInstance;
-
+        private Song music;
+        private GraphicsDevice graphicsDevice;
         private MouseState currentMouseState;
         private MouseState previousMouseState;
 
-        public StartScreen(Texture2D background, Texture2D button, Texture2D message, SoundEffect music)
+        public StartScreen(Texture2D background, Texture2D button, Texture2D message, Song music, GraphicsDevice graphicsDevice)
         {
             this.background = background;
             this.button = button;
             this.message = message;
             this.music = music;
-
-            this.musicInstance = music.CreateInstance();
-            this.musicInstance.IsLooped = true;
+            this.graphicsDevice = graphicsDevice; // Sla de referentie op
 
             this.buttonRectangle = new Rectangle(540, 360, button.Width, button.Height);
         }
         public void Update()
         {
+            if (MediaPlayer.State != MediaState.Playing)
+            {
+                MediaPlayer.Play(music);
+                MediaPlayer.IsRepeating = true;
+            }
+
             currentMouseState = Mouse.GetState();
 
             if (currentMouseState.LeftButton == ButtonState.Pressed &&
@@ -45,21 +49,31 @@ namespace Gameproject.Screens
                 buttonRectangle.Contains(currentMouseState.Position))
             {
                 GameStateManager.CurrentState = GameState.Playing;
-                musicInstance.Stop();
+                MediaPlayer.Stop();
             }
 
-            if (musicInstance.State != SoundState.Playing)
-                musicInstance.Play();
-
+            
             previousMouseState = currentMouseState;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(background, Vector2.Zero, Color.White);
+
+            // Schaal de achtergrond naar de volledige schermgrootte
+            spriteBatch.Draw(
+                background,
+                new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), // Volledige schermgrootte
+                Color.White
+            );
+
             spriteBatch.Draw(button, buttonRectangle, Color.White);
-            spriteBatch.Draw(message, new Vector2(400, 200), Color.White);
+            spriteBatch.Draw(message, new Vector2(
+                (graphicsDevice.Viewport.Width - message.Width) / 2, // Centraal op X-as
+                graphicsDevice.Viewport.Height / 4), // Bovenin op Y-as
+                Color.White
+            );
+
             spriteBatch.End();
         }
 

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using Gameproject.Screens;
 using Microsoft.Xna.Framework.Audio;
+using static Gameproject.Managers.GameStateManager;
+using Microsoft.Xna.Framework.Media;
 
 namespace Gameproject
 {
@@ -60,12 +62,12 @@ namespace Gameproject
         private Texture2D startBackground;
         private Texture2D startButton;
         private Texture2D startMessage;
-        private SoundEffect startMusic;
+        private Song startMusic;
         private SoundEffectInstance startMusicInstance;
 
         private Texture2D gameoverBackground;
         private Texture2D gameoverMessage;
-        private SoundEffect gameoverMusic;
+        private Song gameoverMusic;
         private SoundEffectInstance gameoverMusicInstance;
 
         private Rectangle startButtonRectangle; 
@@ -74,6 +76,8 @@ namespace Gameproject
 
         private Rectangle WorldBounds = new Rectangle(0, 0, 2560, 1472);
         private Rectangle mapBounds = new Rectangle(0, 0, 10060, 10072);
+
+        private StartScreen startScreen;
 
         public Game1()
         {
@@ -102,14 +106,16 @@ namespace Gameproject
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
             startBackground = Content.Load<Texture2D>("Blackscreen");
             startButton = Content.Load<Texture2D>("BTN PLAY");
             startMessage = Content.Load<Texture2D>("Start");
-            startMusic = Content.Load<SoundEffect>("Startgamesound");
+            startMusic = Content.Load<Song>("Startgamesound");
+            startScreen = new StartScreen(startBackground,startButton,startMessage,startMusic, _graphics.GraphicsDevice);
 
             gameoverBackground = Content.Load<Texture2D>("Blackscreen");
             gameoverMessage = Content.Load<Texture2D>("GameOver");
-            gameoverMusic = Content.Load<SoundEffect>("Gameoversound");
+            gameoverMusic = Content.Load<Song>("Gameoversound");
 
             startButtonRectangle = new Rectangle(540, 360, startButton.Width, startButton.Height);
 
@@ -200,7 +206,12 @@ namespace Gameproject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-           
+            if (GameStateManager.CurrentState == GameState.StartScreen)
+            {
+                startScreen.Update();
+                return; 
+            }
+
             hero.Update(gameTime);
 
             enemyManager.Update(gameTime, hero.Positie);
@@ -227,8 +238,13 @@ namespace Gameproject
         }
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DarkSeaGreen); 
-                    
+            GraphicsDevice.Clear(Color.DarkSeaGreen);
+            if (GameStateManager.CurrentState == GameState.StartScreen)
+            {
+                startScreen.Draw(_spriteBatch);
+                return; // Stop verdere teken-logica
+            }
+
             _spriteBatch.Begin(this.camera);
 
             _background.Draw(_spriteBatch, camera.Position, GraphicsDevice.Viewport);
