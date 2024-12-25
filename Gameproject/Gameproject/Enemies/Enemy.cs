@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Gameproject.Interfaces;
+using Gameproject.Managers;
 
 namespace Gameproject.Enemies
 {
@@ -33,7 +34,12 @@ namespace Gameproject.Enemies
             throw new NotImplementedException();
         }
 
-        
+        public virtual void Die()
+        {
+            LevelManager.Instance.NotifyEnemyDied();
+            EnemyManager.Instance.RemoveEnemy(this);
+        }
+
     }
 }
 

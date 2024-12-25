@@ -171,6 +171,8 @@ namespace Gameproject
             FireballLeftTexture
             );
 
+            LevelManager.Instance.InitializeWaves();
+
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
@@ -238,32 +240,20 @@ namespace Gameproject
         }
         private void UpdateGameplay(GameTime gameTime)
         {
-            // Controleer of de speler dood is
             if (hero.Health <= 0)
-            {
-                GameStateManager.CurrentState = GameState.GameOver;
-                MediaPlayer.Stop(); // Stop gameplaymuziek
-                return;
-            }
-
-            // Update LevelManager om waves te beheren
-            LevelManager.Instance.Update(gameTime);
-
-            // Controleer of alle waves voltooid zijn
-            if (LevelManager.Instance.CurrentLevel > LevelManager.Instance.InitializeWaves().Count)
             {
                 GameStateManager.CurrentState = GameState.GameOver;
                 MediaPlayer.Stop();
                 return;
             }
 
-            // Update vijanden via EnemyManager
-            EnemyManager.Instance.Update(gameTime, hero.Positie);
+            LevelManager.Instance.Update(gameTime);
 
-            // Update de speler
+            EnemyManager.Instance.Update(gameTime, hero.Positie);
             hero.Update(gameTime);
         }
 
+      
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen);
@@ -288,13 +278,6 @@ namespace Gameproject
                 enemy.Draw(_spriteBatch);
             }
 
-
-           //DrawBorder(_spriteBatch, hero.BoundingBox, 2, Color.Blue);
-
-            //foreach (var enemy in enemyManager.GetEnemies())
-            //{
-            //    DrawBorder(_spriteBatch, enemy.BoundingBox, 2, Color.Red);
-            //}
             FireballManager.GetInstance().Draw(_spriteBatch);           
             _spriteBatch.End();
 

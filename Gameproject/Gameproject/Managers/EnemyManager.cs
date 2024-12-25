@@ -41,15 +41,16 @@ namespace Gameproject.Managers
         {
             var toRemove = new List<Enemy>();
 
-            foreach (var enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
+                var enemy = enemies[i];
                 enemy.Update(gameTime, heroPositie);
 
                 if (enemy is IHealth healthEnemy)
                 {
                     if (healthEnemy.IsDead)
                     {
-                        toRemove.Add(enemy);
+                        toRemove.Add(enemy); 
                     }
                 }
             }
