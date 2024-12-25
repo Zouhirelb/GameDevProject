@@ -110,7 +110,7 @@ namespace Gameproject
 
             huidigeanimatie = stilanimatie;
 
-            Health = 10;
+            Health = 1000;
 
 
         }
@@ -170,7 +170,7 @@ namespace Gameproject
             // deze code nog refactoren
             positie += directie;
             snelheid += versnelling;
-            snelheid = Limit(snelheid, 3);
+            snelheid = Limit(snelheid, 2);
             // tot hier
 
             float tmp = snelheid.Length();
@@ -238,6 +238,12 @@ namespace Gameproject
                 }
             }
         }
+        public void Reset()
+        {
+            Health = 1000;
+            Positie = new Vector2(10, 10); 
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             if (huidigeanimatie == stilanimatie)

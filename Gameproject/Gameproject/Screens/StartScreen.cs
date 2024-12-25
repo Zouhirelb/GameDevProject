@@ -30,7 +30,7 @@ namespace Gameproject.Screens
             this.button = button;
             this.message = message;
             this.music = music;
-            this.graphicsDevice = graphicsDevice; // Sla de referentie op
+            this.graphicsDevice = graphicsDevice; 
 
             this.buttonRectangle = new Rectangle(540, 360, button.Width, button.Height);
         }
@@ -60,17 +60,16 @@ namespace Gameproject.Screens
         {
             spriteBatch.Begin();
 
-            // Schaal de achtergrond naar de volledige schermgrootte
             spriteBatch.Draw(
                 background,
-                new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), // Volledige schermgrootte
+                new Rectangle(0, 0, graphicsDevice.Viewport.Width, graphicsDevice.Viewport.Height), 
                 Color.White
             );
 
             spriteBatch.Draw(button, buttonRectangle, Color.White);
             spriteBatch.Draw(message, new Vector2(
-                (graphicsDevice.Viewport.Width - message.Width) / 2, // Centraal op X-as
-                graphicsDevice.Viewport.Height / 4), // Bovenin op Y-as
+                (graphicsDevice.Viewport.Width - message.Width) / 2, 
+                graphicsDevice.Viewport.Height / 4), 
                 Color.White
             );
 

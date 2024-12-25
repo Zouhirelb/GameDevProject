@@ -37,6 +37,11 @@ namespace Gameproject.Managers
         {
             enemies.Remove(enemy);
         }
+        public void Clear()
+        {
+            enemies.Clear();
+        }
+
         public void Update(GameTime gameTime, Vector2 heroPositie)
         {
             var toRemove = new List<Enemy>();

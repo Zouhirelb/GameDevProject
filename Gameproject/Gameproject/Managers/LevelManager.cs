@@ -128,7 +128,7 @@ namespace Gameproject.Managers
 
             Random rnd = new Random();
             var wave = Waves[waveIndex];
-            currentLevel = currentWaveIndex+1;
+            currentLevel = currentWaveIndex;
             Console.WriteLine($"Spawning wave #{waveIndex + 1}: " +
                               $"{wave.Monsters} Monsters, {wave.Skeletons} Skeletons, {wave.Magicians} Magicians");
 
@@ -142,7 +142,6 @@ namespace Gameproject.Managers
                             new MonsterBehavior());
 
                 EnemyManager.Instance.AddEnemy(monster);
-                EnemyManager.Instance.AddEnemy(monster);
                 CollisionManager.Instance.RegisterObject(monster);
             }
 
@@ -155,7 +154,6 @@ namespace Gameproject.Managers
                              new Vector2(rnd.Next(0,worldWidth), rnd.Next(0, worldHeight)),
                              new SkeletonBehavior());
                EnemyManager.Instance.AddEnemy(skeleton );
-                EnemyManager.Instance.AddEnemy(skeleton);
                 CollisionManager.Instance.RegisterObject(skeleton);
             }
 
@@ -169,7 +167,6 @@ namespace Gameproject.Managers
                               magicianAttackRightTexture, magicianAttackLeftTexture,
                               new Vector2(rnd.Next(0, worldWidth), rnd.Next(0, worldHeight)),
                               new MagicianBehavior());
-                EnemyManager.Instance.AddEnemy(magician);
                 EnemyManager.Instance.AddEnemy(magician);
                 CollisionManager.Instance.RegisterObject(magician);
             }
@@ -186,6 +183,13 @@ namespace Gameproject.Managers
                 Console.WriteLine($"Wave {currentWaveIndex} completed!");
             }
         }
+        public void Reset()
+        {
+            currentWaveIndex = 0;
+            enemiesAliveThisWave = 0;
+            waveSpawning = false;
+        }
+
         public void Update(GameTime gameTime)
         {
             if (currentWaveIndex >= 9)

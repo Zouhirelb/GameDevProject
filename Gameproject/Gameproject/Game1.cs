@@ -210,17 +210,22 @@ namespace Gameproject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (GameStateManager.CurrentState == GameState.StartScreen)
+            switch (GameStateManager.CurrentState)
             {
-                startScreen.Update();
-                return; 
+                case GameState.StartScreen:
+                    startScreen.Update();
+                    break;
+                case GameState.GameOver:
+                    gameOverScreen.Update();
+                    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    {
+                        RestartGame();
+                    }
+                    break;
+                case GameState.Playing:
+                    UpdateGameplay(gameTime);
+                    break;
             }
-            if (GameStateManager.CurrentState == GameState.GameOver)
-            {
-                gameOverScreen.Update();
-                return; 
-            }
-
             hero.Update(gameTime);
 
             enemyManager.Update(gameTime, hero.Positie);
@@ -253,7 +258,15 @@ namespace Gameproject
             hero.Update(gameTime);
         }
 
-      
+        private void RestartGame()
+        {
+            hero.Reset(); 
+            LevelManager.Instance.InitializeWaves();
+            LevelManager.Instance.Reset(); 
+            EnemyManager.Instance.Clear();
+            GameStateManager.CurrentState = GameState.StartScreen; 
+            MediaPlayer.Stop(); 
+        }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen);

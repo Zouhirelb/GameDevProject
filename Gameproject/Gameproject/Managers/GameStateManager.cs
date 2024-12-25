@@ -14,8 +14,7 @@ namespace Gameproject.Managers
         {
             StartScreen,
             Playing,
-            GameOver,
-            Victory
+            GameOver
         }
 
         
