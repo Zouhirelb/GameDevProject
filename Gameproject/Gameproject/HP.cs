@@ -28,11 +28,11 @@ namespace Gameproject
 
         private HP()
         {
-          
+
         }
         public void Initialize(SpriteFont spriteFont)
         {
-            this.font = spriteFont;
+            font = spriteFont;
         }
         public void Draw(SpriteBatch spriteBatch, Hero hero)
         {

@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Gameproject
 {
-    public class Hero : IGameObject,IHealth
+    public class Hero : IGameObject, IHealth
     {
         private Texture2D heldlooprechtstexture;
         private Texture2D heldstiltexture;
@@ -37,8 +37,8 @@ namespace Gameproject
 
         public Vector2 Positie
         {
-             get  {return positie; }
-             set { positie = value; }
+            get { return positie; }
+            set { positie = value; }
         }
 
         private Vector2 snelheid;
@@ -49,8 +49,8 @@ namespace Gameproject
 
 
         private bool faceLeft;
-        public int Breedte { get; private set; }    
-        public int Hoogte { get; private set; }     
+        public int Breedte { get; private set; }
+        public int Hoogte { get; private set; }
 
         public Rectangle BoundingBox => new Rectangle(
             (int)Positie.X,
@@ -63,18 +63,18 @@ namespace Gameproject
 
         public bool IsDead => throw new NotImplementedException();
 
-        public Hero(Texture2D texturelinks,Texture2D texturerechts, Texture2D idletexture, Texture2D heroAttacklefttexture,Texture2D heroAttackrighttexture, IinputReader reader)
+        public Hero(Texture2D texturelinks, Texture2D texturerechts, Texture2D idletexture, Texture2D heroAttacklefttexture, Texture2D heroAttackrighttexture, IinputReader reader)
         {
-            this.heldstiltexture = idletexture;
-            this.heldlooprechtstexture = texturerechts;
-            this.heldlinksllopentexture = texturelinks;
+            heldstiltexture = idletexture;
+            heldlooprechtstexture = texturerechts;
+            heldlinksllopentexture = texturelinks;
             this.heroAttackrighttexture = heroAttackrighttexture;
             this.heroAttacklefttexture = heroAttacklefttexture;
-            this.Breedte = heldstiltexture.Width;
-            this.Hoogte = heldstiltexture.Height;
+            Breedte = heldstiltexture.Width;
+            Hoogte = heldstiltexture.Height;
 
-            
-            this.inputReader = reader;
+
+            inputReader = reader;
             positie = new Vector2(10, 10);
 
             stilanimatie = new Animatie();
@@ -83,7 +83,7 @@ namespace Gameproject
             heroAttackleftAnimation = new Animatie();
             heroAttackrightAnimation = new Animatie();
 
-            stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39,39)));
+            stilanimatie.AddFrame(new AnimationFrame(new Rectangle(0, 0, 39, 39)));
 
             for (int i = attackdifpixels.Length - 1; i >= 0; i--)
             {
@@ -101,8 +101,8 @@ namespace Gameproject
 
             foreach (var pixel in pixels)
             {
-            rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
-            linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
+                rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
+                linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 48, 50)));
             }
 
             snelheid = new Vector2(1, 1);
@@ -111,17 +111,17 @@ namespace Gameproject
             huidigeanimatie = stilanimatie;
 
             Health = 10000;
-            
+
 
         }
-       
+
         public void TakeDamage(int damage)
         {
             Health -= damage;
             if (Health < 0) Health = 0;
         }
 
-        private int lastHorizontalDirection = 0; 
+        private int lastHorizontalDirection = 0;
 
         public void Update(GameTime gameTime)
         {
@@ -143,7 +143,7 @@ namespace Gameproject
                     huidigeanimatie = linksloopanimatie;
                     faceLeft = true;
                 }
-                else if (directie.Y != 0) 
+                else if (directie.Y != 0)
                 {
                     huidigeanimatie = faceLeft ? linksloopanimatie : rechtsloopanimatie;
                 }
@@ -174,14 +174,14 @@ namespace Gameproject
             // tot hier
 
             float tmp = snelheid.Length();
-            
-            if (positie.X > 600 || positie.X< 0)
+
+            if (positie.X > 600 || positie.X < 0)
             {
                 snelheid.X *= -1;
                 versnelling.X *= -1;
 
             }
-            if (positie.Y > 400 || positie.Y< 0)
+            if (positie.Y > 400 || positie.Y < 0)
             {
                 snelheid.Y *= -1;
                 versnelling *= 1;
@@ -199,7 +199,7 @@ namespace Gameproject
             return v;
         }
         private void Attack()
-          {
+        {
             if (faceLeft)
             {
                 huidigeanimatie = heroAttackleftAnimation;
@@ -211,33 +211,33 @@ namespace Gameproject
 
             DoDamageToEnemiesInRange(50f, 10);
         }
-         private void DoDamageToEnemiesInRange(float range, int damage)
-          {
-            var enemies = EnemyManager.Instance.GetEnemies(); 
-        
+        private void DoDamageToEnemiesInRange(float range, int damage)
+        {
+            var enemies = EnemyManager.Instance.GetEnemies();
+
             foreach (var enemy in enemies)
             {
-                float dist = Vector2.Distance(this.Positie, enemy.Positie);
-        
+                float dist = Vector2.Distance(Positie, enemy.Positie);
+
                 if (dist <= range)
                 {
-                    if (faceLeft && enemy.Positie.X < this.Positie.X)
+                    if (faceLeft && enemy.Positie.X < Positie.X)
                     {
-                         if (enemy is IHealth healthEnemy)
+                        if (enemy is IHealth healthEnemy)
                         {
                             healthEnemy.TakeDamage(damage);
                         }
                     }
-                    else if (!faceLeft && enemy.Positie.X > this.Positie.X)
+                    else if (!faceLeft && enemy.Positie.X > Positie.X)
                     {
-                         if (enemy is IHealth healthEnemy)
+                        if (enemy is IHealth healthEnemy)
                         {
                             healthEnemy.TakeDamage(damage);
                         }
                     }
                 }
             }
-         }
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
             if (huidigeanimatie == stilanimatie)

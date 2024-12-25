@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Gameproject
+namespace Gameproject.Screens
 {
     public class Background
     {

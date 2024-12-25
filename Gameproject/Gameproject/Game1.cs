@@ -102,6 +102,17 @@ namespace Gameproject
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            startBackground = Content.Load<Texture2D>("Blackscreen");
+            startButton = Content.Load<Texture2D>("BTN PLAY");
+            startMessage = Content.Load<Texture2D>("Start");
+            startMusic = Content.Load<SoundEffect>("Startgamesound");
+
+            gameoverBackground = Content.Load<Texture2D>("Blackscreen");
+            gameoverMessage = Content.Load<Texture2D>("GameOver");
+            gameoverMusic = Content.Load<SoundEffect>("Gameoversound");
+
+            startButtonRectangle = new Rectangle(540, 360, startButton.Width, startButton.Height);
+
             SpriteFont font = Content.Load<SpriteFont>("Font");
             HP.Instance.Initialize(font);
             backgroundTexture = Content.Load<Texture2D>("gras");
@@ -133,24 +144,25 @@ namespace Gameproject
             FireballLeftTexture = Content.Load<Texture2D>("FireBall_Left");
             FireballRightTexture = Content.Load<Texture2D>("FireBall_Right");
             LevelManager.Instance.Initialize(
-       monsterrechtstexture,
-       monsterlinkstexture,
-       monsterDeathTexture,
-       skeletonRightTexture,
-       skeletonLeftTexture,
-       skeletonIdleTexture,
-       skeletonDeathTexture,
-       skeletonAttackRightTexture,
-       skeletonAttackLeftTexture,
-       magicianRightTexture,
-       magicianLeftTexture,
-       magicianIdleTexture,
-       magicianDeathTexture,
-       magicianAttackRightTexture,
-       magicianAttackLeftTexture,
-       FireballRightTexture,
-       FireballLeftTexture
-   );
+            monsterrechtstexture,
+            monsterlinkstexture,
+            monsterDeathTexture,
+            skeletonRightTexture,
+            skeletonLeftTexture,
+            skeletonIdleTexture,
+            skeletonDeathTexture,
+            skeletonAttackRightTexture,
+            skeletonAttackLeftTexture,
+            magicianRightTexture,
+            magicianLeftTexture,
+            magicianIdleTexture,
+            magicianDeathTexture,
+            magicianAttackRightTexture,
+            magicianAttackLeftTexture,
+            FireballRightTexture,
+            FireballLeftTexture
+            );
+
             _borderTexture = new Texture2D(GraphicsDevice, 1, 1);
             _borderTexture.SetData(new[] { Color.White });
 
