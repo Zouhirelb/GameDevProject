@@ -19,19 +19,19 @@ namespace Gameproject.Enemies.behavior
         private float fireballCooldown = 1f; 
         private float timeSinceLastFireball = 0f;
         Random random;
-        public void Execute(Enemy enemy, Vector2 heroPositie, GameTime gameTime)
+        public void Execute(Enemy enemy, Vector2 heroPosition, GameTime gameTime)
         {
             if (enemy is Magician magician)
             {
 
-                var direction = heroPositie - magician.Positie;
+                var direction = heroPosition - magician.Position;
                 float distance = direction.Length();
                 timeSinceLastFireball += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                 if (distance > DetectionRange)
                 {
                    random= new Random();
-                    magician.Positie += new Vector2((float)(random.NextDouble() - 0.5), (float)(random.NextDouble() - 0.5)) * Speed;
+                    magician.Position += new Vector2((float)(random.NextDouble() - 0.5), (float)(random.NextDouble() - 0.5)) * Speed;
                     magician.CurrentAnimation = magician.IdleAnimation;
                     magician.textureCurrent = magician.textureIdle;
                 }
@@ -39,7 +39,7 @@ namespace Gameproject.Enemies.behavior
                 {   
                    
                     direction.Normalize();
-                    magician.Positie += direction * Speed;
+                    magician.Position += direction * Speed;
 
                     if (direction.X > 0)
                     {
@@ -61,7 +61,7 @@ namespace Gameproject.Enemies.behavior
                         magician.CurrentAnimation == magician.AttackLeftAnimation))
                     {
                        
-                        Fireball(magician, heroPositie, magician.FireballRightTexture, magician.FireballLeftTexture );
+                        Fireball(magician, heroPosition, magician.FireballRightTexture, magician.FireballLeftTexture );
                         timeSinceLastFireball = 0f;
                     }
 
@@ -85,8 +85,8 @@ namespace Gameproject.Enemies.behavior
         {
             if (enemy is Magician magician)
             {
-                var direction = heroPositie - magician.Positie;
-                FireBall fireball = new FireBall(magician,magician.Positie, direction, fireballrightTexture, fireballkeftTexture);
+                var direction = heroPositie - magician.Position;
+                FireBall fireball = new FireBall(magician,magician.Position, direction, fireballrightTexture, fireballkeftTexture);
 
                 FireballManager.GetInstance().RegisterFireball(fireball);
             }

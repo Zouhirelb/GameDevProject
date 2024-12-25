@@ -20,7 +20,7 @@ namespace Gameproject.Enemies.behavior
             {
 
            
-            var direction = heroPositie - skeleton.Positie;
+            var direction = heroPositie - skeleton.Position;
             float distance = direction.Length();
 
             if (distance<AttackRange)
@@ -37,12 +37,12 @@ namespace Gameproject.Enemies.behavior
                         skeleton.textureCurrent = skeleton.textureAttackLeft;
                     }
                     direction.Normalize();
-                    skeleton.Positie += direction * Speed;
+                    skeleton.Position += direction * Speed;
             }
             else if (distance< DetectionRange)
             {
                     direction.Normalize();
-                    skeleton.Positie += direction * Speed;
+                    skeleton.Position += direction * Speed;
                     if (direction.X > 0)
                     {
                     skeleton.CurrentAnimation = skeleton.RightrunAnimation;

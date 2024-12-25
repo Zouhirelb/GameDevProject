@@ -16,8 +16,8 @@ namespace Gameproject.Managers
     internal class LevelManager
     {
         Random Random;
-        private Texture2D monsterrechtstexture;
-        private Texture2D monsterlinkstexture;
+        private Texture2D monsterrighttexture;
+        private Texture2D monsterlefttexture;
         private Texture2D monsterDeathTexture;
 
         private Texture2D skeletonDeathTexture;
@@ -41,8 +41,8 @@ namespace Gameproject.Managers
 
 
         public void Initialize(
-            Texture2D monsterrechtstexture,
-            Texture2D monsterlinkstexture,
+            Texture2D monsterrighttexture,
+            Texture2D monsterlefttexture,
             Texture2D monsterDeathTexture,
             Texture2D skeletonRightTexture,
             Texture2D skeletonLeftTexture,
@@ -60,8 +60,8 @@ namespace Gameproject.Managers
             Texture2D fireballLeftTexture
         )
         {
-            this.monsterrechtstexture = monsterrechtstexture;
-            this.monsterlinkstexture = monsterlinkstexture;
+            this.monsterrighttexture = monsterrighttexture;
+            this.monsterlefttexture = monsterlefttexture;
             this.monsterDeathTexture = monsterDeathTexture;
 
             this.skeletonRightTexture = skeletonRightTexture;
@@ -137,7 +137,7 @@ namespace Gameproject.Managers
             // Monsters
             for (int i = 0; i < wave.Monsters; i++)
             {
-                var monster = new Monster(monsterrechtstexture, monsterlinkstexture, monsterDeathTexture,
+                var monster = new Monster(monsterrighttexture, monsterlefttexture, monsterDeathTexture,
                             new Vector2(rnd.Next(0,worldWidth), rnd.Next(0,worldHeight)),
                             new MonsterBehavior());
 

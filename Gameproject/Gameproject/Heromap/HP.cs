@@ -7,7 +7,7 @@ using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Gameproject
+namespace Gameproject.Heromap
 {
     public class HP
     {

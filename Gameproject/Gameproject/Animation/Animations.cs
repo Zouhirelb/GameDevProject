@@ -9,15 +9,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Gameproject.Animation
 {
-    public class Animatie
+    public class Animations
     {
         public AnimationFrame CurrentFrame { get; set; }
         private List<AnimationFrame> frames;
         private int counter;
         private double frameMovement = 0;
-      //  public bool IsLastFrame => CurrentFrame == frames.Count - 1;
 
-        public Animatie()
+        public Animations()
         {
             frames = new List<AnimationFrame>();
         }

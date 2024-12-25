@@ -15,15 +15,15 @@ namespace Gameproject {
 
         public class Monster : Enemy,IHealth
     {
-            public Texture2D looprechtstexture;
-            public Texture2D looplinkstexture;
-            public Texture2D huidigeTexture;
+            public Texture2D Runrighttexture;
+            public Texture2D Runlefttexture;
+            public Texture2D CurrentTexture;
             public Texture2D deadtexture;
             
-            public Animatie deathanimation;
-            public Animatie rechtsloopanimatie;
-            public Animatie linksloopanimatie;
-            public Animatie huidigeanimatie;
+            public Animation.Animations deathanimation;
+            public Animation.Animations Runrightanimation;
+            public Animation.Animations Runleftanimation;
+            public Animation.Animations Currentanimation;
             
             IEnemybehavior behavior;
             private int health = 30;
@@ -37,16 +37,16 @@ namespace Gameproject {
             }
             public bool IsDead => isDying;
 
-        public Monster(Texture2D texturerechts, Texture2D texturelinks, Texture2D deadtexture, Vector2 startPositie, IEnemybehavior behavior) : base(startPositie,behavior)
+        public Monster(Texture2D textureright, Texture2D textureleft, Texture2D deadtexture, Vector2 startPosition, IEnemybehavior behavior) : base(startPosition,behavior)
             {
-                this.looprechtstexture = texturerechts;
+                this.Runrighttexture = textureright;
                 this.deadtexture = deadtexture;
-                this.looplinkstexture = texturelinks;
+                this.Runlefttexture = textureleft;
                 this.behavior = behavior;
 
-                deathanimation = new Animatie();
-                linksloopanimatie = new Animatie();
-                rechtsloopanimatie = new Animatie();
+            deathanimation = new Animation.Animations();
+            Runleftanimation = new Animation.Animations();
+            Runrightanimation = new Animation.Animations();
 
                 int[] runpixels = { 0, 57, 114, 171, 228 };
                 int[] Deathpixels = { 0, 65, 130, 195, 260 };
@@ -58,14 +58,14 @@ namespace Gameproject {
 
                 foreach (var pixel in runpixels)
                 {
-                    linksloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 57, 46)));
-                    rechtsloopanimatie.AddFrame(new AnimationFrame(new Rectangle(pixel, 0,57, 46)));
+                    Runleftanimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0, 57, 46)));
+                    Runrightanimation.AddFrame(new AnimationFrame(new Rectangle(pixel, 0,57, 46)));
                 }
 
-                huidigeanimatie = rechtsloopanimatie;
+                Currentanimation = Runrightanimation;
             }
-            public override int Breedte => 57; 
-            public override int Hoogte => 46;
+            public override int Width => 57; 
+            public override int Height => 46;
         public int ScoreValue => 10;
         public void TakeDamage(int damage)
         {
@@ -73,7 +73,7 @@ namespace Gameproject {
             if (health <= 0 && !isDying)
             {
                 isDying = true;
-                huidigeanimatie = deathanimation;
+                Currentanimation = deathanimation;
                 ScoreManager.Instance.AddScore(ScoreValue);
                 LevelManager.Instance.NotifyEnemyDied();
             }
@@ -89,21 +89,21 @@ namespace Gameproject {
         }
         public override void Draw(SpriteBatch spriteBatch)
             {
-            if (huidigeanimatie == deathanimation)
+            if (Currentanimation == deathanimation)
             {
-                huidigeTexture = deadtexture;  
+                CurrentTexture = deadtexture;  
             }
-            else if (huidigeanimatie == rechtsloopanimatie)
+            else if (Currentanimation == Runrightanimation)
             {
-                huidigeTexture = looprechtstexture;
+                CurrentTexture = Runrighttexture;
             }
             else
             {
-                huidigeTexture = looplinkstexture;
+                CurrentTexture = Runlefttexture;
             }
 
-            spriteBatch.Draw(huidigeTexture, Positie,
-                             huidigeanimatie.CurrentFrame.SourceRectangle,
+            spriteBatch.Draw(CurrentTexture, Position,
+                             Currentanimation.CurrentFrame.SourceRectangle,
                              Color.White);
 
         }

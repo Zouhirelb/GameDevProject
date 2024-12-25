@@ -13,17 +13,17 @@ namespace Gameproject.Enemies
     public abstract class Enemy: IGameObject
     {
         public abstract int DamageToHero { get; }
-        public Vector2 Positie { get; set; }
-        public abstract int Breedte { get; }
-        public abstract int Hoogte { get; }
+        public Vector2 Position { get; set; }
+        public abstract int Width { get; }
+        public abstract int Height { get; }
 
         public IEnemybehavior behavior { get; private set; }
-        public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte);
+        public Rectangle BoundingBox => new Rectangle((int)Position.X, (int)Position.Y, Width, Height);
 
         
         public Enemy(Vector2 startPositie, IEnemybehavior behavior)
         {
-            Positie = startPositie;
+            Position = startPositie;
             this.behavior = behavior;
         }
 

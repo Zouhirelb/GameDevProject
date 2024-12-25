@@ -11,6 +11,7 @@ using Gameproject.Screens;
 using Microsoft.Xna.Framework.Audio;
 using static Gameproject.Managers.GameStateManager;
 using Microsoft.Xna.Framework.Media;
+using Gameproject.Heromap;
 
 namespace Gameproject
 {
@@ -233,17 +234,17 @@ namespace Gameproject
             }
             hero.Update(gameTime);
 
-            enemyManager.Update(gameTime, hero.Positie);
+            enemyManager.Update(gameTime, hero.Position);
             LevelManager.Instance.Update(gameTime);
             FireballManager.GetInstance().Update(gameTime);
 
             CollisionManager.Instance.CheckCollisions();
-            hero.Positie = new Vector2(
-                MathHelper.Clamp(hero.Positie.X, WorldBounds.Left, WorldBounds.Right - hero.Breedte),
-                MathHelper.Clamp(hero.Positie.Y, WorldBounds.Top, WorldBounds.Bottom - hero.Hoogte)
+            hero.Position = new Vector2(
+                MathHelper.Clamp(hero.Position.X, WorldBounds.Left, WorldBounds.Right - hero.Width),
+                MathHelper.Clamp(hero.Position.Y, WorldBounds.Top, WorldBounds.Bottom - hero.Height)
             );
 
-            this.camera.Position = hero.Positie;
+            this.camera.Position = hero.Position;
             this.camera.Update(gameTime);
 
             base.Update(gameTime);
@@ -269,7 +270,7 @@ namespace Gameproject
 
             LevelManager.Instance.Update(gameTime);
 
-            EnemyManager.Instance.Update(gameTime, hero.Positie);
+            EnemyManager.Instance.Update(gameTime, hero.Position);
             hero.Update(gameTime);
         }
 

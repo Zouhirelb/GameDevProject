@@ -15,31 +15,31 @@ namespace Gameproject.Enemies
 {
     public class FireBall:IGameObject
     {
-        public Vector2 Positie { get;  set; }
+        public Vector2 Position { get;  set; }
         private Vector2 direction;
         private float speed = 5f;
 
         public Texture2D textureright;
         public Texture2D textureleft;
-        public Animatie animationright;
-        public Animatie animationleft;
-        public Animatie currentanimation;
-        public Rectangle BoundingBox => new Rectangle((int)Positie.X, (int)Positie.Y, Breedte, Hoogte); //niet vergeten grote aan te passen
-        public int Breedte => 64;
-        public int Hoogte => 64;
+        public Animation.Animations animationright;
+        public Animation.Animations animationleft;
+        public Animation.Animations currentanimation;
+        public Rectangle BoundingBox => new Rectangle((int)Position.X, (int)Position.Y, Width, Height); 
+        public int Width => 64;
+        public int Height => 64;
         private int[] pixels = { 0, 64, 192, 256, 320,384,448,512,576,640,704 };
-        public FireBall(Enemy enemy,Vector2 startPositie, Vector2 direction, Texture2D textureright,Texture2D textureleft)
+        public FireBall(Enemy enemy,Vector2 startPosition, Vector2 direction, Texture2D textureright,Texture2D textureleft)
         {
             if (enemy is Magician magician)
             {
 
-            this.Positie = startPositie;
+            this.Position = startPosition;
             this.direction = direction;
             this.textureleft = textureleft;
             this.textureright = textureright;
 
-            animationright = new Animatie();
-            animationleft = new Animatie();
+                animationright = new Animation.Animations();
+                animationleft = new Animation.Animations();
 
             this.direction.Normalize();
             
@@ -75,10 +75,10 @@ namespace Gameproject.Enemies
         }
         public void Update(GameTime gameTime)
         {
-            Positie += direction * speed;
+            Position += direction * speed;
             currentanimation.Update(gameTime);
 
-            if (!IsOnScreen(Positie))
+            if (!IsOnScreen(Position))
             {
                 Destroy();
             }
@@ -92,13 +92,13 @@ namespace Gameproject.Enemies
             {
                 
 
-                spriteBatch.Draw(textureright, Positie, sourceRectangle, Color.White);
+                spriteBatch.Draw(textureright, Position, sourceRectangle, Color.White);
                 
             }
             else
             {
                 
-                    spriteBatch.Draw(textureleft, Positie, sourceRectangle, Color.White);
+                    spriteBatch.Draw(textureleft, Position, sourceRectangle, Color.White);
                 
             }
 

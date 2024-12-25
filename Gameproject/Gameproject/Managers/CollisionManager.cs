@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gameproject.Enemies;
+using Gameproject.Heromap;
 using Gameproject.Interfaces;
 using Microsoft.Xna.Framework;
 
@@ -85,14 +86,14 @@ namespace Gameproject.Managers
                 Rectangle heroBoundingBox = Hero.BoundingBox;
                 Rectangle enemyBoundingBox = _enemy.BoundingBox;
 
-                Vector2 richting = _enemy.Positie - Hero.Positie;
-                richting.Normalize();
+                Vector2 direction = _enemy.Position - Hero.Position;
+                direction.Normalize();
 
                 if (heroBoundingBox.Intersects(enemyBoundingBox))
                 {
-                    Vector2 verschuiving = richting * 5f; // 5 pixel verschuiving
+                    Vector2 shift = direction * 5f; 
 
-                    _enemy.Positie += verschuiving;
+                    _enemy.Position += shift;
                 }
 
             }
@@ -113,13 +114,13 @@ namespace Gameproject.Managers
 
             if (enemy1BoundingBox.Intersects(enemy2BoundingBox))
             {
-                Vector2 directie = enemy2.Positie - enemy1.Positie;
-                if (directie != Vector2.Zero)
-                    directie.Normalize();
+                Vector2 direction = enemy2.Position - enemy1.Position;
+                if (direction != Vector2.Zero)
+                    direction.Normalize();
 
-                Vector2 verschuiving = directie * 2.5f;
-                enemy1.Positie -= verschuiving;
-                enemy2.Positie += verschuiving;
+                Vector2 shift = direction * 2.5f;
+                enemy1.Position -= shift;
+                enemy2.Position += shift;
             }
         }
         private void HandlefireballCollision(Hero hero, FireBall fireBall)

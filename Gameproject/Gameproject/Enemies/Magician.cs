@@ -21,13 +21,13 @@ namespace Gameproject.Enemies
         public Texture2D textureAttackLeft;
         public Texture2D textureCurrent;
 
-        public Animatie IdleAnimation;
-        public Animatie DeathAnimation;
-        public Animatie AttackRightAnimation;
-        public Animatie AttackLeftAnimation;
-        public Animatie RightrunAnimation;
-        public Animatie leftrunAnimation;
-        public Animatie CurrentAnimation;
+        public Animation.Animations IdleAnimation;
+        public Animation.Animations DeathAnimation;
+        public Animation.Animations AttackRightAnimation;
+        public Animation.Animations AttackLeftAnimation;
+        public Animation.Animations RightrunAnimation;
+        public Animation.Animations leftrunAnimation;
+        public Animation.Animations CurrentAnimation;
         private int counter;
         private bool isDying;
         public bool IsDead => isDying;
@@ -67,12 +67,12 @@ namespace Gameproject.Enemies
 
             this.behavior = behavior;
 
-            leftrunAnimation = new Animatie();
-            RightrunAnimation = new Animatie();
-            IdleAnimation = new Animatie();
-            DeathAnimation = new Animatie();
-            AttackRightAnimation = new Animatie();
-            AttackLeftAnimation = new Animatie();
+            leftrunAnimation = new Animation.Animations();
+            RightrunAnimation = new Animation.Animations();
+            IdleAnimation = new Animation.Animations();
+            DeathAnimation = new Animation.Animations();
+            AttackRightAnimation = new Animation.Animations();
+            AttackLeftAnimation = new Animation.Animations();
 
             int[] run_attack_pixels = { 0, 128, 256, 384, 512, 640, 768, 896 };
             int[] idlepixels = { 0, 128, 256, 384, 512, 640, 768 };
@@ -112,9 +112,9 @@ namespace Gameproject.Enemies
 
 
         }
-        public override int Breedte => textureCurrent.Width / counter;
+        public override int Width => textureCurrent.Width / counter;
 
-        public override int Hoogte => textureCurrent.Height;
+        public override int Height => textureCurrent.Height;
 
         public void TakeDamage(int damage)
         {
@@ -138,7 +138,7 @@ namespace Gameproject.Enemies
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
+            spriteBatch.Draw(textureCurrent, Position, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
         }
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
