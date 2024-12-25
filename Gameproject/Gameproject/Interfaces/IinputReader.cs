@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gameproject.Input
+namespace Gameproject.Interfaces
 {
     public interface IinputReader
     {

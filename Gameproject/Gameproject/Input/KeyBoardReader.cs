@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Gameproject.Interfaces;
 using Microsoft.Xna.Framework.Input;
 
 namespace Gameproject.Input
