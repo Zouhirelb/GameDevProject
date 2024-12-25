@@ -78,6 +78,7 @@ namespace Gameproject
         private Rectangle mapBounds = new Rectangle(0, 0, 10060, 10072);
 
         private StartScreen startScreen;
+        private GameOverScreen gameOverScreen;
 
         public Game1()
         {
@@ -116,6 +117,7 @@ namespace Gameproject
             gameoverBackground = Content.Load<Texture2D>("Blackscreen");
             gameoverMessage = Content.Load<Texture2D>("GameOver");
             gameoverMusic = Content.Load<Song>("Gameoversound");
+            gameOverScreen = new GameOverScreen(gameoverBackground, gameoverMessage, gameoverMusic, _graphics.GraphicsDevice);
 
             startButtonRectangle = new Rectangle(540, 360, startButton.Width, startButton.Height);
 
@@ -211,6 +213,11 @@ namespace Gameproject
                 startScreen.Update();
                 return; 
             }
+            if (GameStateManager.CurrentState == GameState.GameOver)
+            {
+                gameOverScreen.Update();
+                return; 
+            }
 
             hero.Update(gameTime);
 
@@ -229,22 +236,47 @@ namespace Gameproject
 
             base.Update(gameTime);
         }
-        private void DrawBorder(SpriteBatch spriteBatch, Rectangle rectangle, int thickness, Color color)
+        private void UpdateGameplay(GameTime gameTime)
         {
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, rectangle.Width, thickness), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Bottom - thickness, rectangle.Width, thickness), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Left, rectangle.Top, thickness, rectangle.Height), color);
-            spriteBatch.Draw(_borderTexture, new Rectangle(rectangle.Right - thickness, rectangle.Top, thickness, rectangle.Height), color);
+            // Controleer of de speler dood is
+            if (hero.Health <= 0)
+            {
+                GameStateManager.CurrentState = GameState.GameOver;
+                MediaPlayer.Stop(); // Stop gameplaymuziek
+                return;
+            }
+
+            // Update LevelManager om waves te beheren
+            LevelManager.Instance.Update(gameTime);
+
+            // Controleer of alle waves voltooid zijn
+            if (LevelManager.Instance.CurrentLevel > LevelManager.Instance.InitializeWaves().Count)
+            {
+                GameStateManager.CurrentState = GameState.GameOver;
+                MediaPlayer.Stop();
+                return;
+            }
+
+            // Update vijanden via EnemyManager
+            EnemyManager.Instance.Update(gameTime, hero.Positie);
+
+            // Update de speler
+            hero.Update(gameTime);
         }
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkSeaGreen);
             if (GameStateManager.CurrentState == GameState.StartScreen)
             {
                 startScreen.Draw(_spriteBatch);
-                return; // Stop verdere teken-logica
+                return; 
             }
-
+            if (GameStateManager.CurrentState == GameState.GameOver)
+            {
+                gameOverScreen.Draw(_spriteBatch);
+                return; 
+            }
             _spriteBatch.Begin(this.camera);
 
             _background.Draw(_spriteBatch, camera.Position, GraphicsDevice.Viewport);

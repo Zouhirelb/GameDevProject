@@ -129,6 +129,12 @@ namespace Gameproject.Enemies
                 LevelManager.Instance.NotifyEnemyDied();
             }
         }
+
+        public override void Die()
+        {
+            LevelManager.Instance.NotifyEnemyDied();
+            EnemyManager.Instance.RemoveEnemy(this);
+        }
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(textureCurrent, Positie, CurrentAnimation.CurrentFrame.SourceRectangle, Color.White);
@@ -138,6 +144,10 @@ namespace Gameproject.Enemies
 
         public override void Update(GameTime gameTime, Vector2 heroPosition)
         {
+            if (Health <= 0)
+            {
+                Die();
+            }
             if (!isDead)
             {
                 behavior.Execute(this, heroPosition, gameTime);

@@ -78,6 +78,11 @@ namespace Gameproject {
                 LevelManager.Instance.NotifyEnemyDied();
             }
         }
+        public override void Die()
+        {
+            LevelManager.Instance.NotifyEnemyDied();
+            EnemyManager.Instance.RemoveEnemy(this);
+        }
         public override void Draw(SpriteBatch spriteBatch)
             {
             if (huidigeanimatie == deathanimation)
@@ -100,6 +105,10 @@ namespace Gameproject {
         }
         public override void Update(GameTime gameTime, Vector2 heropositie)
         {
+            if (Health <= 0)
+            {
+                Die();
+            }
             if (!isDying)
             {
                 behavior.Execute(this, heropositie, gameTime);

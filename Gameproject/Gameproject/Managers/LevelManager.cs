@@ -89,9 +89,10 @@ namespace Gameproject.Managers
                 return instance;
             }
         }
+        private List<Wave> waves;
 
         private int currentWaveIndex = 0;
-        private List<Wave> waves;
+        public List<Wave> Waves => waves;
         public void InitializeWaves()
         {
             waves = new List<Wave>()
@@ -122,10 +123,10 @@ namespace Gameproject.Managers
         public int CurrentLevel => currentLevel;
         private void SpawnWave(int waveIndex)
         {
-            if (waveIndex >= waves.Count) return;
+            if (waveIndex >= Waves.Count) return;
 
             Random rnd = new Random();
-            var wave = waves[waveIndex];
+            var wave = Waves[waveIndex];
             currentLevel = currentWaveIndex+1;
             Console.WriteLine($"Spawning wave #{waveIndex + 1}: " +
                               $"{wave.Monsters} Monsters, {wave.Skeletons} Skeletons, {wave.Magicians} Magicians");
@@ -186,7 +187,7 @@ namespace Gameproject.Managers
         }
         public void Update(GameTime gameTime)
         {
-            if (currentWaveIndex >= waves.Count)
+            if (currentWaveIndex >= Waves.Count)
             {
                 return;
             }
